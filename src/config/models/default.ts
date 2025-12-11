@@ -401,15 +401,16 @@ export const SYSTEM_MODELS: Record<SystemProviderId | 'defaultModel', Model[]> =
     }
   ],
   openai: [
-    { id: 'gpt-5.1', provider: 'openai', name: 'GPT-5.1 Thinking', group: 'GPT 5.1' },
+    { id: 'gpt-5.1', provider: 'openai', name: 'GPT-5.1', group: 'GPT 5.1' },
     { id: 'gpt-5.1-chat-latest', provider: 'openai', name: 'GPT-5.1 Instant', group: 'GPT 5.1' },
     { id: 'gpt-5.1-codex-max', provider: 'openai', name: 'GPT-5.1 Codex Max', group: 'GPT 5.1' },
-    { id: 'gpt-5.1-codex', provider: 'openai', name: 'GPT-5.1 Codex', group: 'GPT 5.1' },
-    { id: 'gpt-4.5-preview', provider: 'openai', name: ' gpt-4.5-preview', group: 'gpt-4.5' },
-    { id: 'gpt-4o', provider: 'openai', name: ' GPT-4o', group: 'GPT 4o' },
-    { id: 'gpt-4o-mini', provider: 'openai', name: ' GPT-4o-mini', group: 'GPT 4o' },
-    { id: 'o1-mini', provider: 'openai', name: ' o1-mini', group: 'o1' },
-    { id: 'o1-preview', provider: 'openai', name: ' o1-preview', group: 'o1' }
+    { id: 'gpt-4.5-preview', provider: 'openai', name: 'GPT-4.5 Preview', group: 'gpt-4.5' },
+    { id: 'gpt-4o', provider: 'openai', name: 'GPT-4o', group: 'GPT 4o' },
+    { id: 'gpt-4o-mini', provider: 'openai', name: 'GPT-4o-mini', group: 'GPT 4o' },
+    { id: 'o1', provider: 'openai', name: 'o1', group: 'o1' },
+    { id: 'o1-mini', provider: 'openai', name: 'o1-mini', group: 'o1' },
+    { id: 'o1-preview', provider: 'openai', name: 'o1-preview', group: 'o1' },
+    { id: 'o3-mini', provider: 'openai', name: 'o3-mini', group: 'o3' }
   ],
   gemini: [
     {
@@ -437,17 +438,35 @@ export const SYSTEM_MODELS: Record<SystemProviderId | 'defaultModel', Model[]> =
       group: 'Gemini 2.0'
     },
     {
-      id: 'gemini-2.5-flash-image-preview',
+      id: 'gemini-2.0-flash-exp',
       provider: 'gemini',
-      name: 'Gemini 2.5 Flash Image',
+      name: 'Gemini 2.0 Flash Exp',
+      group: 'Gemini 2.0'
+    },
+    {
+      id: 'gemini-2.0-pro-exp-02-05',
+      provider: 'gemini',
+      name: 'Gemini 2.0 Pro Exp',
+      group: 'Gemini 2.0'
+    },
+    {
+      id: 'gemini-2.5-flash-preview',
+      provider: 'gemini',
+      name: 'Gemini 2.5 Flash Preview',
+      group: 'Gemini 2.5'
+    },
+    {
+      id: 'gemini-2.5-pro-preview-03-25',
+      provider: 'gemini',
+      name: 'Gemini 2.5 Pro Preview',
       group: 'Gemini 2.5'
     }
   ],
   anthropic: [
     {
-      id: 'claude-haiku-4-5-20251001',
+      id: 'claude-opus-4-5-20251101',
       provider: 'anthropic',
-      name: 'Claude Haiku 4.5',
+      name: 'Claude Opus 4.5',
       group: 'Claude 4.5'
     },
     {
@@ -457,16 +476,10 @@ export const SYSTEM_MODELS: Record<SystemProviderId | 'defaultModel', Model[]> =
       group: 'Claude 4.5'
     },
     {
-      id: 'claude-sonnet-4-20250514',
+      id: 'claude-haiku-4-5-20251001',
       provider: 'anthropic',
-      name: 'Claude Sonnet 4',
-      group: 'Claude 4'
-    },
-    {
-      id: 'claude-opus-4-20250514',
-      provider: 'anthropic',
-      name: 'Claude Opus 4',
-      group: 'Claude 4'
+      name: 'Claude Haiku 4.5',
+      group: 'Claude 4.5'
     },
     {
       id: 'claude-3-7-sonnet-20250219',
@@ -509,14 +522,14 @@ export const SYSTEM_MODELS: Record<SystemProviderId | 'defaultModel', Model[]> =
     {
       id: 'deepseek-chat',
       provider: 'deepseek',
-      name: 'DeepSeek Chat',
-      group: 'DeepSeek Chat'
+      name: 'DeepSeek V3',
+      group: 'DeepSeek'
     },
     {
       id: 'deepseek-reasoner',
       provider: 'deepseek',
-      name: 'DeepSeek Reasoner',
-      group: 'DeepSeek Reasoner'
+      name: 'DeepSeek R1',
+      group: 'DeepSeek'
     }
   ],
   together: [

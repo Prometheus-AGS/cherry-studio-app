@@ -28,8 +28,8 @@ import { estimateConversationTokens, estimateSingleMessageTokens } from '@/servi
 import type { Message } from '@/types/message'
 import { getMainTextContent } from '@/utils/messageUtils/find'
 
-import { BaseContextStrategy } from '../types'
 import type { ContextStrategyConfig, ContextStrategyContext, ContextStrategyResult } from '../types'
+import { BaseContextStrategy } from '../types'
 
 const logger = loggerService.withContext('SummarizationStrategy')
 

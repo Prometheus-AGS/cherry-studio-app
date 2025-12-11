@@ -22,5 +22,7 @@ export const assistants = sqliteTable('assistants', {
   tags: text('tags'),
   group: text('group'),
   websearch_provider_id: text('websearch_provider_id'),
+  // Context management configuration (JSON: ContextStrategyConfig)
+  context_strategy: text('context_strategy'),
   ...createUpdateTimestamps
 })

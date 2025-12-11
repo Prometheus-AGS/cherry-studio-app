@@ -6,7 +6,7 @@
  */
 
 import { loggerService } from './LoggerService'
-import { estimateToolResultTokens, estimateTextTokens } from './TokenService'
+import { estimateTextTokens,estimateToolResultTokens } from './TokenService'
 
 const logger = loggerService.withContext('ToolResultCondenser')
 
@@ -184,7 +184,7 @@ export function condenseToolResult(
 /**
  * Extract key information from array results
  */
-function extractFromArray(arr: any[], maxTokens: number): string {
+function extractFromArray(arr: any[], _maxTokens: number): string {
   const itemCount = arr.length
   
   // Calculate how many items we can include
@@ -207,7 +207,7 @@ function extractFromArray(arr: any[], maxTokens: number): string {
 /**
  * Extract key fields from object results
  */
-function extractFromObject(obj: any, maxTokens: number): string {
+function extractFromObject(obj: any, _maxTokens: number): string {
   // Keep important keys, truncate values
   const important = [
     'id', 'name', 'title', 'type', 'status', 

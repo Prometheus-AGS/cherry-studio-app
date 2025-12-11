@@ -472,8 +472,8 @@ export function estimateToolResultTokens(toolResult: any): number {
  */
 export async function estimateTokensPerMessage(
   messages: Message[]
-): Promise<Array<{ message: Message; tokens: number }>> {
-  const results: Array<{ message: Message; tokens: number }> = []
+): Promise<{ message: Message; tokens: number }[]> {
+  const results: { message: Message; tokens: number }[] = []
   
   for (const message of messages) {
     const tokens = await estimateSingleMessageTokens(message)

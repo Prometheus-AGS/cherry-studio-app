@@ -7,6 +7,7 @@ import { TouchableOpacity, View } from 'react-native'
 import { Text } from '@/componentsV2'
 import ModelTabScreen from '@/screens/assistant/tabs/ModelTabScreen'
 import PromptTabScreen from '@/screens/assistant/tabs/PromptTabScreen'
+import SettingsTabScreen from '@/screens/assistant/tabs/SettingsTabScreen'
 import ToolTabScreen from '@/screens/assistant/tabs/ToolTabScreen'
 import type { Assistant } from '@/types/assistant'
 
@@ -14,6 +15,7 @@ export type AssistantDetailTabParamList = {
   PromptTab: { assistant: Assistant }
   ModelTab: { assistant: Assistant }
   ToolTab: { assistant: Assistant }
+  SettingsTab: { assistant: Assistant }
 }
 
 const Tab = createMaterialTopTabNavigator<AssistantDetailTabParamList>()
@@ -29,7 +31,8 @@ function CustomTabBar({ state, navigation }: any) {
   const tabLabels = {
     PromptTab: t('common.prompt'),
     ModelTab: t('common.model'),
-    ToolTab: t('common.tool')
+    ToolTab: t('common.tool'),
+    SettingsTab: t('common.settings')
   }
 
   return (
@@ -102,6 +105,14 @@ export default function AssistantDetailTabNavigator({ assistant, initialTab }: A
         }}
         initialParams={{ assistant }}
       />
+      <Tab.Screen
+        name="SettingsTab"
+        component={SettingsTabScreen}
+        options={{
+          tabBarLabel: t('common.settings')
+        }}
+        initialParams={{ assistant }}
+      />
     </Tab.Navigator>
   )
 }
@@ -114,6 +125,8 @@ function getInitialTabRoute(tab?: string): keyof AssistantDetailTabParamList {
       return 'ModelTab'
     case 'tool':
       return 'ToolTab'
+    case 'settings':
+      return 'SettingsTab'
     default:
       return 'PromptTab'
   }

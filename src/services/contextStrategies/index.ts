@@ -22,10 +22,9 @@
 import { getAvailableInputBudget } from '@/config/models/contextLimits'
 import { loggerService } from '@/services/LoggerService'
 import { estimateConversationTokens } from '@/services/TokenService'
-import type { Assistant, Model } from '@/types/assistant'
-import type { ContextStrategyType, ContextStrategyContext, ContextStrategyResult } from '@/types/contextStrategy'
+import type { Assistant, Model , Topic } from '@/types/assistant'
+import type { ContextStrategyContext, ContextStrategyResult,ContextStrategyType } from '@/types/contextStrategy'
 import type { Message } from '@/types/message'
-import type { Topic } from '@/types/assistant'
 
 import { getEffectiveStrategyConfig, isContextStrategyEnabled } from './configResolver'
 import { HierarchicalMemoryStrategy } from './strategies/HierarchicalMemoryStrategy'

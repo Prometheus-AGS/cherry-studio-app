@@ -75,11 +75,10 @@ export const createToolCallbacks = (deps: ToolCallbacksDependencies) => {
 
         // Check if tool result needs condensation (proactive token management)
         let processedContent = toolResponse.response
-        let contextActionBlockId: string | null = null
         
         if (finalStatus === MessageBlockStatus.SUCCESS && toolResponse.response) {
           const maxTokens = getToolThreshold(toolResponse.tool.name)
-          const { shouldCondense, currentTokens, threshold } = shouldCondenseToolResult(
+          const { shouldCondense, threshold } = shouldCondenseToolResult(
             toolResponse.response,
             maxTokens
           )
@@ -115,7 +114,6 @@ export const createToolCallbacks = (deps: ToolCallbacksDependencies) => {
                 }
               }
               
-              contextActionBlockId = contextActionBlock.id
               blockManager.handleBlockTransition(contextActionBlock, MessageBlockType.CONTEXT_ACTION)
               
               logger.info('Tool result condensed - notification created', {

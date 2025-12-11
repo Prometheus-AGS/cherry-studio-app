@@ -113,6 +113,7 @@ export const MODEL_CONTEXT_LIMITS: Record<string, number> = {
   'deepseek-v2.5': 128_000,
   'deepseek-v3': 128_000,
   'deepseek-r1': 128_000,
+  'deepseek-reasoner': 128_000,
 
   // ==================== Qwen Models ====================
   'qwen-turbo': 128_000,

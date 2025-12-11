@@ -6,7 +6,7 @@ import { glm45FlashModel, qwen38bModel, SYSTEM_MODELS } from './models/default'
 
 export const CHERRYAI_PROVIDER: SystemProvider = {
   id: 'cherryai' as SystemProviderId,
-  name: 'CherryAI',
+  name: 'BossAI',
   type: 'openai',
   apiKey: '',
   apiHost: 'https://api.cherry-ai.com/',

@@ -6,17 +6,34 @@
 
 import { messageBlockDatabase } from '@database'
 import { t } from 'i18next'
-import { takeRight } from 'lodash'
+import { cloneDeep, takeRight } from 'lodash'
 
-import { ModernAiProvider } from '@/aiCore'
+import ModernAiProvider, { type ModernAiProviderConfig } from '@/aiCore/index_new'
+import { buildStreamTextParams } from '@/aiCore/prepareParams'
+import { isDedicatedImageGenerationModel } from '@/config/models'
 import { getDefaultModel } from '@/services/AssistantService'
 import { loggerService } from '@/services/LoggerService'
+import { McpService } from '@/services/McpService'
 import { preferenceService } from '@/services/PreferenceService'
 import { getProviderByModel } from '@/services/ProviderService'
-import type { Assistant } from '@/types/assistant'
+import type { Assistant, Provider } from '@/types/assistant'
+import type { Chunk } from '@/types/chunk'
+import { ChunkType } from '@/types/chunk'
 import type { Message } from '@/types/message'
+import type { MCPTool } from '@/types/tool'
+import { isPromptToolUse, isSupportedToolUse } from '@/utils/mcpTool'
 
 const logger = loggerService.withContext('ApiService')
+
+export type FetchChatCompletionParams = {
+  messages: any[] // Using any[] for now as CoreMessage depends on ai sdk version
+  prompt?: string
+  assistant: Assistant
+  options?: any
+  onChunkReceived: (chunk: Chunk) => void
+  topicId?: string
+  uiMessages?: Message[]
+}
 
 /**
  * Extract text content from message blocks
@@ -208,17 +225,220 @@ export async function fetchTopicNaming(topicId: string, forceRename?: boolean): 
 }
 
 // Placeholder stubs - these should be implemented or imported from correct service
-export async function checkApi(_provider: any, _model: any, _timeout?: number): Promise<void> {
-  // TODO: Implement API check or import from correct service
-  throw new Error('checkApi not yet implemented in mobile app')
+
+
+export async function checkApi(provider: any, model: any, timeout?: number): Promise<void> {
+  try {
+    const aiProvider = new ModernAiProvider(model, provider)
+
+    // Create a temporary assistant for the check
+    const checkAssistant: Assistant = {
+      id: 'check-api-assistant',
+      name: 'Check API',
+      prompt: 'You are a test assistant.',
+      topics: [],
+      type: 'system',
+      model: model,
+      emoji: '🧪',
+    }
+
+    let signal: AbortSignal | undefined
+    if (timeout) {
+      const controller = new AbortController()
+      setTimeout(() => controller.abort(), timeout)
+      signal = controller.signal
+    }
+
+    // Perform a minimal completion request
+    // We use a simple prompt. maxTokens is not supported in StreamTextParams directly in this version
+    await aiProvider.completions(
+      model.id,
+      {
+        prompt: 'Hi',
+        abortSignal: signal,
+      },
+      {
+        assistant: checkAssistant,
+        callType: 'check',
+        streamOutput: false,
+        enableReasoning: false,
+        isPromptToolUse: false,
+        isSupportedToolUse: false,
+        isImageGenerationEndpoint: false,
+        enableWebSearch: false,
+        enableGenerateImage: false,
+        enableUrlContext: false,
+        mcpTools: [],
+      }
+    )
+  } catch (error) {
+    logger.error('checkApi failed:', error as Error)
+    throw error
+  }
 }
 
-export async function fetchModels(_provider: any): Promise<any[]> {
-  // TODO: Implement model fetching or import from ProviderService
-  throw new Error('fetchModels not yet implemented - use ProviderService instead')
+export async function fetchModels(provider: any): Promise<any[]> {
+  try {
+    const aiProvider = new ModernAiProvider(provider)
+    return await aiProvider.models()
+  } catch (error) {
+    logger.error('fetchModels failed:', error as Error)
+    throw error
+  }
 }
 
-export async function fetchChatCompletion(_params: any): Promise<any> {
-  // TODO: Implement or import from OrchestrationService
-  throw new Error('fetchChatCompletion not yet implemented - use OrchestrationService instead')
+
+/**
+ * Call AI Completions with full orchestration
+ */
+export async function fetchChatCompletion({
+  messages,
+  prompt,
+  assistant,
+  options, // options from OrchestrationRequest
+  onChunkReceived,
+  topicId,
+  uiMessages,
+}: FetchChatCompletionParams) {
+  logger.info('fetchChatCompletion called', {
+    messageCount: messages?.length || 0,
+    prompt: prompt,
+    assistantId: assistant.id,
+    topicId,
+    modelId: assistant.model?.id,
+  })
+
+  // Get base provider and apply API key rotation
+  const baseProvider = getProviderByModel(assistant.model || getDefaultModel())
+  const providerWithRotatedKey = {
+    ...cloneDeep(baseProvider),
+    apiKey: getRotatedApiKey(baseProvider),
+  }
+
+  const AI = new ModernAiProvider(assistant.model || getDefaultModel(), providerWithRotatedKey)
+  const provider = AI.getActualProvider()
+
+  const mcpTools: MCPTool[] = []
+  onChunkReceived({ type: ChunkType.LLM_RESPONSE_CREATED })
+
+  // Fetch MCP tools if enabled
+  if (isPromptToolUse(assistant) || isSupportedToolUse(assistant)) {
+    mcpTools.push(...(await fetchMcpTools(assistant)))
+  }
+
+  if (prompt) {
+    messages = [
+      {
+        role: 'user',
+        content: prompt,
+      },
+    ]
+  }
+
+  // Build parameters using the shared aiCore module
+  const {
+    params: aiSdkParams,
+    modelId,
+    capabilities,
+    webSearchPluginConfig,
+  } = await buildStreamTextParams(messages, assistant, provider, {
+    mcpTools,
+    webSearchProviderId: assistant.webSearchProviderId,
+    requestOptions: options,
+  })
+
+  // Safely fallback to prompt tool use when function calling is not supported by model.
+  // Note: isToolUseModeFunction and isFunctionCallingModel logic should be imported or checked
+  // checks are usually in assistant utils or similar.
+  // For now implementing simplified check matching usage properties
+  const usePromptToolUse =
+    isPromptToolUse(assistant) ||
+    (assistant.settings?.toolUseMode === 'function' && assistant.model?.capabilities?.find((c) => c.type === 'function_calling') === undefined && !isPromptToolUse(assistant))
+
+  const middlewareConfig: ModernAiProviderConfig = {
+    streamOutput: assistant.settings?.streamOutput ?? true,
+    onChunk: onChunkReceived,
+    model: assistant.model,
+    enableReasoning: capabilities.enableReasoning,
+    isPromptToolUse: usePromptToolUse,
+    isSupportedToolUse: isSupportedToolUse(assistant),
+    isImageGenerationEndpoint: isDedicatedImageGenerationModel(assistant.model || getDefaultModel()),
+    webSearchPluginConfig,
+    enableWebSearch: capabilities.enableWebSearch,
+    enableGenerateImage: capabilities.enableGenerateImage,
+    enableUrlContext: capabilities.enableUrlContext,
+    mcpTools,
+    uiMessages,
+    knowledgeRecognition: assistant.knowledgeRecognition,
+
+    callType: 'chat',
+    topicId,
+    assistant,
+  }
+
+  await AI.completions(modelId, aiSdkParams, middlewareConfig)
 }
+
+/**
+ * Fetch enabled MCP tools for the assistant
+ */
+export async function fetchMcpTools(assistant: Assistant): Promise<MCPTool[]> {
+  try {
+    const mcpService = McpService.getInstance()
+    
+    // Get all active servers
+    const activeServers = await mcpService.getActiveMcpServers()
+    const assistantMcpServers = assistant.mcpServers || []
+
+    // Filter servers that are enabled for this assistant
+    const enabledServers = activeServers.filter((server) => 
+        assistantMcpServers.some((s) => s.id === server.id)
+    )
+
+    if (enabledServers.length === 0) {
+        return []
+    }
+
+    const toolPromises = enabledServers.map(async (server) => {
+        const tools = await mcpService.getMcpTools(server.id)
+        // Check for disabled tools in the assistant config
+        const disabledTools = assistantMcpServers.find(s => s.id === server.id)?.disabledTools || []
+        return tools.filter(tool => !disabledTools.includes(tool.name))
+    })
+
+    const results = await Promise.all(toolPromises)
+    return results.flat()
+
+  } catch (error) {
+    logger.error('Error fetching MCP tools:', error as Error)
+    return []
+  }
+}
+
+/**
+ * Validates if the provider has an API key.
+ * For now simplified version.
+ */
+export function hasApiKey(provider: Provider): boolean {
+    if (!provider) return false
+    // TODO: Add system provider checks if needed
+    return !!provider.apiKey
+}
+
+/**
+ * Get rotated API key for providers that support multiple keys
+ */
+function getRotatedApiKey(provider: Provider): string {
+  if (!provider.apiKey) return ''
+  
+  const keys = provider.apiKey.split(',').map(k => k.trim()).filter(Boolean)
+  if (keys.length === 0) return ''
+  if (keys.length === 1) return keys[0]
+
+  // TODO: Implement actual rotation persistence if needed (e.g. using MMKV)
+  // For now return random or first to distribute load? 
+  // Desktop uses last used key persistence. 
+  // Returning first key for now to be safe and stateless.
+  return keys[0]
+}
+

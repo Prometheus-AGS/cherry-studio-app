@@ -8,12 +8,6 @@ import { trim } from 'lodash'
 const VERSION_REGEX_PATTERN = '\\/v\\d+(?:alpha|beta)?(?=\\/|$)'
 
 /**
- * Matches an API version at the end of a URL (with optional trailing slash).
- * Used to detect and extract versions only from the trailing position.
- */
-const TRAILING_VERSION_REGEX = /\/v\d+(?:alpha|beta)?\/?$/i
-
-/**
  * 判断 host 的 path 中是否包含形如版本的字符串（例如 /v1、/v2beta 等），
  *
  * @param host - 要检查的 host 或 path 字符串

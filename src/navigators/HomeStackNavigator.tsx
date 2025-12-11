@@ -10,6 +10,7 @@ import type { AssistantDetailScreenParams } from '@/types/naviagate'
 
 import AboutStackNavigator from './settings/AboutStackNavigator'
 import AssistantSettingsStackNavigator from './settings/AssistantSettingsStackNavigator'
+import ContextManagementStackNavigator from './settings/ContextManagementStackNavigator'
 import DataSourcesStackNavigator from './settings/DataSourcesStackNavigator'
 import GeneralSettingsStackNavigator from './settings/GeneralSettingsStackNavigator'
 import ProvidersStackNavigator from './settings/ProvidersStackNavigator'
@@ -24,6 +25,7 @@ export type HomeStackParamList = {
   GeneralSettings: { screen?: string; params?: any } | undefined
   AssistantSettings: { screen?: string; params?: any } | undefined
   ProvidersSettings: { screen?: string; params?: any } | undefined
+  ContextManagementSettings: { screen?: string; params?: any } | undefined
   DataSourcesSettings: { screen?: string; params?: any } | undefined
   WebSearchSettings: { screen?: string; params?: any } | undefined
   AboutSettings: { screen?: string; params?: any } | undefined
@@ -47,6 +49,7 @@ export default function HomeStackNavigator() {
       <Stack.Screen name="GeneralSettings" component={GeneralSettingsStackNavigator} />
       <Stack.Screen name="AssistantSettings" component={AssistantSettingsStackNavigator} />
       <Stack.Screen name="ProvidersSettings" component={ProvidersStackNavigator} />
+      <Stack.Screen name="ContextManagementSettings" component={ContextManagementStackNavigator} />
       <Stack.Screen name="DataSourcesSettings" component={DataSourcesStackNavigator} />
       <Stack.Screen name="WebSearchSettings" component={WebSearchStackNavigator} />
       <Stack.Screen name="AboutSettings" component={AboutStackNavigator} />

@@ -1,4 +1,3 @@
-import type OpenAI from 'openai'
 import type { ProviderId, ProviderSettingsMap } from '@cherrystudio/ai-core/provider'
 import {
   formatPrivateKey,
@@ -7,6 +6,7 @@ import {
 } from '@cherrystudio/ai-core/provider'
 import { fetch } from 'expo/fetch'
 import { cloneDeep, isEmpty } from 'lodash'
+import type OpenAI from 'openai'
 
 import { isOpenAIChatCompletionOnlyModel } from '@/config/models/default'
 import { isNewApiProvider } from '@/config/providers'
@@ -273,6 +273,10 @@ export function providerToAiSdkConfig(
   extraOptions.endpoint = endpoint // endpoint could be useful even for chat if custom
   if (actualProvider.type === 'openai-response' && !isOpenAIChatCompletionOnlyModel(model)) {
     extraOptions.mode = 'responses'
+    // Ensure standard OpenAI API uses /v1 for responses if baseConfig doesn't have it
+    if (aiSdkProviderId === 'openai' && !baseConfig.baseURL.endsWith('/v1')) {
+      baseConfig.baseURL = formatApiHost(baseConfig.baseURL, true)
+    }
   } else if (aiSdkProviderId === 'openai' || (aiSdkProviderId === 'cherryin' && actualProvider.type === 'openai')) {
     extraOptions.mode = 'chat'
   }
@@ -417,11 +421,6 @@ export async function prepareSpecialProviderConfig(
 ) {
   switch (provider.id) {
     case 'copilot': {
-      const defaultHeaders = store.getState().copilot?.defaultHeaders ?? {}
-      const headers = {
-        ...COPILOT_DEFAULT_HEADERS,
-        ...defaultHeaders
-      }
       // window.api.copilot is not available on mobile.
       // Need alternative or stub.
       // Assuming mobile can't fully support Copilot auth flow yet if it relies on VSCode token extraction?

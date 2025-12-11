@@ -31,8 +31,8 @@ import { loggerService } from '@/services/LoggerService'
 import { estimateConversationTokens, estimateSingleMessageTokens } from '@/services/TokenService'
 import type { Message } from '@/types/message'
 
-import { BaseContextStrategy } from '../types'
 import type { ContextStrategyConfig, ContextStrategyContext, ContextStrategyResult } from '../types'
+import { BaseContextStrategy } from '../types'
 
 const logger = loggerService.withContext('TruncateMiddleStrategy')
 
