@@ -86,7 +86,7 @@ export default function BasicDataSettingsScreen() {
       const backupUri = await backup()
       setIsBackup(false)
 
-      const fileName = backupUri.split('/').pop() || `cherry-studio.${Date.now()}.zip`
+      const fileName = backupUri.split('/').pop() || `the-boss.${Date.now()}.zip`
       await saveFileToFolder(backupUri, fileName, 'application/zip')
     } catch (error) {
       logger.error('handleBackup', error as Error)

@@ -14,6 +14,9 @@
         "buildType": "apk",
         "withoutCredentials": "true",
         "gradleCommand": ":app:assembleDebug -PreactNativeArchitectures=arm64-v8a"
+      },
+      "ios": {
+        "simulator": true
       }
     },
     "preview": {

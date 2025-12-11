@@ -77,7 +77,7 @@ export function useRestore(options: UseRestoreOptions = {}) {
   const [overallStatus, setOverallStatus] = useState<'running' | 'success' | 'error'>('running')
 
   const validateFile = (file: { mimeType?: string; name: string; type?: string }) => {
-    const isValid = file.name.includes('cherry-studio')
+    const isValid = file.name.includes('cherry-studio') || file.name.includes('the-boss')
 
     if (!isValid) {
       presentDialog('error', {

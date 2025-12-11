@@ -3,9 +3,11 @@ import React from 'react'
 
 import AddProviderScreen from '@/screens/settings/providers/AddProviderScreen'
 import ApiServiceScreen from '@/screens/settings/providers/ApiServiceScreen'
+import AwsBedrockSettingsScreen from '@/screens/settings/providers/AwsBedrockSettingsScreen'
 import ManageModelsScreen from '@/screens/settings/providers/ManageModelsScreen'
 import ProviderListScreen from '@/screens/settings/providers/ProviderListScreen'
 import ProviderSettingsScreen from '@/screens/settings/providers/ProviderSettingsScreen'
+import VertexAISettingsScreen from '@/screens/settings/providers/VertexAISettingsScreen'
 
 export type ProvidersStackParamList = {
   ProviderSettingsScreen: { providerId: string }
@@ -13,6 +15,8 @@ export type ProvidersStackParamList = {
   ManageModelsScreen: { providerId: string; providerName: string }
   ApiServiceScreen: { providerId: string }
   AddProviderScreen: { mode: 'add' | 'edit'; providerId?: string } | undefined
+  AwsBedrockSettingsScreen: { providerId: string }
+  VertexAISettingsScreen: { providerId: string }
 }
 
 const Stack = createStackNavigator<ProvidersStackParamList>()
@@ -30,6 +34,8 @@ export default function ProvidersStackNavigator() {
       <Stack.Screen name="ManageModelsScreen" component={ManageModelsScreen} />
       <Stack.Screen name="ApiServiceScreen" component={ApiServiceScreen} />
       <Stack.Screen name="AddProviderScreen" component={AddProviderScreen} />
+      <Stack.Screen name="AwsBedrockSettingsScreen" component={AwsBedrockSettingsScreen} />
+      <Stack.Screen name="VertexAISettingsScreen" component={VertexAISettingsScreen} />
     </Stack.Navigator>
   )
 }

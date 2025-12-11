@@ -235,6 +235,7 @@ export type Provider = {
   name: string
   apiKey: string
   apiHost: string
+  openaiApiHost?: string
   anthropicApiHost?: string
   isAnthropicModel?: (m: Model) => boolean
   apiVersion?: string
@@ -274,7 +275,8 @@ export const ProviderTypeSchema = z.enum([
   'aws-bedrock',
   'vertex-anthropic',
   'new-api',
-  'ai-gateway'
+  'ai-gateway',
+  'openai-compatible'
 ])
 
 export type ProviderType = z.infer<typeof ProviderTypeSchema>
@@ -412,3 +414,21 @@ type PromptParams = BaseParams & {
 }
 
 export type FetchChatCompletionParams = MessagesParams | PromptParams
+
+export type AwsBedrockAuthType = 'iam' | 'apiKey'
+
+// Type Guards for Providers
+export const isAnthropicProvider = (provider: Provider) => provider.type === 'anthropic' || provider.id === 'anthropic'
+export const isOllamaProvider = (provider: Provider) => provider.type === 'openai' && provider.id === 'ollama'
+export const isGeminiProvider = (provider: Provider) => provider.type === 'gemini'
+export const isVertexProvider = (provider: Provider) => provider.type === 'vertexai'
+export const isCherryAIProvider = (provider: Provider) => provider.id === 'cherryin'
+export const isPerplexityProvider = (provider: Provider) => provider.id === 'perplexity'
+
+export const isAzureOpenAIProvider = (provider: Provider) => provider.type === 'azure-openai'
+// Azure Foundry is often identified by specific ID or type if distinct
+export const isAzureFoundryProvider = (provider: Provider) => provider.id === 'azure-foundry' || provider.id === 'azure-foundry-inference'
+
+export const isSupportStreamOptionsProvider = (provider: Provider) => 
+  ['openai', 'azure-openai', 'deepseek', 'moonshot', 'silicon', 'ppio', 'groq', 'together', 'fireworks'].includes(provider.type) ||
+  ['deepseek', 'moonshot', 'silicon', 'ppio', 'groq', 'together', 'fireworks'].includes(provider.id)

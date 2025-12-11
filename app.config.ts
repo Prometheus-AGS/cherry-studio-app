@@ -7,13 +7,13 @@ const appVersion = packageJson.version
 
 export default {
   expo: {
-    name: 'Cherry Studio',
-    slug: 'cherry-studio',
+    name: 'The Boss',
+    slug: 'the-boss',
     version: appVersion,
     // orientation: 'portrait', 锁定竖屏
     orientation: 'default',
     icon: './src/assets/images/favicon.png',
-    scheme: 'cherry-studio',
+    scheme: 'the-boss',
     userInterfaceStyle: 'automatic',
     newArchEnabled: true,
     entryPoint: './src/app.js',
@@ -25,11 +25,11 @@ export default {
     },
     ios: {
       supportsTablet: true,
-      bundleIdentifier: 'com.cherry-ai.cherry-studio-app',
+      bundleIdentifier: 'ai.prometheusags.theboss',
       userInterfaceStyle: 'automatic',
       infoPlist: {
         LSApplicationQueriesSchemes: ['shortcuts'],
-        NSSpeechRecognitionUsageDescription: 'Allow Cherry Studio App to use speech recognition for voice input.'
+        NSSpeechRecognitionUsageDescription: 'Allow The Boss App to use speech recognition for voice input.'
       }
     },
     android: {
@@ -38,7 +38,7 @@ export default {
         backgroundColor: '#F65D5D'
       },
       edgeToEdgeEnabled: true,
-      package: 'com.cherry_ai.cherry_studio_app',
+      package: 'ai.prometheusags.theboss',
       userInterfaceStyle: 'automatic',
       predictiveBackGestureEnabled: false
     },
@@ -119,32 +119,32 @@ export default {
       [
         'expo-camera',
         {
-          cameraPermission: 'Allow Cherry Studio App to access your camera',
-          // microphonePermission: 'Allow Cherry Studio App to access your microphone',
+          cameraPermission: 'Allow The Boss App to access your camera',
+          // microphonePermission: 'Allow The Boss App to access your microphone',
           recordAudioAndroid: true
         }
       ],
       [
         'expo-media-library',
         {
-          photosPermission: 'Allow Cherry Studio App to save images to your photo library.',
-          savePhotosPermission: 'Allow Cherry Studio App to save images to your photo library.',
+          photosPermission: 'Allow The Boss App to save images to your photo library.',
+          savePhotosPermission: 'Allow The Boss App to save images to your photo library.',
           isAccessMediaLocationEnabled: true
         }
       ],
       [
         'expo-calendar',
         {
-          calendarPermission: 'Allow Cherry Studio App to access your calendar.',
-          remindersPermission: 'Allow Cherry Studio App to access your reminders.'
+          calendarPermission: 'Allow The Boss App to access your calendar.',
+          remindersPermission: 'Allow The Boss App to access your reminders.'
         }
       ],
       ['react-native-compressor'],
       [
         'expo-speech-recognition',
         {
-          microphonePermission: 'Allow Cherry Studio App to use your microphone for voice input.',
-          speechRecognitionPermission: 'Allow Cherry Studio App to use speech recognition.'
+          microphonePermission: 'Allow The Boss App to use your microphone for voice input.',
+          speechRecognitionPermission: 'Allow The Boss App to use speech recognition.'
         }
       ],
       [
@@ -173,7 +173,7 @@ export default {
     },
     extra: {
       eas: {
-        projectId: '80096eaf-3ad0-4b87-a466-15f04da1bacc'
+        projectId: 'e14a954a-c7a1-429c-8a75-17ac77359b90'
       },
       appVersion
     }

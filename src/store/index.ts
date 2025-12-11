@@ -5,10 +5,14 @@ import devToolsEnhancer from 'redux-devtools-expo-dev-plugin'
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist'
 
 import app from './app'
+import copilot from './copilot'
+import llm from './llm'
 import runtime from './runtime'
 
 const rootReducer = combineReducers({
   app,
+  copilot,
+  llm,
   runtime
 })
 

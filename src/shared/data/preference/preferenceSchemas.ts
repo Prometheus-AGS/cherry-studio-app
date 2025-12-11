@@ -27,7 +27,7 @@ export const DefaultPreferences: PreferenceSchemas = {
     'user.avatar': '',
 
     // User display name shown in the application
-    'user.name': 'Cherry Studio',
+    'user.name': 'The Boss',
 
     // Unique user identifier (UUID)
     // Will be generated during seeding with actual UUID

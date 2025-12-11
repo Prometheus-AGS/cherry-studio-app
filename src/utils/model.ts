@@ -11,6 +11,11 @@ export const getModelUniqId = (m?: Model) => {
   return m?.id ? JSON.stringify(pick(m, ['id', 'provider'])) : ''
 }
 
+// Basic check for OpenAI model IDs
+export const isOpenAIModelId = (id: string) => {
+  return id.startsWith('gpt-') || id.startsWith('o1') || id.startsWith('o3')
+}
+
 /**
  * 判断模型是否为用户手动选择
  * @param {Model} model 模型对象

@@ -84,7 +84,15 @@ export default function ProviderSettingsScreen() {
   }
 
   const onApiService = () => {
-    navigation.navigate('ApiServiceScreen', { providerId })
+    // Route to provider-specific settings screens for complex providers
+    if (provider?.id === 'aws-bedrock') {
+      navigation.navigate('AwsBedrockSettingsScreen', { providerId })
+    } else if (provider?.id === 'vertexai') {
+      navigation.navigate('VertexAISettingsScreen', { providerId })
+    } else {
+      // Default generic API service screen
+      navigation.navigate('ApiServiceScreen', { providerId })
+    }
   }
 
   const handleHealthCheck = async () => {

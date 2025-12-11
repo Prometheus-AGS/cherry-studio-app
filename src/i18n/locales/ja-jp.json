@@ -105,7 +105,7 @@
       },
       "think": "{{seconds}}秒考え中",
       "think_expand": "タップして私の心を読む",
-      "title": "Cherry Studio へようこそ！",
+      "title": "The Boss へようこそ！",
       "topics": {
         "list": "リスト",
         "search": {
@@ -120,7 +120,7 @@
       "camera": "カメラ",
       "cancel": "キャンセル",
       "check": "チェック",
-      "cherry_studio": "Cherry Studio",
+      "cherry_studio": "The Boss",
       "cherry_studio_description": "パワフルなAIプロダクション・アシスタント",
       "clear_all": "すべてクリア",
       "close": "閉じる",
@@ -162,7 +162,7 @@
       "select_all": "すべて選択",
       "select_text": "テキストを選択",
       "source": "ソース",
-      "start": "Cherry Studioアプリを使ってみましょう 🎉",
+      "start": "The Bossアプリを使ってみましょう 🎉",
       "stop": "停止",
       "this_week": "今週",
       "today": "今日",
@@ -171,7 +171,7 @@
       "visit": "訪問",
       "websearch": "ウェブ検索",
       "welcome": {
-        "message1": "Cherry Studio へようこそ",
+        "message1": "The Boss へようこそ",
         "message2": "創作を始めて、無限の可能性を楽しみましょう！"
       },
       "yesterday": "昨日"
@@ -181,7 +181,7 @@
       "availableTools": "利用可能なツール",
       "backup": {
         "file_format": "バックアップファイルの形式が正しくありません",
-        "file_invalid": "バックアップファイルが無効です。Cherry Studioでモバイル端末にエクスポートして取得する必要があります",
+        "file_invalid": "バックアップファイルが無効です。The Bossでモバイル端末にエクスポートして取得する必要があります",
         "title": "バックアップ失敗"
       },
       "cause": "原因",
@@ -553,7 +553,7 @@
           "scan_qr_code": {
             "connecting": "接続中...",
             "connection_error_message": "接続に失敗しました。LAN の状態を確認し、QR コードをもう一度スキャンしてください。",
-            "description": "Cherry StudioからQRコードをスキャン",
+            "description": "The BossからQRコードをスキャン",
             "disconnected_message": "Landrop の接続が切断されました。もう一度お試しください。",
             "disconnected_title": "接続が切断されました",
             "grant_permission": "権限を付与する",
@@ -961,7 +961,7 @@
       "error": "音声認識エラー",
       "not_available": "音声認識は利用できません",
       "permission_denied": "マイクの権限が拒否されました",
-      "permission_denied_message": "設定でCherry Studioにマイクへのアクセスを許可してください",
+      "permission_denied_message": "設定でThe Bossにマイクへのアクセスを許可してください",
       "start": "音声入力を開始",
       "stop": "音声入力を停止"
     }

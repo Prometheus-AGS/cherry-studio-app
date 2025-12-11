@@ -1,5 +1,14 @@
 import type { Model, SystemProviderId } from '@/types/assistant'
 
+export const isEmbeddingModel = (model: Model) => {
+  // Check if model capabilities has 'embedding'
+  return model.capabilities?.some(c => c.type === 'embedding') || model.id.includes('embedding')
+}
+
+export const isOpenAIChatCompletionOnlyModel = (model: Model) => {
+  return model.id.startsWith('o1') || model.id.startsWith('o3')
+}
+
 export const glm45FlashModel: Model = {
   id: 'glm-4.5-flash',
   name: 'GLM-4.5-Flash',
@@ -377,13 +386,6 @@ export const SYSTEM_MODELS: Record<SystemProviderId | 'defaultModel', Model[]> =
     }
   ],
   alayanew: [],
-  openai: [
-    { id: 'gpt-4.5-preview', provider: 'openai', name: ' gpt-4.5-preview', group: 'gpt-4.5' },
-    { id: 'gpt-4o', provider: 'openai', name: ' GPT-4o', group: 'GPT 4o' },
-    { id: 'gpt-4o-mini', provider: 'openai', name: ' GPT-4o-mini', group: 'GPT 4o' },
-    { id: 'o1-mini', provider: 'openai', name: ' o1-mini', group: 'o1' },
-    { id: 'o1-preview', provider: 'openai', name: ' o1-preview', group: 'o1' }
-  ],
   'azure-openai': [
     {
       id: 'gpt-4o',
@@ -397,6 +399,17 @@ export const SYSTEM_MODELS: Record<SystemProviderId | 'defaultModel', Model[]> =
       name: ' GPT-4o-mini',
       group: 'GPT 4o'
     }
+  ],
+  openai: [
+    { id: 'gpt-5.1', provider: 'openai', name: 'GPT-5.1 Thinking', group: 'GPT 5.1' },
+    { id: 'gpt-5.1-chat-latest', provider: 'openai', name: 'GPT-5.1 Instant', group: 'GPT 5.1' },
+    { id: 'gpt-5.1-codex-max', provider: 'openai', name: 'GPT-5.1 Codex Max', group: 'GPT 5.1' },
+    { id: 'gpt-5.1-codex', provider: 'openai', name: 'GPT-5.1 Codex', group: 'GPT 5.1' },
+    { id: 'gpt-4.5-preview', provider: 'openai', name: ' gpt-4.5-preview', group: 'gpt-4.5' },
+    { id: 'gpt-4o', provider: 'openai', name: ' GPT-4o', group: 'GPT 4o' },
+    { id: 'gpt-4o-mini', provider: 'openai', name: ' GPT-4o-mini', group: 'GPT 4o' },
+    { id: 'o1-mini', provider: 'openai', name: ' o1-mini', group: 'o1' },
+    { id: 'o1-preview', provider: 'openai', name: ' o1-preview', group: 'o1' }
   ],
   gemini: [
     {

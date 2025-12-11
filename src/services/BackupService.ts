@@ -566,7 +566,7 @@ async function zipBackupData(backupData: string) {
 
     dataFile.write(backupData)
 
-    const filename = `cherry-studio.${dayjs().format('YYYYMMDDHHmm')}.zip`
+    const filename = `the-boss.${dayjs().format('YYYYMMDDHHmm')}.zip`
     const zipFile = new File(DEFAULT_BACKUP_STORAGE, filename)
 
     if (zipFile.exists) {

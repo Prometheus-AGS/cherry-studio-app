@@ -105,7 +105,7 @@
       },
       "think": "Thinking for {{seconds}} seconds",
       "think_expand": "Tap to read my mind",
-      "title": "Welcome to Cherry Studio!",
+      "title": "Welcome to The Boss!",
       "topics": {
         "list": "List",
         "search": {
@@ -120,7 +120,7 @@
       "camera": "Camera",
       "cancel": "Cancel",
       "check": "Check",
-      "cherry_studio": "Cherry Studio",
+      "cherry_studio": "The Boss",
       "cherry_studio_description": "A Powerful AI assistant for producer",
       "clear_all": "Clear All",
       "close": "Close",
@@ -137,7 +137,7 @@
       "file": "File",
       "generateImage": "Create an image",
       "go_to_settings": "Settings",
-      "import_from_cherry_studio": "Import from Cherry Studio",
+      "import_from_cherry_studio": "Import from The Boss",
       "language": "Language",
       "last_month": "Last Month",
       "last_week": "Last Week",
@@ -162,7 +162,7 @@
       "select_all": "Select All",
       "select_text": "Select Text",
       "source": "Source",
-      "start": "Get Started with Cherry Studio 🎉",
+      "start": "Get Started with The Boss 🎉",
       "stop": "Stop",
       "this_week": "This Week",
       "today": "Today",
@@ -171,7 +171,7 @@
       "visit": "Visit",
       "websearch": "Web Search",
       "welcome": {
-        "message1": "Welcome to Cherry Studio 🎉",
+        "message1": "Welcome to The Boss 🎉",
         "message2": "Start creating and enjoying"
       },
       "yesterday": "Yesterday"
@@ -181,7 +181,7 @@
       "availableTools": "Available Tools",
       "backup": {
         "file_format": "Backup file format error",
-        "file_invalid": "The backup file is invalid. You need to export it to a mobile device through Cherry Studio.",
+        "file_invalid": "The backup file is invalid. You need to export it to a mobile device through The Boss.",
         "title": "Backup failed"
       },
       "cause": "Cause",
@@ -553,7 +553,7 @@
           "scan_qr_code": {
             "connecting": "Connecting...",
             "connection_error_message": "Unable to connect. Please check your LAN and scan the QR code again.",
-            "description": "Scan QR Code from Cherry Studio",
+            "description": "Scan QR Code from The Boss",
             "disconnected_message": "The Landrop connection was disconnected. Please try again.",
             "disconnected_title": "Connection Lost",
             "grant_permission": "Grant Permission",
@@ -793,7 +793,41 @@
         "not_found_message": "There is an error navigate to the provider page.",
         "provider_deleted": "Provider deleted",
         "search": "Search Providers...",
-        "title": "Model Provider"
+        "title": "Model Provider",
+        "aws-bedrock": {
+          "title": "AWS Bedrock Settings",
+          "description": "Configure AWS Bedrock authentication. You can use either IAM credentials or an API key.",
+          "auth_type": "Authentication Type",
+          "auth_type_iam": "IAM Credentials",
+          "auth_type_api_key": "API Key",
+          "auth_type_help": "Choose IAM for AWS credentials or API Key for simplified authentication",
+          "access_key_id": "Access Key ID",
+          "access_key_id_help": "Your AWS Access Key ID from IAM",
+          "secret_access_key": "Secret Access Key",
+          "secret_access_key_help": "Your AWS Secret Access Key",
+          "api_key": "Bedrock API Key",
+          "api_key_help": "Alternative to IAM credentials",
+          "region": "AWS Region",
+          "region_help": "AWS region where Bedrock is available (e.g., us-east-1)"
+        },
+        "vertex_ai": {
+          "service_account": {
+            "title": "Vertex AI Settings",
+            "description": "Configure Google Cloud Vertex AI with service account credentials",
+            "client_email": "Service Account Email",
+            "client_email_placeholder": "service-account@project.iam.gserviceaccount.com",
+            "client_email_help": "Email address from your service account JSON",
+            "private_key": "Service Account Private Key",
+            "private_key_placeholder": "-----BEGIN PRIVATE KEY-----\\n...\\n-----END PRIVATE KEY-----",
+            "private_key_help": "Private key from your service account JSON"
+          },
+          "project_id": "Project ID",
+          "project_id_placeholder": "your-gcp-project-id",
+          "project_id_help": "Your Google Cloud Project ID",
+          "location": "Location",
+          "location_help": "GCP region (e.g., us-central1)"
+        },
+        "get_api_key": "Get API Key"
       },
       "proxy": {
         "title": "Proxy Address"
@@ -961,7 +995,7 @@
       "error": "Speech recognition error",
       "not_available": "Speech recognition is not available",
       "permission_denied": "Microphone permission denied",
-      "permission_denied_message": "Please allow Cherry Studio to access your microphone in Settings",
+      "permission_denied_message": "Please allow The Boss to access your microphone in Settings",
       "start": "Start voice input",
       "stop": "Stop voice input"
     }
