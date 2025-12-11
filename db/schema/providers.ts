@@ -16,5 +16,16 @@ export const providers = sqliteTable('providers', {
   rate_limit: integer('rate_limit'),
   is_not_support_array_content: integer('is_not_support_array_content', { mode: 'boolean' }),
   notes: text('notes'),
+  
+  // Vertex AI specific fields (stored as JSON)
+  google_credentials: text('google_credentials'), // JSON: { privateKey, clientEmail }
+  project: text('project'),
+  location: text('location'),
+  
+  // AWS Bedrock specific fields (stored as JSON)
+  aws_credentials: text('aws_credentials'), // JSON: { accessKeyId, secretAccessKey, apiKey }
+  region: text('region'),
+  auth_type: text('auth_type'), // 'iam' | 'apiKey'
+  
   ...createUpdateTimestamps
 })

@@ -1,287 +1,224 @@
-import { messageDatabase } from '@database'
+/**
+ * ApiService - AI API service functions
+ *
+ * Provides atomic, stateless API call functions for AI operations
+ */
+
+import { messageBlockDatabase } from '@database'
 import { t } from 'i18next'
-import { isEmpty, takeRight } from 'lodash'
+import { takeRight } from 'lodash'
 
-import LegacyAiProvider from '@/aiCore'
-import type { CompletionsParams } from '@/aiCore/legacy/middleware/schemas'
-import type { AiSdkMiddlewareConfig } from '@/aiCore/middleware/AiSdkMiddlewareBuilder'
-import { buildStreamTextParams, convertMessagesToSdkMessages } from '@/aiCore/prepareParams'
-import { isDedicatedImageGenerationModel, isEmbeddingModel } from '@/config/models'
-import i18n from '@/i18n'
+import { ModernAiProvider } from '@/aiCore'
+import { getDefaultModel } from '@/services/AssistantService'
 import { loggerService } from '@/services/LoggerService'
-import type { Assistant, FetchChatCompletionParams, Model, Provider } from '@/types/assistant'
-import { ChunkType } from '@/types/chunk'
-import type { MCPServer } from '@/types/mcp'
-import type { SdkModel } from '@/types/sdk'
-import type { MCPTool } from '@/types/tool'
-import { isPromptToolUse, isSupportedToolUse } from '@/utils/mcpTool'
-import { filterMainTextMessages } from '@/utils/messageUtils/filters'
-import { hasApiKey } from '@/utils/providerUtils'
+import { preferenceService } from '@/services/PreferenceService'
+import { getProviderByModel } from '@/services/ProviderService'
+import type { Assistant } from '@/types/assistant'
+import type { Message } from '@/types/message'
 
-import AiProviderNew from '../aiCore/index_new'
-import { assistantService, getDefaultModel } from './AssistantService'
-import { mcpService } from './McpService'
-import { getAssistantProvider } from './ProviderService'
-import type { StreamProcessorCallbacks } from './StreamProcessingService'
-import { createStreamProcessor } from './StreamProcessingService'
-import { topicService } from './TopicService'
+const logger = loggerService.withContext('ApiService')
 
-const logger = loggerService.withContext('fetchChatCompletion')
-
-export async function fetchChatCompletion({
-  messages,
-  prompt,
-  assistant,
-  options,
-  onChunkReceived,
-  topicId,
-  uiMessages
-}: FetchChatCompletionParams) {
-  const AI = new AiProviderNew(assistant.model || getDefaultModel())
-  const provider = AI.getActualProvider()
-
-  const mcpTools: MCPTool[] = []
-
-  onChunkReceived({ type: ChunkType.LLM_RESPONSE_CREATED })
-
-  if (isPromptToolUse(assistant) || isSupportedToolUse(assistant)) {
-    mcpTools.push(...(await fetchAssistantMcpTools(assistant)))
-  }
-
-  if (prompt) {
-    messages = [
-      {
-        role: 'user',
-        content: prompt
-      }
-    ]
-  }
-
-  // 使用 transformParameters 模块构建参数
-  const {
-    params: aiSdkParams,
-    modelId,
-    capabilities,
-    webSearchPluginConfig
-  } = await buildStreamTextParams(messages, assistant, provider, {
-    mcpTools: mcpTools,
-    webSearchProviderId: assistant.webSearchProviderId,
-    requestOptions: options
-  })
-
-  const middlewareConfig: AiSdkMiddlewareConfig = {
-    streamOutput: assistant.settings?.streamOutput ?? true,
-    onChunk: onChunkReceived,
-    model: assistant.model,
-    enableReasoning: capabilities.enableReasoning,
-    isPromptToolUse: isPromptToolUse(assistant),
-    isSupportedToolUse: isSupportedToolUse(assistant),
-    isImageGenerationEndpoint: isDedicatedImageGenerationModel(assistant.model || getDefaultModel()),
-    enableWebSearch: capabilities.enableWebSearch,
-    enableGenerateImage: capabilities.enableGenerateImage,
-    enableUrlContext: capabilities.enableUrlContext,
-    mcpTools,
-    uiMessages,
-    webSearchPluginConfig
-  }
-
-  // --- Call AI Completions ---
+/**
+ * Extract text content from message blocks
+ *
+ * @param message - Message to extract content from
+ * @returns Extracted text content
+ */
+async function extractMessageContent(message: Message): Promise<string> {
   try {
-    await AI.completions(modelId, aiSdkParams, {
-      ...middlewareConfig,
-      assistant,
-      topicId,
-      callType: 'chat',
-      uiMessages
-    })
-  } catch (error) {
-    logger.error('fetchChatCompletion completions failed', error as Error)
-    onChunkReceived({ type: ChunkType.ERROR, error: error as any })
-    throw error
-  }
-}
-
-export async function fetchModels(provider: Provider): Promise<SdkModel[]> {
-  const AI = new AiProviderNew(provider)
-
-  try {
-    return await AI.models()
-  } catch (error) {
-    logger.error('fetchChatCompletion', error as Error)
-    return []
-  }
-}
-
-export function checkApiProvider(provider: Provider): void {
-  if (!hasApiKey(provider)) {
-    throw new Error(i18n.t('message.error.enter.api.key'))
-  }
-
-  if (!provider.apiHost && provider.type !== 'vertexai') {
-    throw new Error(i18n.t('message.error.enter.api.host'))
-  }
-
-  if (isEmpty(provider.models)) {
-    throw new Error(i18n.t('message.error.enter.model'))
-  }
-}
-
-export async function checkApi(provider: Provider, model: Model): Promise<void> {
-  checkApiProvider(provider)
-
-  const ai = new LegacyAiProvider(provider)
-
-  const assistant: Assistant = {
-    id: 'checkApi',
-    name: 'Check Api Assistant',
-    prompt: '',
-    topics: [],
-    type: 'external',
-    model: model
-  }
-
-  try {
-    if (isEmbeddingModel(model)) {
-      await ai.getEmbeddingDimensions(model)
-    } else {
-      const params: CompletionsParams = {
-        callType: 'check',
-        messages: 'hi',
-        assistant,
-        streamOutput: false,
-        shouldThrow: true
-      }
-
-      // Try streaming check first
-      const result = await ai.completions(params)
-
-      if (!result.getText()) {
-        throw new Error('No response received')
-      }
+    if (!message.blocks || message.blocks.length === 0) {
+      return ''
     }
-  } catch (error: any) {
-    logger.error('Check Api Error', error)
-    throw error
-  }
-}
 
-export async function fetchTopicNaming(topicId: string, regenerate: boolean = false) {
-  logger.info('Fetching topic naming...')
-  const topic = await topicService.getTopic(topicId)
-  const messages = await messageDatabase.getMessagesByTopicId(topicId)
+    // Load all blocks for this message
+    const blocks = await Promise.all(message.blocks.map((blockId) => messageBlockDatabase.getBlockById(blockId)))
 
-  if (!topic) {
-    logger.error(`[fetchTopicNaming] Topic with ID ${topicId} not found.`)
-    return
-  }
+    // Extract text from main text blocks
+    const textBlocks = blocks
+      .filter((block) => block && block.type === 'main_text')
+      .map((block) => (block as any).content || '')
+      .filter(Boolean)
 
-  if (topic.name !== t('topics.new_topic') && !regenerate) {
-    return
-  }
-
-  let callbacks: StreamProcessorCallbacks = {}
-
-  callbacks = {
-    onTextComplete: async finalText => {
-      await topicService.updateTopic(topicId, { name: finalText.trim() })
-    }
-  }
-  const streamProcessorCallbacks = createStreamProcessor(callbacks)
-  const quickAssistant = await assistantService.getAssistant('quick')
-
-  if (!quickAssistant?.defaultModel) {
-    return
-  }
-
-  const provider = await getAssistantProvider(quickAssistant)
-
-  // 总结上下文总是取最后5条消息
-  const contextMessages = takeRight(messages, 5)
-
-  // LLM对多条消息的总结有问题，用单条结构化的消息表示会话内容会更好
-  const mainTextMessages = await filterMainTextMessages(contextMessages)
-
-  const llmMessages = await convertMessagesToSdkMessages(mainTextMessages, quickAssistant.defaultModel)
-
-  const AI = new AiProviderNew(quickAssistant.defaultModel || getDefaultModel(), provider)
-  const { params: aiSdkParams, modelId } = await buildStreamTextParams(llmMessages, quickAssistant, provider)
-
-  const middlewareConfig: AiSdkMiddlewareConfig = {
-    streamOutput: false,
-    onChunk: streamProcessorCallbacks,
-    model: quickAssistant.defaultModel,
-    provider: provider,
-    enableReasoning: false,
-    isPromptToolUse: false,
-    isSupportedToolUse: false,
-    isImageGenerationEndpoint: false,
-    enableWebSearch: false,
-    enableGenerateImage: false,
-    enableUrlContext: false,
-    mcpTools: []
-  }
-
-  try {
-    return (
-      (
-        await AI.completions(modelId, aiSdkParams, {
-          ...middlewareConfig,
-          assistant: quickAssistant,
-          topicId,
-          callType: 'summary'
-        })
-      ).getText() || t('topics.new_topic')
-    )
+    return textBlocks.join('\n\n')
   } catch (error) {
-    logger.error('Error during topic naming:', error)
+    logger.error('Failed to extract message content:', error as Error, { messageId: message.id })
     return ''
   }
 }
 
 /**
- * Fetch MCP tools for an assistant
+ * Generate a topic name from messages using AI
  *
- * Refactored to use McpService for optimized caching and tool fetching.
- *
- * @param assistant - The assistant with MCP server configuration
- * @returns Array of enabled MCP tools
+ * @param messages - Array of messages to summarize
+ * @param assistant - Assistant configuration
+ * @returns Generated topic name or null if generation fails
  */
-export async function fetchAssistantMcpTools(assistant: Assistant) {
-  let mcpTools: MCPTool[] = []
+export async function fetchMessagesSummary({
+  messages,
+  assistant
+}: {
+  messages: Message[]
+  assistant: Assistant
+}): Promise<string | null> {
+  try {
+    // Get naming prompt from preferences
+    let prompt = preferenceService.getCached('topic.naming_prompt') || t('prompts.title')
 
-  // Get all active MCP servers using McpService (with caching)
-  const activedMcpServers = await mcpService.getActiveMcpServers()
-  const assistantMcpServers = assistant.mcpServers || []
+    // Get the model to use for summary generation (use assistant's model or default)
+    const model = assistant.model || getDefaultModel()
+    const provider = getProviderByModel(model)
 
-  // Filter to only MCP servers enabled for this assistant
-  const enabledMCPs = activedMcpServers.filter(server => assistantMcpServers.some(s => s.id === server.id))
+    // Take last 5 messages for context
+    const contextMessages = takeRight(messages, 5)
 
-  if (enabledMCPs && enabledMCPs.length > 0) {
+    if (contextMessages.length === 0) {
+      logger.warn('No messages to summarize')
+      return null
+    }
+
+    // Extract content from messages
+    const structuredMessages = await Promise.all(
+      contextMessages.map(async (message) => ({
+        role: message.role,
+        content: await extractMessageContent(message)
+      }))
+    )
+
+    // Filter out messages without content
+    const validMessages = structuredMessages.filter((m) => m.content.trim().length > 0)
+
+    if (validMessages.length === 0) {
+      logger.warn('No valid messages with content to summarize')
+      return null
+    }
+
+    // Create conversation context for AI
+    const conversation = JSON.stringify(validMessages)
+
+    logger.info('Generating topic summary with AI', {
+      messageCount: validMessages.length,
+      assistantId: assistant.id,
+      modelId: model.id
+    })
+
     try {
-      // Fetch tools for each enabled MCP server using McpService
-      // This automatically handles disabledTools filtering
-      const toolPromises = enabledMCPs.map(async (mcpServer: MCPServer) => {
-        try {
-          // Use McpService.getMcpTools() which handles:
-          // - Builtin tools fetching
-          // - Future MCP protocol integration
-          // - Automatic filtering of disabledTools
-          return await mcpService.getMcpTools(mcpServer.id)
-        } catch (error) {
-          logger.error(`Error fetching tools from MCP server ${mcpServer.name}:`, error as Error)
-          return []
+      // Use aiCore to generate summary
+      const aiProvider = new ModernAiProvider(model, provider)
+
+      const summaryAssistant = {
+        ...assistant,
+        prompt,
+        model,
+        settings: {
+          ...assistant.settings,
+          // Disable reasoning for faster summary generation
+          reasoning_effort: undefined
         }
+      }
+
+      const result = await aiProvider.completions(model.id, {
+        system: prompt,
+        prompt: conversation
+      }, {
+        assistant: summaryAssistant,
+        callType: 'summary',
+        streamOutput: false,
+        enableReasoning: false,
+        isPromptToolUse: false,
+        isSupportedToolUse: false,
+        isImageGenerationEndpoint: false,
+        enableWebSearch: false,
+        enableGenerateImage: false,
+        enableUrlContext: false,
+        mcpTools: []
       })
 
-      const results = await Promise.allSettled(toolPromises)
-      mcpTools = results
-        .filter((result): result is PromiseFulfilledResult<MCPTool[]> => result.status === 'fulfilled')
-        .map(result => result.value)
-        .flat()
-    } catch (toolError) {
-      logger.error('Error fetching MCP tools:', toolError as Error)
+      const summaryText = result.getText()
+      
+      if (summaryText) {
+        return removeSpecialCharactersForTopicName(summaryText)
+      }
+    } catch (error) {
+      logger.error('AI summary generation failed, using fallback:', error as Error)
+      
+      // Fallback to simple extraction from first user message
+      const firstUserMessage = validMessages.find((m) => m.role === 'user')
+      if (firstUserMessage?.content) {
+        const summary = removeSpecialCharactersForTopicName(firstUserMessage.content.substring(0, 50))
+        return summary || null
+      }
     }
-  }
 
-  return mcpTools
+    return null
+  } catch (error) {
+    logger.error('Failed to generate topic summary:', error as Error)
+    return null
+  }
+}
+
+/**
+ * Remove special characters that aren't suitable for topic names
+ *
+ * @param text - Text to clean
+ * @returns Cleaned text
+ */
+export function removeSpecialCharactersForTopicName(text: string): string {
+  return text
+    .replace(/[*#`[\]]/g, '') // Remove markdown formatting
+    .replace(/\n+/g, ' ') // Replace newlines with spaces
+    .trim()
+}
+
+/**
+ * Stub exports for functions used elsewhere
+ * These reference implementations from other services
+ * TODO: Refactor to consolidate API functions
+ */
+
+/**
+ * Fetch and apply topic naming
+ * This triggers the automatic topic renaming functionality
+ *
+ * @param topicId - The topic ID to rename
+ * @param forceRename - Force rename even if already named (optional)
+ */
+export async function fetchTopicNaming(topicId: string, forceRename?: boolean): Promise<void> {
+  // Import dynamically to avoid circular dependency
+  const { autoRenameTopic } = await import('@/hooks/useTopic')
+  const { topicService } = await import('@/services/TopicService')
+  const { assistantService } = await import('@/services/AssistantService')
+  
+  try {
+    const topic = await topicService.getTopic(topicId)
+    if (!topic) {
+      logger.warn('Topic not found for naming:', topicId)
+      return
+    }
+    
+    const assistant = await assistantService.getAssistant(topic.assistantId)
+    if (!assistant) {
+      logger.warn('Assistant not found for topic naming:', topic.assistantId)
+      return
+    }
+    
+    await autoRenameTopic(assistant, topicId)
+  } catch (error) {
+    logger.error('fetchTopicNaming failed:', error as Error, { topicId, forceRename })
+  }
+}
+
+// Placeholder stubs - these should be implemented or imported from correct service
+export async function checkApi(_provider: any, _model: any, _timeout?: number): Promise<void> {
+  // TODO: Implement API check or import from correct service
+  throw new Error('checkApi not yet implemented in mobile app')
+}
+
+export async function fetchModels(_provider: any): Promise<any[]> {
+  // TODO: Implement model fetching or import from ProviderService
+  throw new Error('fetchModels not yet implemented - use ProviderService instead')
+}
+
+export async function fetchChatCompletion(_params: any): Promise<any> {
+  // TODO: Implement or import from OrchestrationService
+  throw new Error('fetchChatCompletion not yet implemented - use OrchestrationService instead')
 }

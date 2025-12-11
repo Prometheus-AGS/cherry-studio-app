@@ -93,6 +93,9 @@
       "tag": "Tag",
       "web_search": "Search online"
     },
+    "prompts": {
+      "title": "Please summarize the conversation in 2-5 words."
+    },
     "chat": {
       "assistant": {
         "search": {
@@ -396,6 +399,21 @@
       "unmarked_as_best_answer": "Unmarked as best answer",
       "websearch": {
         "fetch_complete": "Completed {{count}} searches..."
+      },
+      "context_action": {
+        "title": "Context Management",
+        "tap_details": "Tap for details",
+        "hide": "Hide details",
+        "details": "Details",
+        "strategy": "Strategy",
+        "removed": "Messages removed",
+        "saved": "Tokens saved",
+        "tokens": "tokens",
+        "message_count": "Message count",
+        "summary_label": "Generated Summary",
+        "processing": "Managing context...",
+        "pruned": "Removed {{count}} older messages to stay within model limits",
+        "applied": "Applied {{strategy}} strategy (removed {{removed}} messages)"
       }
     },
     "models": {

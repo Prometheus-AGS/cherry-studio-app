@@ -4819,6 +4819,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-community/slider@npm:^5.1.1":
+  version: 5.1.1
+  resolution: "@react-native-community/slider@npm:5.1.1"
+  checksum: 10c0/d32bc014b4464fc4e3672da0e98ef6cc622a31e32d053b93f22ac1ddd39431454774442cbb088490626a52d16ba189c092fa0c59464de6779a6e6381f555ea04
+  languageName: node
+  linkType: hard
+
 "@react-native-documents/viewer@npm:^1.0.3":
   version: 1.0.3
   resolution: "@react-native-documents/viewer@npm:1.0.3"
@@ -7120,6 +7127,7 @@ __metadata:
     "@opeoginni/github-copilot-openai-compatible": "npm:0.1.21"
     "@react-native-async-storage/async-storage": "npm:2.2.0"
     "@react-native-community/datetimepicker": "npm:8.4.4"
+    "@react-native-community/slider": "npm:^5.1.1"
     "@react-native-documents/viewer": "npm:^1.0.3"
     "@react-native-masked-view/masked-view": "npm:0.3.2"
     "@react-native-menu/menu": "patch:@react-native-menu/menu@npm%3A1.2.2#~/.yarn/patches/@react-native-menu-menu-npm-1.2.2-2f9d419d7a.patch"

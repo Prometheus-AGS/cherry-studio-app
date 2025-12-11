@@ -389,3 +389,146 @@ export function useTopics() {
     updateTopics
   }
 }
+
+// ==================== Topic Renaming Functions ====================
+
+/**
+ * Lock set to prevent duplicate rename operations
+ */
+const topicRenamingLocks = new Set<string>()
+
+/**
+ * Start renaming a topic (update UI state)
+ *
+ * @param topicId - The topic ID to start renaming
+ */
+export function startTopicRenaming(topicId: string): void {
+  const { dispatch, getState } = require('@/store').default
+  const { setRenamingTopics } = require('@/store/runtime')
+  
+  const currentIds = getState().runtime.renamingTopics
+  if (!currentIds.includes(topicId)) {
+    dispatch(setRenamingTopics([...currentIds, topicId]))
+  }
+}
+
+/**
+ * Finish renaming a topic (update UI state with animation feedback)
+ *
+ * @param topicId - The topic ID that finished renaming
+ */
+export function finishTopicRenaming(topicId: string): void {
+  const { dispatch, getState } = require('@/store').default
+  const { setRenamingTopics, setNewlyRenamedTopics } = require('@/store/runtime')
+  
+  const state = getState()
+  
+  // Remove from renamingTopics
+  const currentRenaming = state.runtime.renamingTopics
+  dispatch(setRenamingTopics(currentRenaming.filter((id: string) => id !== topicId)))
+  
+  // Add to newlyRenamedTopics
+  const currentNewlyRenamed = state.runtime.newlyRenamedTopics
+  dispatch(setNewlyRenamedTopics([...currentNewlyRenamed, topicId]))
+  
+  // Remove from newlyRenamedTopics after delay for animation
+  setTimeout(() => {
+    const current = getState().runtime.newlyRenamedTopics
+    dispatch(setNewlyRenamedTopics(current.filter((id: string) => id !== topicId)))
+  }, 700)
+}
+
+/**
+ * Automatically rename a topic based on its messages
+ *
+ * @param assistant - The assistant for this topic
+ * @param topicId - The topic ID to rename
+ */
+export async function autoRenameTopic(assistant: Assistant, topicId: string): Promise<void> {
+  // Prevent duplicate operations
+  if (topicRenamingLocks.has(topicId)) {
+    return
+  }
+
+  try {
+    topicRenamingLocks.add(topicId)
+
+    const topic = await topicService.getTopic(topicId)
+    
+    if (!topic) {
+      logger.warn('Topic not found for auto-rename:', topicId)
+      return
+    }
+
+    // Check if topic naming is enabled
+    const { preferenceService } = require('@/services/PreferenceService')
+    const enableTopicNaming = preferenceService.getCached('topic.enable_naming')
+
+    // Load messages for this topic
+    const { messageDatabase } = require('@database')
+    const messages = await messageDatabase.getMessagesByTopicId(topicId)
+
+    if (!messages || messages.length === 0) {
+      logger.verbose('No messages to generate topic name from')
+      return
+    }
+
+    // Don't rename if user manually edited the name (optional field for future enhancement)
+    if ((topic as any).isNameManuallyEdited) {
+      logger.verbose('Topic name was manually edited, skipping auto-rename')
+      return
+    }
+
+    // Simple mode: Use first user message text
+    if (!enableTopicNaming) {
+      const firstUserMessage = messages.find(m => m.role === 'user')
+      if (firstUserMessage) {
+        try {
+          startTopicRenaming(topicId)
+          
+          // Extract content from first user message
+          const { messageBlockDatabase } = require('@database')
+          const blocks = await Promise.all(
+            firstUserMessage.blocks.map((blockId: string) => messageBlockDatabase.getBlockById(blockId))
+          )
+          
+          const textContent = blocks
+            .filter((block: any) => block && block.type === 'main_text')
+            .map((block: any) => block.content || '')
+            .join('\n\n')
+            .substring(0, 50)
+          
+          if (textContent.trim()) {
+            await topicService.renameTopic(topicId, textContent.trim())
+          }
+        } finally {
+          finishTopicRenaming(topicId)
+        }
+      }
+      return
+    }
+
+    // AI mode: Generate topic name using AI
+    const { t } = require('i18next')
+    const defaultTopicName = t('topics.new_topic')
+    
+    if (topic.name === defaultTopicName && messages.length >= 2) {
+      try {
+        startTopicRenaming(topicId)
+        
+        const { fetchMessagesSummary } = require('@/services/ApiService')
+        const summaryText = await fetchMessagesSummary({ messages, assistant })
+        
+        if (summaryText) {
+          await topicService.renameTopic(topicId, summaryText)
+        }
+      } finally {
+        finishTopicRenaming(topicId)
+      }
+    }
+  } catch (error) {
+    logger.error('Failed to auto-rename topic:', error as Error, { topicId })
+  } finally {
+    topicRenamingLocks.delete(topicId)
+  }
+}

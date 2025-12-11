@@ -3,8 +3,9 @@ import React, { memo, useMemo } from 'react'
 import { View } from 'react-native'
 
 import { XStack } from '@/componentsV2'
+import { ContextActionBlock } from '@/components/message/ContextActionBlock'
 import { loggerService } from '@/services/LoggerService'
-import type { CitationMessageBlock, MainTextMessageBlock, Message, MessageBlock } from '@/types/message'
+import type { CitationMessageBlock, ContextActionMessageBlock, MainTextMessageBlock, Message, MessageBlock } from '@/types/message'
 import { MessageBlockStatus, MessageBlockType } from '@/types/message'
 
 import CitationBlock from './CitationBlock'
@@ -121,6 +122,9 @@ const MessageBlockRenderer: FC<MessageBlockRendererProps> = ({ blocks, message }
             break
           case MessageBlockType.ERROR:
             blockComponent = <ErrorBlock key={block.id} block={block} message={message} />
+            break
+          case MessageBlockType.CONTEXT_ACTION:
+            blockComponent = <ContextActionBlock key={block.id} block={block as ContextActionMessageBlock} />
             break
           default:
             logger.warn('Unsupported block type in MessageBlockRenderer:', (block as any).type, block)

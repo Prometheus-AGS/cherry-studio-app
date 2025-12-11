@@ -7,6 +7,8 @@ import type { AssistantStackParamList } from '@/navigators/AssistantStackNavigat
 import type { HomeStackParamList } from '@/navigators/HomeStackNavigator'
 import type { McpStackParamList } from '@/navigators/McpStackNavigator'
 import type { AboutStackParamList } from '@/navigators/settings/AboutStackNavigator'
+import type { AssistantSettingsStackParamList } from '@/navigators/settings/AssistantSettingsStackNavigator'
+import type { ContextManagementStackParamList } from '@/navigators/settings/ContextManagementStackNavigator'
 import type { DataSourcesStackParamList } from '@/navigators/settings/DataSourcesStackNavigator'
 import type { GeneralSettingsStackParamList } from '@/navigators/settings/GeneralSettingsStackNavigator'
 import type { ProvidersStackParamList } from '@/navigators/settings/ProvidersStackNavigator'
@@ -31,6 +33,7 @@ export type AppDrawerParamList = {
     | { screen: 'GeneralSettings'; params?: any }
     | { screen: 'AssistantSettings'; params?: any }
     | { screen: 'ProvidersSettings'; params?: any }
+    | { screen: 'ContextManagementSettings'; params?: any }
     | { screen: 'DataSourcesSettings'; params?: any }
     | { screen: 'WebSearchSettings'; params?: any }
     | { screen: 'AboutSettings'; params?: any }
@@ -66,7 +69,9 @@ export type WelcomeNavigationProps = StackNavigationProp<WelcomeStackParamList>
 
 // Settings Sub-Navigator Props
 export type GeneralSettingsNavigationProps = StackNavigationProp<GeneralSettingsStackParamList>
+export type AssistantSettingsNavigationProps = StackNavigationProp<AssistantSettingsStackParamList>
 export type ProvidersNavigationProps = StackNavigationProp<ProvidersStackParamList>
+export type ContextManagementNavigationProps = StackNavigationProp<ContextManagementStackParamList>
 export type DataSourcesNavigationProps = StackNavigationProp<DataSourcesStackParamList>
 export type WebSearchNavigationProps = StackNavigationProp<WebSearchStackParamList>
 export type AboutNavigationProps = StackNavigationProp<AboutStackParamList>

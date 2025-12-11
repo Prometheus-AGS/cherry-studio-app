@@ -5,6 +5,7 @@ import SettingsScreen from '@/screens/settings/SettingsScreen'
 
 import AboutStackNavigator from './settings/AboutStackNavigator'
 import AssistantSettingsStackNavigator from './settings/AssistantSettingsStackNavigator'
+import ContextManagementStackNavigator from './settings/ContextManagementStackNavigator'
 import DataSourcesStackNavigator from './settings/DataSourcesStackNavigator'
 import GeneralSettingsStackNavigator from './settings/GeneralSettingsStackNavigator'
 import ProvidersStackNavigator from './settings/ProvidersStackNavigator'
@@ -15,6 +16,7 @@ export type SettingsStackParamList = {
   GeneralSettings: undefined
   AssistantSettings: undefined
   ProvidersSettings: undefined
+  ContextManagementSettings: undefined
   DataSourcesSettings: undefined
   WebSearchSettings: undefined
   AboutSettings: undefined
@@ -34,6 +36,7 @@ export default function SettingsStackNavigator() {
       <Stack.Screen name="GeneralSettings" component={GeneralSettingsStackNavigator} />
       <Stack.Screen name="AssistantSettings" component={AssistantSettingsStackNavigator} />
       <Stack.Screen name="ProvidersSettings" component={ProvidersStackNavigator} />
+      <Stack.Screen name="ContextManagementSettings" component={ContextManagementStackNavigator} />
       <Stack.Screen name="DataSourcesSettings" component={DataSourcesStackNavigator} />
       <Stack.Screen name="WebSearchSettings" component={WebSearchStackNavigator} />
       <Stack.Screen name="AboutSettings" component={AboutStackNavigator} />

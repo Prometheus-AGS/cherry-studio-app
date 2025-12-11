@@ -40,6 +40,15 @@ export const DefaultPreferences: PreferenceSchemas = {
     // - system: Follow system theme preference
     'ui.theme_mode': ThemeMode.system,
 
+    // === Topic Configuration ===
+    // Whether to automatically generate topic names using AI
+    // When enabled, uses the first few messages to create descriptive names
+    'topic.enable_naming': true,
+
+    // Custom prompt for AI-generated topic names
+    // Can include variables that will be replaced during generation
+    'topic.naming_prompt': '',
+
     // === Topic State ===
     // Currently active conversation topic ID
     // Empty string means no active topic
@@ -61,6 +70,14 @@ export const DefaultPreferences: PreferenceSchemas = {
     // Content length limit for search results (in characters)
     // undefined means no limit
     'websearch.content_limit': 2000,
+
+    // === Context Management Configuration ===
+    // Strategy type for managing conversation context to prevent token limit errors
+    'context.strategy_type': 'none',
+
+    // Model ID to use for AI-powered summarization in context strategies
+    // Empty string means use the assistant's current model
+    'context.summarization_model_id': '',
 
     // Current version of the app data initialization
     // Used to run incremental initialization migrations when new data is added
@@ -86,11 +103,15 @@ export const PreferenceDescriptions: Record<keyof PreferenceSchemas['default'], 
   'user.name': 'User display name',
   'user.id': 'Unique user identifier (UUID)',
   'ui.theme_mode': 'Application theme mode (light/dark/system)',
+  'topic.enable_naming': 'Automatically generate descriptive topic names using AI',
+  'topic.naming_prompt': 'Custom prompt for AI-generated topic names',
   'topic.current_id': 'Currently active conversation topic ID',
   'websearch.search_with_time': 'Add current date to search queries for recent results',
   'websearch.max_results': 'Maximum number of search results (1-20)',
   'websearch.override_search_service': 'Use custom search service configuration',
   'websearch.content_limit': 'Content length limit for search results (characters)',
+  'context.strategy_type': 'Context management strategy to prevent token limit errors',
+  'context.summarization_model_id': 'Model ID for AI-powered summarization in context strategies',
   'app.initialization_version': 'Current version of app data initialization migrations',
   'app.dismissed_update_version': 'Version number that user chose to skip updating',
   'app.developer_mode': 'Enable developer mode for advanced features'

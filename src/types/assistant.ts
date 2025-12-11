@@ -3,6 +3,7 @@ import * as z from 'zod'
 
 import type { StreamTextParams } from './aiCoretypes'
 import type { Chunk } from './chunk'
+import type { ContextStrategyConfig } from './contextStrategy'
 import type { MCPServer } from './mcp'
 import type { Message } from './message'
 import type { WebSearchProvider } from './websearch'
@@ -94,6 +95,7 @@ export type AssistantSettings = {
   reasoning_effort_cache?: ReasoningEffortOption
   qwenThinkMode?: boolean
   toolUseMode?: 'function' | 'prompt'
+  contextStrategy?: ContextStrategyConfig
 }
 
 export type AssistantSettingCustomParameters = {
@@ -109,6 +111,12 @@ export type Topic = {
   createdAt: number
   updatedAt: number
   isLoading?: boolean
+  // Context management fields
+  contextStrategy?: ContextStrategyConfig
+  contextSummary?: string
+  contextFacts?: string[]
+  summaryUpdatedAt?: number
+  factsUpdatedAt?: number
 }
 
 export type ModelPricing = {

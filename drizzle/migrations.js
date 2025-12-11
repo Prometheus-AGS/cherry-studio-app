@@ -16,6 +16,8 @@ import m0011 from './0011_careful_newton_destine.sql';
 import m0012 from './0012_jittery_doctor_spectrum.sql';
 import m0013 from './0013_lush_madame_web.sql';
 import m0014 from './0014_little_serpent_society.sql';
+import m0015 from './0015_brief_thunderbolts.sql';
+import m0016 from './0016_condemned_northstar.sql';
 
   export default {
     journal,
@@ -34,7 +36,9 @@ m0010,
 m0011,
 m0012,
 m0013,
-m0014
+m0014,
+m0015,
+m0016
     }
   }
   

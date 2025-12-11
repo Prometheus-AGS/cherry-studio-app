@@ -82,6 +82,7 @@
     "@opeoginni/github-copilot-openai-compatible": "0.1.21",
     "@react-native-async-storage/async-storage": "2.2.0",
     "@react-native-community/datetimepicker": "8.4.4",
+    "@react-native-community/slider": "^5.1.1",
     "@react-native-documents/viewer": "^1.0.3",
     "@react-native-masked-view/masked-view": "0.3.2",
     "@react-native-menu/menu": "patch:@react-native-menu/menu@npm%3A1.2.2#~/.yarn/patches/@react-native-menu-menu-npm-1.2.2-2f9d419d7a.patch",

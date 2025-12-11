@@ -19,7 +19,8 @@ export enum MessageBlockType {
   TOOL = 'tool', // Added unified tool block type
   FILE = 'file', // 文件内容
   ERROR = 'error', // 错误信息
-  CITATION = 'citation' // 引用类型 (Now includes web search, grounding, etc.)
+  CITATION = 'citation', // 引用类型 (Now includes web search, grounding, etc.)
+  CONTEXT_ACTION = 'context_action' // Context management notification
 }
 
 // 块状态定义
@@ -122,6 +123,22 @@ export interface ErrorMessageBlock extends BaseMessageBlock {
   type: MessageBlockType.ERROR
 }
 
+// Context action块 - 上下文管理通知
+export interface ContextActionMessageBlock extends BaseMessageBlock {
+  type: MessageBlockType.CONTEXT_ACTION
+  action: 'sliding_window' | 'summarize' | 'hierarchical' | 'truncate_middle'
+  summary: string // Human-readable description
+  removedCount?: number // Number of messages removed
+  tokensSaved?: number // Tokens saved
+  metadata?: BaseMessageBlock['metadata'] & {
+    strategyType?: string
+    originalMessageCount?: number
+    finalMessageCount?: number
+    contextSummary?: string
+    keptMessageIds?: string[]
+  }
+}
+
 // MessageBlock 联合类型
 export type MessageBlock =
   | PlaceholderMessageBlock
@@ -134,6 +151,7 @@ export type MessageBlock =
   | FileMessageBlock
   | ErrorMessageBlock
   | CitationMessageBlock
+  | ContextActionMessageBlock
 
 export enum UserMessageStatus {
   SUCCESS = 'success'

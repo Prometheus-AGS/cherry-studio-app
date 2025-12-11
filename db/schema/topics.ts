@@ -12,6 +12,12 @@ export const topics = sqliteTable(
       .references(() => assistants.id),
     name: text('name').notNull(),
     isLoading: integer('isLoading', { mode: 'boolean' }),
+    // Context management fields
+    context_strategy: text('context_strategy'), // JSON: ContextStrategyConfig
+    context_summary: text('context_summary'), // Generated summary text
+    context_facts: text('context_facts'), // JSON: string[] of extracted facts
+    summary_updated_at: integer('summary_updated_at', { mode: 'timestamp' }),
+    facts_updated_at: integer('facts_updated_at', { mode: 'timestamp' }),
     ...createUpdateTimestamps
   },
   table => [

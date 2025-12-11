@@ -215,3 +215,270 @@ export async function estimateHistoryTokens(assistant: Assistant, msgs: Message[
 
   return estimateTextTokens(prompt + input) + uasageTokens
 }
+
+// ==================== Context Management Token Estimation ====================
+
+/**
+ * Estimate tokens for a single message (for context strategies)
+ *
+ * Handles all message block types including images, files, tools, citations
+ *
+ * @param message - The message to estimate
+ * @returns Estimated token count
+ */
+export async function estimateSingleMessageTokens(message: Message): Promise<number> {
+  try {
+    // Use existing message usage estimation
+    const usage = await estimateMessageUsage(message)
+    return usage.total_tokens
+  } catch (error) {
+    logger.error('Failed to estimate single message tokens:', error as Error, { messageId: message.id })
+    // Fallback to simple estimation
+    const content = await getMainTextContent(message)
+    return estimateTextTokens(content)
+  }
+}
+
+/**
+ * Estimate total tokens for an array of messages
+ *
+ * @param messages - Array of messages to estimate
+ * @returns Total estimated token count
+ */
+export async function estimateMessagesTokens(messages: Message[]): Promise<number> {
+  let total = 0
+  
+  for (const message of messages) {
+    total += await estimateSingleMessageTokens(message)
+  }
+  
+  return total
+}
+
+/**
+ * Estimate the total token usage for a conversation including system prompt
+ *
+ * @param messages - Array of messages in the conversation
+ * @param systemPrompt - Optional system prompt text
+ * @returns Total estimated token count
+ */
+export async function estimateConversationTokens(
+  messages: Message[],
+  systemPrompt?: string
+): Promise<number> {
+  let total = await estimateMessagesTokens(messages)
+
+  if (systemPrompt) {
+    total += estimateTextTokens(systemPrompt)
+  }
+
+  return total
+}
+
+/**
+ * Find messages that fit within a token budget (from most recent)
+ *
+ * @param messages - Array of messages (oldest to newest)
+ * @param tokenBudget - Maximum tokens allowed
+ * @param systemPromptTokens - Tokens used by system prompt (already accounted for)
+ * @returns Object with fitting messages and stats
+ */
+export async function findMessagesThatFit(
+  messages: Message[],
+  tokenBudget: number,
+  systemPromptTokens: number = 0
+): Promise<{
+  fittingMessages: Message[]
+  removedCount: number
+  tokensSaved: number
+}> {
+  let availableBudget = tokenBudget - systemPromptTokens
+  const fittingMessages: Message[] = []
+  let removedCount = 0
+  let tokensSaved = 0
+
+  // Start from the end (most recent) and work backwards
+  for (let i = messages.length - 1; i >= 0; i--) {
+    const message = messages[i]
+    const messageTokens = await estimateSingleMessageTokens(message)
+
+    if (messageTokens <= availableBudget) {
+      fittingMessages.unshift(message) // Add to front to preserve order
+      availableBudget -= messageTokens
+    } else {
+      removedCount++
+      tokensSaved += messageTokens
+    }
+  }
+
+  return {
+    fittingMessages,
+    removedCount,
+    tokensSaved
+  }
+}
+
+// ==================== Proactive Token Monitoring ====================
+
+/**
+ * Calculate comprehensive token budget breakdown for context management
+ * Use this BEFORE sending messages to AI to check if context management is needed
+ *
+ * @param model - The model being used
+ * @param messages - Messages to send
+ * @param systemPrompt - Optional system prompt
+ * @param maxOutputTokens - Expected max output tokens
+ * @returns Detailed budget breakdown with warnings
+ */
+export async function getContextBudgetBreakdown(
+  model: Assistant['model'],
+  messages: Message[],
+  systemPrompt?: string,
+  maxOutputTokens?: number
+): Promise<{
+  modelLimit: number
+  effectiveBudget: number
+  systemPromptTokens: number
+  maxOutputTokens: number
+  currentMessageTokens: number
+  availableForMessages: number
+  isOverBudget: boolean
+  overBudgetBy: number
+  isNearLimit: boolean // > 85% usage
+  warningThreshold: number // 85% of available
+  criticalThreshold: number // 95% of available
+  usagePercentage: number
+}> {
+  // Import here to avoid circular dependencies
+  const {
+    getModelContextLimit,
+    getEffectiveContextBudget,
+    MIN_RESPONSE_TOKEN_BUDGET
+  } = await import('@/config/models/contextLimits')
+
+  if (!model) {
+    throw new Error('Model is required for token budget calculation')
+  }
+
+  const modelLimit = getModelContextLimit(model)
+  const effectiveBudget = getEffectiveContextBudget(model)
+  const systemPromptTokens = systemPrompt ? estimateTextTokens(systemPrompt) : 0
+  const outputBudget = maxOutputTokens || MIN_RESPONSE_TOKEN_BUDGET
+  const availableForMessages = effectiveBudget - systemPromptTokens - outputBudget
+  const currentMessageTokens = await estimateMessagesTokens(messages)
+  
+  const isOverBudget = currentMessageTokens > availableForMessages
+  const overBudgetBy = isOverBudget ? currentMessageTokens - availableForMessages : 0
+  
+  const usagePercentage = (currentMessageTokens / availableForMessages) * 100
+  const warningThreshold = availableForMessages * 0.85
+  const criticalThreshold = availableForMessages * 0.95
+  const isNearLimit = currentMessageTokens > warningThreshold
+
+  return {
+    modelLimit,
+    effectiveBudget,
+    systemPromptTokens,
+    maxOutputTokens: outputBudget,
+    currentMessageTokens,
+    availableForMessages,
+    isOverBudget,
+    overBudgetBy,
+    isNearLimit,
+    warningThreshold,
+    criticalThreshold,
+    usagePercentage
+  }
+}
+
+/**
+ * Check if context management should be triggered
+ * Call this BEFORE sending to AI to prevent "input too large" errors
+ *
+ * @param model - The model being used
+ * @param messages - Messages to check
+ * @param systemPrompt - Optional system prompt
+ * @param maxOutputTokens - Expected max output tokens
+ * @returns Object with recommendation on whether to apply context management
+ */
+export async function shouldApplyContextManagement(
+  model: Assistant['model'],
+  messages: Message[],
+  systemPrompt?: string,
+  maxOutputTokens?: number
+): Promise<{
+  shouldApply: boolean
+  reason: 'over_budget' | 'near_limit' | 'safe'
+  breakdown: Awaited<ReturnType<typeof getContextBudgetBreakdown>>
+  recommendation: string
+}> {
+  const breakdown = await getContextBudgetBreakdown(model, messages, systemPrompt, maxOutputTokens)
+
+  if (breakdown.isOverBudget) {
+    return {
+      shouldApply: true,
+      reason: 'over_budget',
+      breakdown,
+      recommendation: `Context exceeds budget by ${breakdown.overBudgetBy} tokens. Context management required.`
+    }
+  }
+
+  if (breakdown.isNearLimit) {
+    return {
+      shouldApply: true,
+      reason: 'near_limit',
+      breakdown,
+      recommendation: `Context at ${breakdown.usagePercentage.toFixed(1)}% of budget. Proactive management recommended.`
+    }
+  }
+
+  return {
+    shouldApply: false,
+    reason: 'safe',
+    breakdown,
+    recommendation: `Context usage is safe (${breakdown.usagePercentage.toFixed(1)}%).`
+  }
+}
+
+/**
+ * Estimate tokens for tool result content
+ * Used to check if tool results need condensation
+ *
+ * @param toolResult - Tool result content (any type)
+ * @returns Estimated token count
+ */
+export function estimateToolResultTokens(toolResult: any): number {
+  if (!toolResult) return 0
+  
+  try {
+    // Convert to string if not already
+    const content = typeof toolResult === 'string'
+      ? toolResult
+      : JSON.stringify(toolResult)
+    
+    return estimateTextTokens(content)
+  } catch (error) {
+    logger.error('Failed to estimate tool result tokens:', error as Error)
+    // Conservative fallback
+    return 1000
+  }
+}
+
+/**
+ * Estimate tokens for each message in an array
+ *
+ * @param messages - Array of messages
+ * @returns Array of objects with message and its estimated tokens
+ */
+export async function estimateTokensPerMessage(
+  messages: Message[]
+): Promise<Array<{ message: Message; tokens: number }>> {
+  const results: Array<{ message: Message; tokens: number }> = []
+  
+  for (const message of messages) {
+    const tokens = await estimateSingleMessageTokens(message)
+    results.push({ message, tokens })
+  }
+  
+  return results
+}

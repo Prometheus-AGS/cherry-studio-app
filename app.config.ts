@@ -62,32 +62,32 @@ export default {
       [
         'expo-splash-screen',
         {
-          image: './src/assets/images/ios-splash-icon.png',
+          image: './src/assets/images/flame_transparent.png',
           imageWidth: 144,
           resizeMode: 'contain',
           backgroundColor: '#ffffff',
           dark: {
-            image: './src/assets/images/ios-splash-icon.png',
+            image: './src/assets/images/flame_transparent.png',
             backgroundColor: '#000000'
           },
           ios: {
             splash: {
-              image: './src/assets/images/ios-splash-icon.png',
+              image: './src/assets/images/flame_transparent.png',
               backgroundColor: '#ffffff',
               resizeMode: 'contain',
               dark: {
-                image: './src/assets/images/ios-splash-icon.png',
+                image: './src/assets/images/flame_transparent.png',
                 backgroundColor: '#000000'
               }
             }
           },
           android: {
             splash: {
-              image: './src/assets/images/ios-splash-icon.png',
+              image: './src/assets/images/flame_transparent.png',
               backgroundColor: '#ffffff',
               resizeMode: 'contain',
               dark: {
-                image: './src/assets/images/ios-splash-icon.png',
+                image: './src/assets/images/flame_transparent.png',
                 backgroundColor: '#000000'
               }
             }

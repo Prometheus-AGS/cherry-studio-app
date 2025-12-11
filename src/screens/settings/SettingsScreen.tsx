@@ -70,6 +70,12 @@ export default function SettingsScreen() {
           screen: 'WebSearchSettings',
           specificScreen: 'WebSearchSettingsScreen',
           icon: <Globe size={24} />
+        },
+        {
+          title: t('settings.context.title', 'Context Management'),
+          screen: 'ContextManagementSettings',
+          specificScreen: 'ContextManagementSettingsScreen',
+          icon: <Settings2 size={24} />
         }
       ]
     },

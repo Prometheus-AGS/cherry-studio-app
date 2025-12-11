@@ -1,6 +1,7 @@
 import { messageDatabase } from '@database'
 import { NoObjectGeneratedError } from 'ai'
 
+import { autoRenameTopic } from '@/hooks/useTopic'
 import { loggerService } from '@/services/LoggerService'
 import { estimateMessagesUsage } from '@/services/TokenService'
 import type { Assistant } from '@/types/assistant'
@@ -186,6 +187,13 @@ export const createBaseCallbacks = async (deps: BaseCallbacksDependencies) => {
       await messageDatabase.upsertMessages({ ...finalAssistantMsg, ...messageUpdates })
       await saveUpdatesToDB(assistantMsgId, topicId, messageUpdates, [])
       logger.debug('onComplete', messageUpdates)
+
+      // Trigger automatic topic renaming after successful completion
+      if (status === AssistantMessageStatus.SUCCESS) {
+        autoRenameTopic(assistant, topicId).catch(error => {
+          logger.error('Auto-rename topic failed:', error as Error, { topicId, assistantId: assistant.id })
+        })
+      }
     }
   }
 }

@@ -21,8 +21,16 @@ export interface PreferenceSchemas {
     // UI Configuration
     'ui.theme_mode': ThemeMode
 
+    // Topic Configuration
+    'topic.enable_naming': boolean
+    'topic.naming_prompt': string
+
     // Topic State
     'topic.current_id': string
+
+    // Context Management Configuration
+    'context.strategy_type': 'none' | 'sliding_window' | 'summarize' | 'hierarchical' | 'truncate_middle'
+    'context.summarization_model_id': string
 
     // Web Search Configuration
     'websearch.search_with_time': boolean
