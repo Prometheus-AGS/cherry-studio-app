@@ -31,6 +31,25 @@ read [Interaction And Gesture Arbitration](../references/interaction-and-gesture
 It is a target design, not a statement that current components already satisfy the contract. Define
 the eligible interactions and cancellation order before choosing a gesture implementation.
 
+## Use Tokens And Type Roles
+
+Components take every visual value from the design system described in
+[The Boss Mobile Design System](../../DESIGN.md); the values live in `packages/design-tokens/`.
+
+- Take colour from a role, never a palette step or literal: `className="bg-card text-foreground"`, or
+  `useThemeColor('primary')` when a native prop needs a value. Pick the role from
+  [Core Roles](../../DESIGN.md#core-roles); ember `primary` is for the one action that needs it,
+  `link` for clickable text, and the `success` / `warning` / `info` / `error` families for feedback.
+- Set type with a font role and its weight class together: `font-display font-semibold` for titles,
+  `font-ui font-normal` or `font-ui-medium font-medium` for control labels, `font-body font-normal`
+  for descriptive copy, `font-mono font-normal` for code and identifiers. React Native does not fall
+  back through a font stack, so the pairing is what selects the face; see
+  [Font Roles](../../DESIGN.md#font-roles).
+- Take size from the `text-*` scale, which is also the accessibility ladder, and radius from the
+  `rounded-*` scale derived from `--radius`. Never write a numeric `fontWeight` or `borderRadius`.
+- A missing role is a design-token change owned by `boss-mobile-ux`, not a local value; follow
+  [Adding A Token](../../DESIGN.md#adding-a-token).
+
 ## Compose Component APIs
 
 Use the project
@@ -103,6 +122,8 @@ failure feels:
 - Containers own external placement and reusable children do not carry screen-specific gutters.
 - Motion defines a clear purpose, remains responsive and interruptible, provides a complete reduced
   or unavailable-motion result, and leaves target-specific adaptation with its interaction owner.
+- Colours, font roles, sizes, and radii come from design tokens; every font role is paired with its
+  weight class.
 - Visual changes are inspected in light and dark themes on a device.
 - iOS device work in parallel worktrees follows
   [Parallel Device Testing](./parallel-device-testing.md).
