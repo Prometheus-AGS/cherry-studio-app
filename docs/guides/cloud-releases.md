@@ -62,7 +62,9 @@ build numbers even when they share a release tag.
 
 GitHub prepares a draft, attaches the files, and publishes it automatically. GitCode releases are
 published manually from the matching tag using the same APK, `SHA256SUMS`, and release notes from
-the GitHub release.
+the GitHub release. `scripts/publishGitcodeRelease.ts` targets upstream's GitCode repository
+(`CherryHQ/cherry-studio-app`), which this fork does not own, so it refuses to run unless
+`BOSS_ALLOW_GITCODE_PUBLISH=1` is set explicitly.
 
 Tags with a prerelease suffix are marked as prereleases on GitHub. Plain version tags publish regular
 releases. The workflow does not replace an existing attachment with different contents.

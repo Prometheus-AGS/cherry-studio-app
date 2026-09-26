@@ -39,7 +39,7 @@ describe('branding identity', () => {
 
   test('brand URLs point at fork-owned destinations', () => {
     expect(WEBSITE_URL).toBe('https://the-boss.know-me.tools');
-    expect(REPOSITORY_URL).toBe('https://github.com/Prometheus-AGS/cherry-studio-app');
+    expect(REPOSITORY_URL).toBe('https://github.com/Prometheus-AGS/the-boss-mobile');
     expect(ISSUES_URL).toBe(`${REPOSITORY_URL}/issues`);
     expect(DOCS_URL).toBe(`${REPOSITORY_URL}#readme`);
     expect(SUPPORT_EMAIL).toBe('support@know-me.tools');

@@ -17,7 +17,7 @@
   <a href="#features">Features</a> ·
   <a href="docs/guides/development.md">Development</a> ·
   <a href="docs/README.md">Documentation</a> ·
-  <a href="https://github.com/Prometheus-AGS/cherry-studio-app/issues">Issues</a> ·
+  <a href="https://github.com/Prometheus-AGS/the-boss-mobile/issues">Issues</a> ·
   <a href="https://github.com/Prometheus-AGS/the-boss">Desktop</a>
 </p>
 
@@ -105,7 +105,7 @@ The app includes custom native modules and requires a development client. See th
 
 Help shape The Boss mobile through code, bug reports, product ideas, and documentation.
 
-- [Report a bug or suggest a feature](https://github.com/Prometheus-AGS/cherry-studio-app/issues)
+- [Report a bug or suggest a feature](https://github.com/Prometheus-AGS/the-boss-mobile/issues)
 - Read the [Git workflow](docs/guides/git-workflow.md) and [testing guide](docs/guides/testing-and-ci.md)
   before preparing a pull request.
 - Explore the [project documentation](docs/README.md) for architecture and development conventions.

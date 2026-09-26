@@ -1,6 +1,6 @@
 # Storage Engine
 
-Cherry Mobile keeps `expo-sqlite` with `drizzle-orm` as its local persistence engine for now and defers migrating to `op-sqlite`. There is no prior architecture rule selecting `expo-sqlite`; the current rationale is a pair of workarounds in the data layer, not a permanent engine commitment. Migration is deferred, not rejected: it should be re-evaluated as a scoped spike, not folded into unrelated data-layer work.
+The Boss Mobile keeps `expo-sqlite` with `drizzle-orm` as its local persistence engine for now and defers migrating to `op-sqlite`. There is no prior architecture rule selecting `expo-sqlite`; the current rationale is a pair of workarounds in the data layer, not a permanent engine commitment. Migration is deferred, not rejected: it should be re-evaluated as a scoped spike, not folded into unrelated data-layer work.
 
 ## Current Boundary
 

@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name = 'SystemIntegration'
   s.version = '1.0.0'
-  s.summary = 'System sharing for Cherry Mobile'
+  s.summary = 'System sharing for The Boss Mobile'
   s.description = 'Native share intake and bounded handoff.'
   s.author = 'Cherry Studio'
-  s.homepage = 'https://github.com/CherryHQ/cherry-studio-app'
+  s.homepage = 'https://github.com/Prometheus-AGS/the-boss-mobile'
   s.platforms = { :ios => '17.0' }
   s.source = { git: '' }
   s.static_framework = true

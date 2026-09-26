@@ -29,6 +29,10 @@ git diff --name-only "$(git merge-base HEAD upstream/main)" HEAD
 | `eas.json`, `.env.example` | release | Upstream EAS project and App Store Connect ids removed. |
 | `scripts/withSystemIntegration.js` | release | Share-extension display name and localized InfoPlist wiring. |
 | `src/backend/utils/defaultAppHeaders.ts` | app | Outbound app-name headers from the branding module. |
+| Root `package.json` `name` (`the-boss-mobile`) | release | Renamed with the repository (PD-7); `scripts/desktopSyncAudit.ts` asserts it. |
+| `README.md`, `docs/guides/development.md`, `.github/ISSUE_TEMPLATE/*.yml` links | lead (README, guide); release (templates) | Point at `Prometheus-AGS/the-boss-mobile`; upstream provenance links to `CherryHQ` stay. |
+| `modules/*/ios/*.podspec` `homepage` and summary/description | app; p2p for `local-network-access`, `remote-discovery` | Fork homepage and The Boss wording; pod names and `author` stay upstream's. |
+| `packages/ui/CherryStudioUI.podspec` `source`, `packages/ui/package.json` `description`, `homepage` | ux | Fork URL and wording only; pod and package names are a technical contract. |
 | `src/backend/services/analytics/AnalyticsService.ts` | app | Analytics reporting switch (off). |
 
 ## Copy And Translations
@@ -98,7 +102,8 @@ Created by their owners; listed now so a merge never overwrites them.
 | Path or pattern | Owner | Notes |
 | --- | --- | --- |
 | `docs/contrib/**` | upstream | This ledger, the playbook and the merge log. |
-| `desktop-sync-manifest.json`, `scripts/desktopSyncAudit.ts` | upstream | Desktop semantic-port baselines and audit. |
+| `desktop-sync-manifest.json`, `scripts/desktopSyncAudit.ts` | upstream | Desktop semantic-port baselines and audit; mobile checkout identity is `the-boss-mobile`. |
+| `scripts/publishGitcodeRelease.ts` (opt-in guard) | release | Publishes to upstream's GitCode repository; refuses to run without `BOSS_ALLOW_GITCODE_PUBLISH=1`. |
 | `patches/**` | upstream | Rebuilt or dropped when upstream bumps a patched dependency. |
 | `.gitattributes` | upstream | Line-ending and whitespace rules. |
 | `scripts/brandCheck.ts`, `scripts/__tests__/brandCheck.test.ts` | release | `pnpm brand:check` and its test. |

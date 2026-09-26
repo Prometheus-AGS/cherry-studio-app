@@ -3,7 +3,7 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { basename, join } from 'node:path';
 
-import { publishGitcodeRelease } from '../publishGitcodeRelease';
+import { GITCODE_PUBLISH_OPT_IN, publishGitcodeRelease } from '../publishGitcodeRelease';
 
 const mockGit = jest.fn();
 const mockCurl = jest.fn();
@@ -93,9 +93,11 @@ beforeEach(() => {
     throw new Error(`Unexpected request: ${url}`);
   });
   Object.defineProperty(globalThis, 'fetch', { configurable: true, value: mockFetch });
+  process.env[GITCODE_PUBLISH_OPT_IN] = '1';
 });
 
 afterEach(() => {
+  delete process.env[GITCODE_PUBLISH_OPT_IN];
   rmSync(directory, { recursive: true, force: true });
   if (originalFetch) Object.defineProperty(globalThis, 'fetch', originalFetch);
 });
@@ -103,6 +105,18 @@ afterEach(() => {
 function publish() {
   return publishGitcodeRelease({ token: 'test-token', tag: TAG, directory });
 }
+
+test.each([undefined, '', '0', 'true'])(
+  'refuses to publish to upstream GitCode without the explicit opt-in (%p)',
+  async (value) => {
+    if (value === undefined) delete process.env[GITCODE_PUBLISH_OPT_IN];
+    else process.env[GITCODE_PUBLISH_OPT_IN] = value;
+    await expect(publish()).rejects.toThrow(`Set ${GITCODE_PUBLISH_OPT_IN}=1`);
+    expect(mockFetch).not.toHaveBeenCalled();
+    expect(mockGit).not.toHaveBeenCalled();
+    expect(mockCurl).not.toHaveBeenCalled();
+  },
+);
 
 test('rejects a damaged APK before any remote reads or writes', async () => {
   writeFileSync(join(directory, APK), 'damaged');

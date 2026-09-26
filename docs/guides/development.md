@@ -15,8 +15,8 @@ because it includes native modules; Expo Go cannot run this application.
 Clone the repository and install its dependencies:
 
 ```bash
-git clone https://github.com/Prometheus-AGS/cherry-studio-app.git
-cd cherry-studio-app
+git clone https://github.com/Prometheus-AGS/the-boss-mobile.git
+cd the-boss-mobile
 pnpm install
 ```
 

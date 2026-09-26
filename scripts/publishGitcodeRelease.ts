@@ -10,6 +10,21 @@ const API_URL = 'https://api.gitcode.com/api/v5';
 const REPOSITORY_URL = `https://gitcode.com/${REPOSITORY}.git`;
 const MAX_UPLOAD_ATTEMPTS = 3;
 
+/**
+ * GitCode publishing targets upstream's repository (CherryHQ/cherry-studio-app),
+ * which this fork does not own. It stays in the tree to keep upstream merges
+ * clean, but refuses to run unless an operator opts in explicitly.
+ */
+export const GITCODE_PUBLISH_OPT_IN = 'BOSS_ALLOW_GITCODE_PUBLISH';
+
+function assertGitcodePublishAllowed(): void {
+  if (process.env[GITCODE_PUBLISH_OPT_IN] === '1') return;
+  throw new Error(
+    `GitCode publishing is disabled: it targets upstream's ${REPOSITORY}, which this fork does not own. ` +
+      `Set ${GITCODE_PUBLISH_OPT_IN}=1 only if you are authorized to publish there.`,
+  );
+}
+
 interface UploadDestination {
   url: string;
   headers: Record<string, string>;
@@ -111,6 +126,7 @@ async function downloadChecksum(url: string): Promise<string> {
 }
 
 export async function publishGitcodeRelease({ token, tag, directory }: PublishOptions) {
+  assertGitcodePublishAllowed();
   if (!token) throw new Error('Configure the GITCODE_TOKEN Actions secret before publishing.');
   if (!/^v\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$/.test(tag)) {
     throw new Error('RELEASE_TAG must be a version tag such as v0.1.0 or v0.1.0-beta.1.');

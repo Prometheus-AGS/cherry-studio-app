@@ -55,13 +55,8 @@ export const URL_SCHEME = 'theboss';
 /** Fork-owned marketing site. */
 export const WEBSITE_URL = 'https://the-boss.know-me.tools';
 
-/**
- * Current repository URL. Points at this fork's present GitHub location
- * rather than the eventual `the-boss-mobile` name: rebrand-010 renames the
- * repository and updates this constant in the same change (PD-13). Do not
- * anticipate the rename here.
- */
-export const REPOSITORY_URL = 'https://github.com/Prometheus-AGS/cherry-studio-app';
+/** This fork's GitHub repository. */
+export const REPOSITORY_URL = 'https://github.com/Prometheus-AGS/the-boss-mobile';
 
 /** Issue tracker, derived from {@link REPOSITORY_URL}. */
 export const ISSUES_URL = `${REPOSITORY_URL}/issues`;
