@@ -1,0 +1,98 @@
+/**
+ * The Boss Brand Guide v2.2 palette.
+ *
+ * Ported verbatim from the desktop app (`the-boss`,
+ * `packages/ui/src/styles/tokens/colors/{primitive,providers,status-legacy}.css`).
+ * The oklch values are copied exactly. Only the names change: desktop's
+ * `--cs-*` becomes `--boss-*` here. The prefix marks this as a second palette
+ * family next to `vercel.css`, whose chromatic ramps use the same hue names on
+ * a different five-step scale. Without a prefix, `--green-400` would name two
+ * different colors from two different sources.
+ *
+ * Like `vercel.css`, these are providers, not the public API. The contract in
+ * `shadcn.css` / `product.css` points roles at them, and `check.ts` keeps them
+ * out of the Tailwind adapter.
+ *
+ * Every value here is theme-invariant, as it is on desktop, so it is declared
+ * once in `:root`. The theme decides which step a role uses, not what a step
+ * is. The desktop runtime user-theme default (`#00b96b`, written by
+ * `useUserTheme`) is deliberately absent: mobile has no action-color setting,
+ * and the brand primary is ember.
+ */
+
+:root {
+  /* Ember brand ramp, hue 35.2. 500 is the light-mode primary (#E04E28,
+   * calibrated for the #F7F7F8 page); 400 is the dark-mode primary (#FF6A3D,
+   * "the lit terminal", lighter so it glows on #0B0F14). 400 sits at hue 37.1
+   * upstream, not 35.2; copied as-is. */
+  --boss-brand-50: oklch(0.97 0.018 35.2);
+  --boss-brand-100: oklch(0.94 0.04 35.2);
+  --boss-brand-200: oklch(0.89 0.08 35.2);
+  --boss-brand-300: oklch(0.82 0.13 35.2);
+  --boss-brand-400: oklch(0.7039 0.1915 37.1);
+  --boss-brand-500: oklch(0.6196 0.1888 35.2);
+  --boss-brand-600: oklch(0.55 0.185 35.2);
+  --boss-brand-700: oklch(0.47 0.16 35.2);
+  --boss-brand-800: oklch(0.38 0.125 35.2);
+  --boss-brand-900: oklch(0.29 0.088 35.2);
+  --boss-brand-950: oklch(0.2 0.055 35.2);
+
+  /* Cool neutral ladder. Desktop authors these as literals per role; here each
+   * becomes one named step, ordered by lightness, because several roles share
+   * a value (the ink is light-mode text and the dark-mode page; the border hue
+   * is border, input and sidebar-border). */
+  --boss-ink-50: oklch(0.9764 0.0013 286.4); /* #F7F7F8 light page */
+  --boss-ink-100: oklch(0.9545 0.0046 258.3); /* #EEF0F3 light muted, sidebar */
+  --boss-ink-150: oklch(0.944 0.0097 252.8); /* #E8EDF3 dark text */
+  --boss-ink-200: oklch(0.8983 0.0127 255.5); /* #D8DEE6 light border */
+  --boss-ink-400: oklch(0.7539 0.02 255.6); /* #A7B0BC dark secondary text */
+  --boss-ink-600: oklch(0.4461 0.0263 256.8); /* #4B5563 light secondary text */
+  --boss-ink-800: oklch(0.3053 0.0356 255.4); /* #233041 dark border */
+  --boss-ink-850: oklch(0.2576 0.0301 256.9); /* #1A2432 dark secondary fill */
+  --boss-ink-900: oklch(0.2234 0.0229 254.3); /* #141C26 dark popover, muted */
+  --boss-ink-925: oklch(0.1982 0.0229 257.3); /* #0F1620 dark card, sidebar */
+  --boss-ink-950: oklch(0.1665 0.0124 254.2); /* #0B0F14 light text, dark page */
+
+  /* Feedback hues. Only the steps the feedback families and link consume:
+   * base 500 (light) / 400 (dark), subtle 50 / 900, subtle text 800 / 100,
+   * border 200 / 700. Blue also carries 600 for the light-mode link. The
+   * darker light-mode text steps (green/amber 700, red 600/700) back the
+   * accessibility deviations listed in DEVIATIONS.md. */
+  --boss-green-50: oklch(0.98 0.016 156);
+  --boss-green-100: oklch(0.96 0.041 157);
+  --boss-green-200: oklch(0.92 0.081 156);
+  --boss-green-400: oklch(0.8 0.182 152);
+  --boss-green-500: oklch(0.72 0.192 149);
+  --boss-green-700: oklch(0.52 0.137 150);
+  --boss-green-800: oklch(0.45 0.107 151);
+  --boss-green-900: oklch(0.39 0.089 153);
+
+  --boss-amber-50: oklch(0.99 0.022 95);
+  --boss-amber-100: oklch(0.96 0.057 96);
+  --boss-amber-200: oklch(0.93 0.114 96);
+  --boss-amber-400: oklch(0.83 0.164 84);
+  --boss-amber-500: oklch(0.77 0.165 71);
+  --boss-amber-700: oklch(0.55 0.145 49);
+  --boss-amber-800: oklch(0.47 0.124 47);
+  --boss-amber-900: oklch(0.41 0.104 46);
+
+  --boss-blue-50: oklch(0.97 0.014 255);
+  --boss-blue-100: oklch(0.93 0.03 255);
+  --boss-blue-200: oklch(0.88 0.058 254);
+  --boss-blue-400: oklch(0.72 0.143 254);
+  --boss-blue-500: oklch(0.63 0.186 260);
+  --boss-blue-600: oklch(0.54 0.215 263);
+  --boss-blue-700: oklch(0.49 0.215 264);
+  --boss-blue-800: oklch(0.42 0.181 266);
+  --boss-blue-900: oklch(0.38 0.136 265);
+
+  --boss-red-50: oklch(0.97 0.014 17);
+  --boss-red-100: oklch(0.93 0.031 18);
+  --boss-red-200: oklch(0.88 0.062 18);
+  --boss-red-400: oklch(0.71 0.166 22);
+  --boss-red-500: oklch(0.64 0.208 25);
+  --boss-red-600: oklch(0.58 0.214 27);
+  --boss-red-700: oklch(0.51 0.192 28);
+  --boss-red-800: oklch(0.44 0.16 27);
+  --boss-red-900: oklch(0.4 0.135 26);
+}

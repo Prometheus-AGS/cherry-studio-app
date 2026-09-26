@@ -2,10 +2,9 @@
  * Border Radius
  * 圆角半径
  *
- * ⚠️ 取值已 fork：不再从 Cherry Studio 桌面端镜像。移动端改用 Vercel Brand
- * Guidelines，VBG 只有两档圆角：radius-small 6px 与 radius 8px。后者就是
- * shadcn 的 `--radius`（authored 在 `shadcn.css`），`build-native-css.ts` 据此
- * 用 calc 派生出整条 `rounded-sm…4xl`。
+ * 基准圆角采用 The Boss Brand Guide v2.2：`--radius` 10px（桌面端 radius-lg），
+ * authored 在 `shadcn.css`，`build-native-css.ts` 据此用 calc 派生出整条
+ * `rounded-sm…4xl`（与桌面端 theme.css 同一套倍数）。
  *
  * 这里只剩四档亚像素发丝圆角：它们不在 VBG 的刻度上，也不是 `--radius` 的倍数，
  * 所以必须逐个写死。名字直接就是 Tailwind 的 `--radius-*` 命名空间 ——

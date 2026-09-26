@@ -4,7 +4,11 @@
  * - Properly separated Light/Dark Mode
  *
  * File structure:
- * - colors/vercel.css: Vercel Brand Guidelines palette, the design source of truth
+ * - colors/vercel.css: Vercel Brand Guidelines (Geist) palette, still behind charts,
+ *   tags, code surfaces and the usage heat scale
+ * - colors/boss.css: The Boss Brand Guide v2.2 palette (ember brand ramp, cool
+ *   neutral ladder, feedback hues), behind the core surfaces, primary, link,
+ *   borders and feedback roles
  * - radius.css: The hairline radii that are not multiples of --radius
  * - typography.css: One font weight (the rest of the type scale is runtime-owned)
  *
@@ -34,5 +38,6 @@
  */
 
 @import './colors/vercel.css';
+@import './colors/boss.css';
 @import './radius.css';
 @import './typography.css';
