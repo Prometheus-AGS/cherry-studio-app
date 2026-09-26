@@ -1,0 +1,62 @@
+{
+  "target": "claude",
+  "verification": {
+    "level": "source-verified",
+    "source": "https://code.claude.com/docs/en/sub-agents",
+    "version": "documentation inspected 2026-09-24",
+    "live": "unverified"
+  },
+  "nativeProvenance": null,
+  "nativeOptions": null,
+  "roleOverrides": {
+    "boss-mobile-lead": {
+      "model": "opus"
+    },
+    "boss-mobile-product": {
+      "model": "sonnet"
+    },
+    "boss-mobile-rebrand": {
+      "model": "sonnet"
+    },
+    "boss-mobile-upstream": {
+      "model": "opus"
+    },
+    "boss-mobile-rust-ffi": {
+      "model": "opus"
+    },
+    "boss-mobile-p2p": {
+      "model": "opus"
+    },
+    "boss-mobile-runtime": {
+      "model": "opus"
+    },
+    "boss-mobile-data": {
+      "model": "sonnet"
+    },
+    "boss-mobile-ux": {
+      "model": "opus"
+    },
+    "boss-mobile-app": {
+      "model": "sonnet"
+    },
+    "boss-mobile-release": {
+      "model": "sonnet"
+    },
+    "boss-mobile-security": {
+      "model": "opus"
+    },
+    "boss-mobile-verifier": {
+      "model": "sonnet"
+    }
+  },
+  "diagnostics": [
+    "Source-verified serialization only; installed native validation and live execution are unverified.",
+    "Only explicit model IDs are translated. Resolve tier, skill, capability and price policies with agent-team-models before native invocation.",
+    "These are native subagents; installing them does not create an experimental Claude agent team or enable that feature.",
+    "Role overrides are preserved without native schema certification. Skill IDs refer to separately installed skills; prompt mentions do not install or authorize them."
+  ],
+  "instructions": [
+    "Review staged artifacts before installation. Export grants no execution or registration authority.",
+    "Choose project .claude/agents or the staged local marketplace/plugin. Do not install both copies. Settings options are a proposed project .claude/settings.json."
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "name": "Cherry Studio Mobile",
+  "description": "Cherry Studio's Expo and React Native client (pnpm@12.2.1 workspace).",
+  "activePhase": "rebrand-the-boss-mobile-ui",
+  "worktreeRoot": "${HOME}/.claude/worktrees",
+  "maxChildDepth": 4,
+  "ux_profile": "advanced",
+  "focus_project_path": "/Users/gqadonis/Projects/prometheus/cherry-studio-app",
+  "stack": "Expo / React Native (TypeScript, pnpm workspace, Uniwind, CherryUI, Drizzle, Jest)",
+  "spec_paths": ["openspec/specs/**/*.md"],
+  "openspec_available": true,
+  "constraint_file": ".kbd-orchestrator/constraints.md",
+  "build_health_command": "pnpm typecheck",
+  "test_command": "pnpm test:app -- --onlyChanged --runInBand",
+  "__test_command_note": "docs/guides/testing-and-ci.md: run focused suites locally; full `pnpm test` is owned by remote PR CI. Package suites use `pnpm --filter @cherrystudio/<pkg> test <file>`.",
+  "full_test_command": "pnpm test",
+  "lint_command": "pnpm lint",
+  "format_check_command": "pnpm format:check",
+  "pre_pr_gates": ["pnpm lint", "pnpm format:check", "pnpm typecheck"],
+  "contract_checks": {
+    "i18n": "pnpm i18n:check",
+    "ui_boundaries": "pnpm ui:check-boundaries",
+    "docs_links": "pnpm docs:check-links",
+    "skills": "pnpm skills:check",
+    "design": "pnpm design:check"
+  },
+  "dev_command": "pnpm dev",
+  "package_build_command": "pnpm packages:build",
+  "preferred_planning_agent": "antigravity",
+  "preferred_execution_agents": [],
+  "model_policy": {
+    "registry": {
+      "small": {
+        "local": "Qwen3.5-9B-Q8_0",
+        "t4": "Qwen3.5-9B-Q8_0",
+        "l4": "Qwen3.5-9B-Q8_0"
+      },
+      "medium": {
+        "local": null,
+        "t4": "Qwen3.5-27B-Q4",
+        "l4": "Qwen3.5-35B-A3B-Q4"
+      },
+      "frontier": {
+        "local": "claude-sonnet-4-6",
+        "t4": "claude-sonnet-4-6",
+        "l4": "claude-sonnet-4-6"
+      }
+    },
+    "phases": {
+      "kbd-assess": "frontier",
+      "kbd-plan": "frontier",
+      "kbd-status": "small",
+      "kbd-reflect": "frontier",
+      "opsx-new": "small",
+      "opsx-apply-low": "small",
+      "opsx-apply-medium": "medium",
+      "opsx-apply-high": "frontier",
+      "opsx-verify": "medium",
+      "opsx-archive": "small",
+      "refiner-iterate": "small",
+      "refiner-evaluate": "medium",
+      "evolver-assess": "frontier",
+      "evolver-analyze": "frontier",
+      "evolver-plan": "frontier",
+      "evolver-execute-low": "small",
+      "evolver-execute-medium": "medium",
+      "evolver-execute-high": "frontier",
+      "evolver-reflect": "frontier",
+      "evolver-status": "small",
+      "creator-specify": "frontier",
+      "creator-plan": "frontier",
+      "creator-execute": "tiered",
+      "creator-reflect": "frontier",
+      "creator-persist": "small"
+    },
+    "active_environment": "local"
+  },
+  "agents_config": {
+    "claude-code": {
+      "entry": "/opsx:* commands + .claude/skills/openspec-*",
+      "strengths": ["planning", "multi-file features"]
+    },
+    "codex": {
+      "entry": "$openspec-* skills in .agents/skills",
+      "strengths": ["parallel isolated tasks via git worktrees"]
+    },
+    "opencode": {
+      "entry": "/opsx-* commands in .opencode/commands",
+      "strengths": ["quick targeted edits"]
+    },
+    "zed": {
+      "entry": ".agents/skills (shared with Codex)",
+      "strengths": ["editor-integrated edits"]
+    },
+    "kimi-code": {
+      "entry": "/skill:openspec-* in .kimi-code/skills",
+      "strengths": ["focused implementation"]
+    },
+    "minimax-code": {
+      "entry": "/openspec-* from ~/.minimax/skills",
+      "strengths": ["focused implementation"]
+    }
+  },
+  "workspace": {
+    "workspace_file": "/Users/gqadonis/Projects/cherry-studio-app.code-workspace",
+    "folders": [
+      {
+        "path": "/Users/gqadonis/Projects/prometheus/cherry-studio-app",
+        "role": "focus",
+        "purpose": "Active project — all KBD operations target this directory",
+        "write_access": true
+      },
+      {
+        "path": "/Users/gqadonis/Projects/cherry-studio",
+        "role": "reference",
+        "write_access": false,
+        "purpose": "Cherry Studio desktop upstream — source for desktop sync (desktop-sync-manifest.json, sync-cherry-desktop skill). NOTE: path not present on disk at init time.",
+        "read_paths": ["docs/**/*.md", "*.md"]
+      }
+    ]
+  },
+  "updatedAt": "2026-09-26T09:09:06Z"
+}

@@ -1,0 +1,22 @@
+{
+  "dispatchedAt": "2026-09-26T14:41:50Z",
+  "backend": "openspec",
+  "driver": "kbd-apply",
+  "harness": "claude-code",
+  "team": "boss-mobile",
+  "branch": "feat/rebrand-the-boss-mobile-ui",
+  "assignedChanges": [
+    "rebrand-001-branding-module",
+    "rebrand-002-app-identity",
+    "rebrand-003-visual-assets",
+    "rebrand-004-design-tokens",
+    "rebrand-005-typography",
+    "rebrand-006-design-doc",
+    "rebrand-007-strings-app",
+    "rebrand-008-strings-native",
+    "rebrand-009-docs-readme",
+    "rebrand-010-repo-rename",
+    "rebrand-011-branding-guard"
+  ],
+  "pending": "all 11 changes"
+}

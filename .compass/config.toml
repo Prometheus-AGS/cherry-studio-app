@@ -1,0 +1,5 @@
+version = 1
+
+[build]
+include = []
+exclude = ["assets/**", "packages/ui/icons/**", "packages/ui/src/icons-webp/**/*.webp", "packages/app-icons/src/**/*.tsx", "**/nitrogen/generated/**", "**/__snapshots__/**", "**/*.{webp,png,jpg,svg}", ".agents/**", ".claude/**", ".opencode/**", ".kimi-code/**", ".kbd-orchestrator/**", "patches/**"]

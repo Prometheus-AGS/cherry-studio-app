@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "files": [
+    {
+      "file": ".claude/agents/boss-mobile-lead.md",
+      "before": null,
+      "afterSha256": "95eddb82cf468f2ac105889b024a27c45bfc4d2c02cd6cbf74eca7b079ba9532"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-product.md",
+      "before": null,
+      "afterSha256": "d1b52e0992d8bd7afc3c0fc9a31df925cbabda62849df58c1c7b40973a83d04c"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-rebrand.md",
+      "before": null,
+      "afterSha256": "2717fe02342fc18583c43b8b4d264bb01ef7288332e781168e9c187154f6a47f"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-upstream.md",
+      "before": null,
+      "afterSha256": "702bf8e3b0d5fe9633e8852416a104e6e9a9fd97c2707ffdacc56fdb735d0f14"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-rust-ffi.md",
+      "before": null,
+      "afterSha256": "408e4159980a6343de62916025737135f3c9d5d37abc24038861ade811fedcde"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-p2p.md",
+      "before": null,
+      "afterSha256": "e138cfbc77825eacf5390f8cd304fb644c9803a208df58e2af485e76c1a4f61b"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-runtime.md",
+      "before": null,
+      "afterSha256": "28b4b61cb3e99cbfdf0cb52bc6048a57fb8ad93bcd2fc4693dc32484fd8b1502"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-data.md",
+      "before": null,
+      "afterSha256": "b670254a5d24c63aaed744560afc956832e1c83e64e7e3dee94aef3d1e0f6af5"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-ux.md",
+      "before": null,
+      "afterSha256": "2d4a11f1c38231dd1180fd250b4322c9a2c074a5ccaeac4e9d735db4c2c96dcd"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-app.md",
+      "before": null,
+      "afterSha256": "f2d9d3ebd9ec52ec236326d64ad5c27fb686441938d8183947e3fa3212c01e94"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-release.md",
+      "before": null,
+      "afterSha256": "33b5b33ea897e37d7f81724b5eae95370a289ded90781289a98039986bf430f0"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-security.md",
+      "before": null,
+      "afterSha256": "80f54981c16ea4b3609d7c0a1e7b08dcfce75128036f2ca1ba00bb15c078abd6"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-verifier.md",
+      "before": null,
+      "afterSha256": "1a507efe4fcd61fe232f2c3093c61c0383ce115549c945a1670f6bbb8860ced1"
+    },
+    {
+      "file": ".agent-team/boss-mobile/team.json",
+      "before": null,
+      "afterSha256": "fab65ec4cf4b7b719c3e6e2930dd0b45a94e7f12106b357cab33ce28cdc8dd99"
+    },
+    {
+      "file": "AGENTS.md",
+      "before": "# Cherry Studio Mobile\n\nCherry Mobile is Cherry Studio's Expo and React Native client.\n\nUse `pnpm@12.2.1`. This repository has no root application build script: build workspace packages\nwith `pnpm packages:build`, and run the complete repository type check with `pnpm typecheck`.\n\nProject architecture and conventions govern how reusable skills apply here. Generic examples do\nnot replace the custom development client, Uniwind styling, CherryUI ownership, public module\nboundaries, or project naming and motion contracts. Keep personal agent preferences in user-level\nconfiguration, not in repository rules.\n\n- Before using a project skill, read [Project Skills](.agents/skills/README.md) for repository usage\n  rules and required dependencies. Keep upstream skill files unchanged.\n- When naming or renaming files, directories, identifiers, or documentation, read\n  [Naming Conventions](docs/references/naming-conventions.md).\n- When adding, moving, or exposing modules, read\n  [Code Organization](docs/references/code-organization.md).\n- When adding, changing, removing, or running tests, read\n  [Testing And CI](docs/guides/testing-and-ci.md).\n- When changing user-visible copy, translations, or supported languages, read\n  [Internationalization](docs/guides/internationalization.md). The coding AI must directly\n  translate new or changed copy into every supported locale in the same change, using the feature\n  context and glossary. `pnpm i18n:sync` scaffolds resources; `pnpm i18n:check` and CI only validate\n  them. Do not add an automatic translation workflow or translation service. The shared language\n  resolver owns locale selection for UI and Agent behavior.\n- Before creating commits, splitting work, or opening a pull request, read\n  [Git Workflow](docs/guides/git-workflow.md).\n- Before creating installation packages or changing build configuration, read\n  [Local EAS Builds](docs/guides/local-builds.md). Use `pnpm build:local` for local EAS packaging;\n  it defaults to development. Sentry reporting and build-time uploads are production-only.\n- When building or changing product UI, read\n  [UI Development](docs/guides/ui-development.md) and [Design Spec](DESIGN.md). The project motion\n  contract determines whether and how an interaction moves; generic skill guidance does not make\n  animation mandatory.\n- Before preparing or running agent-driven application acceptance, read\n  [Parallel Device Testing](docs/guides/parallel-device-testing.md) for the self-test preparation\n  standard and iOS/Android device workflow. Preparation marked as design is not implemented tooling\n  and does not expand the active task's authorization.\n\n<!-- prometheus-base:start v1 -->\n# Agent Operating Rules\n\nThis region is the standing contract. It holds only invariants that must\nsurvive compaction. Everything else lives in on-demand rules, skills, hooks,\nand reference files. Where a hook enforces a rule stated here, the hook wins.\n\nManaged by `prometheus-context-bootstrap`. Edits inside these markers are\noverwritten on re-run. Write project prose outside them.\n\n## Position and authority\n\n- `.kbd-orchestrator/current-waypoint.json` is authoritative for position.\n- `versions.toml` is authoritative for architecture decisions and dependency pins.\n- READMEs go stale. Do not trust one over the two files above.\n- Read the waypoint at session start. State the current phase before executing.\n\n## Capability inversion\n\nAgent kernels do not write. Mutating actions are gated in the trusted host\nlayer only, never in an agent kernel. Where the language allows it, this is\nenforced at the dependency graph as a compile-time guarantee rather than a\nruntime check. If a task appears to require a write from a kernel, stop and\nsurface the conflict instead of routing around it.\n\n## Phase order\n\nTask loop: Spec, Plan, Execute, Reflect.\nEvolution loop: Compile, Evaluate, Optimize, Promote.\n\nRunning a phase out of order is a quality failure, not a shortcut. Name the\nphase you are in. Do not execute before a plan exists.\n\n## Verification boundaries\n\nFinish a coherent implementation set before testing it. During implementation,\nuse static inspection and reasoning; use a narrow compiler check only when it is\nrequired to unblock progress. Finish every planned production change in the phase,\nthen run one integration gate through the real production path and collaborators at\nthe final phase boundary. When the harness provides an agent team, keep reviewer,\nauditor, verifier, and integration-checker roles dormant until that boundary. Unit,\nmock-only, filtered-function, and per-edit tests are not completion evidence.\nPer-stack commands live in `.claude/rules/`, loaded only when a matching file is read.\n\n- `.claude/rules/typescript.md` — typescript tiers and hard rules\n\n## Evidentiary standard\n\nAddress observed problems. An observed problem comes from an operator report, a\nvisible error or log, a failing test, or an explicit requirement. A concern that\nis none of those gets one sentence and a question, never speculative code.\n\nDefensive code — validation, guards, fallbacks, retries, timeouts — requires a\nnamed failure scenario. Hardening at a real trust boundary present in the code\nis a standing exception and is named in the completion summary, never added\nsilently.\n\n## Evidence over assertion\n\nShow the command and its output, the test result, or the artifact. \"Looks done\"\nis not done. Report what was actually run and at which boundary. If a check could\nnot run, say which claims are therefore unverified. An unverified claim reported\nas verified is worse than no check at all.\n\n## Anti-sycophancy\n\nCritics never see generation history. Review through the `artifact-critic`\nsubagent, which receives the artifact alone. The model that produced the work is\nnot the sole judge of whether it is good.\n\nA reflection leads with the delta between plan and delivery, not with what\nworked. The sycophancy gate may block a turn; fix the finding rather than\nbypassing it.\n\n## Learning and memory\n\nLearning is append-only under `.prometheus/`: `session-log.md`, `decisions.md`,\n`gotchas.md`, `postmortems/`, `knowledge/`. Never rewrite history; append, and\nmark superseded entries rather than deleting them.\n\nWrite on a decision with a rationale, a defect and its root cause, a learned\nconstraint, a phase boundary, and a session summary. Read `gotchas.md` before\ntouching a subsystem.\n\nWhere a memory server is configured, it is the primary store and its write path\nmay time out. On failure, log to the markdown files above and continue. Never\nblock a task on the memory server.\n\n## Architecture\n\n- Single-writer build discipline within one build or target directory.\n- Feature-based organization by capability, not by technical layer.\n- Strict layering: UI, then hooks or view models, then stores, then services,\n  then external. Reverse flow only through reactive state or events.\n- Business state lives in explicit, inspectable systems, never in UI components\n  or agent-only memory.\n- Open standards first. Avoid lock-in unless explicitly required.\n- Verify dependency versions against official sources before introducing them.\n  Do not rely on training-era version knowledge.\n\n## Scope\n\nMinimum change that solves the problem. Do not refactor adjacent working code;\ntreat its current state as intentional. Mention unrelated issues, do not fix\nthem unasked. Before destructive or hard-to-reverse actions, confirm intent and\nprefer a reversible path.\n\n## Skills may be absent\n\nHarnesses drop skill descriptions past a context budget, so a skill you expect\nmay not be listed. If one is missing, invoke it by name or say plainly that it\nis unavailable and proceed from these rules. Never invent what an absent skill\nwould have done.\n\n## Communication\n\nDirect and execution-first. Structure claims as statement, mechanism, stakes.\nShort declarative sentences. No marketing language.\n\nAvoid: leverage as a verb, utilize, synergy, roadmap as a verb, journey,\nharness as a verb, delve, revolutionary.\n\nEvery significant document names the uncomfortable thing — the scenario that\nhurts the author's own position.\n\n## Done\n\nA task is done when its stated integration exit criteria pass at the applicable boundary, not when\nthe output looks plausible. Before declaring completion: remove anything added\nthat was not requested, confirm each guard traces to an observed problem or a\nreal boundary, and summarize what changed, how it was verified, and what remains\nat risk.\n\n## Execution scaffold\n\nThis section exists because the fleet is mixed. Frontier models supply most of\nit by default; smaller and older models do not, and the failure is silent —\nplausible output with a fabricated call in it. Omit this section only when\nevery model that reads this file is known to supply the behavior on its own.\n\n### Before executing\n\nRestate the task in one sentence, and name the phase. If the restatement does\nnot match what was asked, stop and ask rather than proceeding on the closer\nreading. Name the files you intend to touch before touching them.\n\n### Do not fabricate\n\nNever invent an API, a file path, a package name, a command flag, or a\nconfiguration key. If you have not read it in this session or it is not pinned\nin `versions.toml`, verify it before using it. \"I could not confirm this\nexists\" is a correct answer. A plausible identifier that does not exist costs\nmore than the question would have.\n\nDo not guess at a tool's parameters. Read its schema. A tool call with invented\narguments fails in a way that looks like the tool is broken.\n\n### Verification is explicit\n\nRun the check. Paste the command and its actual output. Do not report a result\nyou did not observe, and do not describe what a test \"should\" produce.\n\nIf a check cannot run, say which specific claims are therefore unverified, and\nwhy. Skipping a check silently and summarizing as if it passed is the failure\nthis rule exists to prevent.\n\n### Code output\n\nNever elide code with `...`, `// rest unchanged`, or a similar placeholder in a\nfile you are writing. Emit the complete content of every file you write.\n\nWhen editing, change the minimum span. Do not reformat, reorder imports, or\nrename adjacent symbols while making an unrelated change.\n\nMatch the file's existing conventions over your own defaults.\n\n### Complete coherent sets\n\nBatch related implementation work until a meaningful production path is complete.\nDo not interrupt every edit with a build or test. Keep unrelated changes separate,\nthen validate the completed set through the smallest real integration boundary.\n\nDo not start an unrelated subsystem while the current implementation set is partial.\n\n### Stop conditions\n\nStop and ask when: the requirement is ambiguous in a way that changes the\ndesign, two readings of the task lead to different files, the change would\nbreak an existing behavior, or you are about to do something hard to reverse.\n\nStop when the goal is met. Do not continue into adjacent improvements.\n\n### Format contracts\n\nWhen a specific output format is requested — JSON, a table, a diff, a schema —\nemit exactly that format with no preamble, no trailing commentary, and no\nmarkdown fence unless the fence was asked for. A parser is often reading it.\n\n### Self-check before reporting completion\n\nState each of these explicitly, not as a claim that you did them:\n\n1. What changed, file by file.\n2. What was run to verify it, and the observed output.\n3. What was added that was not requested — remove it, or list it and ask.\n4. Which guards trace to an observed failure, and which do not.\n5. What remains unverified, and why.\n\n<!-- profile: mixed — see references/MODEL-PROFILES.md before changing -->\n<!-- prometheus-base:end -->\n\n<!-- uiux-routing:start v1 -->\n## UI/UX routing\nUI, styles, tokens, motion or copy → `prometheus-ui-ux`. Read `.agents/UI_UX_PROTOCOL.md` or its bundled default; preserve design authority.\nAll code: detect `.agent-team/project-routing.json` and real team manifests. Preserve selection; adopt a sole team; ask if ambiguous. Use relevant roles, disclosing sequential fallback.\nBackend work loads no UI guidance. Review respects user-only skills and the completed-phase boundary.\n<!-- uiux-routing:end -->\n",
+      "afterSha256": "0e852d7d934937dff97501ae82b3b7531c7784cae7709749a5d112d41c9cf585"
+    },
+    {
+      "file": ".agent-team/project-routing.json",
+      "before": null,
+      "afterSha256": "3f1ee2072c1b382df101d470fd82f42bcc27bfb5679af353e130c727ab4a56e6"
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "target": "claude",
+  "verification": {
+    "level": "source-verified",
+    "source": "https://code.claude.com/docs/en/sub-agents",
+    "version": "documentation inspected 2026-09-24",
+    "live": "unverified"
+  },
+  "diagnostics": [
+    "Source-verified serialization only; installed native validation and live execution are unverified.",
+    "Only explicit model IDs are translated. Resolve tier, skill, capability and price policies with agent-team-models before native invocation.",
+    "These are native subagents; installing them does not create an experimental Claude agent team or enable that feature.",
+    "Role overrides are preserved without native schema certification. Skill IDs refer to separately installed skills; prompt mentions do not install or authorize them."
+  ],
+  "instructions": [
+    "Review staged artifacts before installation. Export grants no execution or registration authority.",
+    "Choose project .claude/agents or the staged local marketplace/plugin. Do not install both copies. Settings options are a proposed project .claude/settings.json."
+  ],
+  "files": [
+    {
+      "file": ".claude/agents/boss-mobile-lead.md",
+      "sha256": "95eddb82cf468f2ac105889b024a27c45bfc4d2c02cd6cbf74eca7b079ba9532"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-lead.md",
+      "sha256": "95eddb82cf468f2ac105889b024a27c45bfc4d2c02cd6cbf74eca7b079ba9532"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-product.md",
+      "sha256": "d1b52e0992d8bd7afc3c0fc9a31df925cbabda62849df58c1c7b40973a83d04c"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-product.md",
+      "sha256": "d1b52e0992d8bd7afc3c0fc9a31df925cbabda62849df58c1c7b40973a83d04c"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-rebrand.md",
+      "sha256": "2717fe02342fc18583c43b8b4d264bb01ef7288332e781168e9c187154f6a47f"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-rebrand.md",
+      "sha256": "2717fe02342fc18583c43b8b4d264bb01ef7288332e781168e9c187154f6a47f"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-upstream.md",
+      "sha256": "702bf8e3b0d5fe9633e8852416a104e6e9a9fd97c2707ffdacc56fdb735d0f14"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-upstream.md",
+      "sha256": "702bf8e3b0d5fe9633e8852416a104e6e9a9fd97c2707ffdacc56fdb735d0f14"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-rust-ffi.md",
+      "sha256": "408e4159980a6343de62916025737135f3c9d5d37abc24038861ade811fedcde"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-rust-ffi.md",
+      "sha256": "408e4159980a6343de62916025737135f3c9d5d37abc24038861ade811fedcde"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-p2p.md",
+      "sha256": "e138cfbc77825eacf5390f8cd304fb644c9803a208df58e2af485e76c1a4f61b"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-p2p.md",
+      "sha256": "e138cfbc77825eacf5390f8cd304fb644c9803a208df58e2af485e76c1a4f61b"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-runtime.md",
+      "sha256": "28b4b61cb3e99cbfdf0cb52bc6048a57fb8ad93bcd2fc4693dc32484fd8b1502"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-runtime.md",
+      "sha256": "28b4b61cb3e99cbfdf0cb52bc6048a57fb8ad93bcd2fc4693dc32484fd8b1502"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-data.md",
+      "sha256": "b670254a5d24c63aaed744560afc956832e1c83e64e7e3dee94aef3d1e0f6af5"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-data.md",
+      "sha256": "b670254a5d24c63aaed744560afc956832e1c83e64e7e3dee94aef3d1e0f6af5"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-ux.md",
+      "sha256": "bda9ec1202e7f5113084acae98fc72568f138de7d2072b5e5b890d2b515b7b9c"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-ux.md",
+      "sha256": "bda9ec1202e7f5113084acae98fc72568f138de7d2072b5e5b890d2b515b7b9c"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-app.md",
+      "sha256": "f2d9d3ebd9ec52ec236326d64ad5c27fb686441938d8183947e3fa3212c01e94"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-app.md",
+      "sha256": "f2d9d3ebd9ec52ec236326d64ad5c27fb686441938d8183947e3fa3212c01e94"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-release.md",
+      "sha256": "33b5b33ea897e37d7f81724b5eae95370a289ded90781289a98039986bf430f0"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-release.md",
+      "sha256": "33b5b33ea897e37d7f81724b5eae95370a289ded90781289a98039986bf430f0"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-security.md",
+      "sha256": "80f54981c16ea4b3609d7c0a1e7b08dcfce75128036f2ca1ba00bb15c078abd6"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-security.md",
+      "sha256": "80f54981c16ea4b3609d7c0a1e7b08dcfce75128036f2ca1ba00bb15c078abd6"
+    },
+    {
+      "file": ".claude/agents/boss-mobile-verifier.md",
+      "sha256": "1a507efe4fcd61fe232f2c3093c61c0383ce115549c945a1670f6bbb8860ced1"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-verifier.md",
+      "sha256": "1a507efe4fcd61fe232f2c3093c61c0383ce115549c945a1670f6bbb8860ced1"
+    },
+    {
+      "file": "plugins/boss-mobile/.claude-plugin/plugin.json",
+      "sha256": "53676144e440003fe1d2ac5e1373aa33ac12f240178b4d5d0699def09da40895"
+    },
+    {
+      "file": ".claude-plugin/marketplace.json",
+      "sha256": "c334d75afadb622199a6f6d1db27b246b23f858393333e6d47a78e94c2f5c219"
+    },
+    {
+      "file": "export-receipt.json",
+      "sha256": "08d12547fad4cfb115b4c0a4d37e079a6cb31e0c1925224121ebc8e267b5ac48"
+    }
+  ]
+}

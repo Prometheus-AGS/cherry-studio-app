@@ -1,0 +1,9 @@
+{
+  "stage": "assess",
+  "completedAt": "2026-09-26T13:53:03Z",
+  "outputs": ["assessment.md"],
+  "nextStage": "analyze",
+  "summaryForNext": "Mobile has no branding module; identity, icons, tokens (green/Geist vs ember v2.2), fonts (none vendored anywhere), DESIGN.md, 13 JSON locales plus native .xcstrings/Android strings.xml, glossary, links and README all still Cherry. Open decisions for plan: Android package (tools.know_me.the_boss), URL scheme keep-or-change, Know Me Tools EAS/ASC/Sentry accounts, which internal contracts stay, and whether agent-team files are committed. Warnings carried: build health inferred from CI only; brand vector sources live outside both repos.",
+  "skipped": false,
+  "skipReason": null
+}

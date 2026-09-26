@@ -1,0 +1,197 @@
+{
+  "schemaVersion": "2",
+  "generatedBy": "kbd-runtime",
+  "projectionContractVersion": 2,
+  "sourceRevision": 185,
+  "derivedRevision": 185,
+  "frontier": {
+    "d917ffd6-05b6-49c6-86ca-cd046eeddfbb": 185
+  },
+  "conflictCount": 0,
+  "phase": "rebrand-the-boss-mobile-ui",
+  "phaseId": "rebrand-the-boss-mobile-ui",
+  "parentPhase": null,
+  "last_updated": "2026-09-26T14:41:49.917499Z",
+  "last_updated_by": "kbd-runtime",
+  "changes_total": 11,
+  "changes_completed": 0,
+  "implementation_total": 11,
+  "implementation_completed": 0,
+  "completion": {
+    "primaryCounter": "implementation",
+    "implementation": {
+      "completed": 0,
+      "total": 11,
+      "status": "PENDING"
+    },
+    "evidence": {
+      "status": "NOT_TRACKED",
+      "summary": null,
+      "blockers": []
+    },
+    "certification": {
+      "status": "NOT_TRACKED",
+      "summary": null,
+      "blockers": []
+    },
+    "publication": {
+      "status": "NOT_TRACKED",
+      "summary": null,
+      "blockers": []
+    }
+  },
+  "completionScopes": {
+    "completion": "phase",
+    "runCompletion": "run"
+  },
+  "runCompletion": {
+    "scope": "run",
+    "runId": "rebrand-the-boss-mobile-ui-20260926T135303Z",
+    "primaryCounter": "implementation",
+    "implementation": {
+      "completed": 0,
+      "total": 11,
+      "status": "PENDING"
+    },
+    "evidence": {
+      "status": "PENDING",
+      "summary": null,
+      "blockers": []
+    },
+    "certification": {
+      "status": "PENDING",
+      "summary": null,
+      "blockers": []
+    },
+    "publication": {
+      "status": "PENDING",
+      "summary": null,
+      "blockers": []
+    }
+  },
+  "changes": [
+    {
+      "id": "rebrand-001-branding-module",
+      "title": "single identity module and glossary",
+      "status": "PENDING",
+      "implementation_status": "PENDING",
+      "tasks_total": 10,
+      "tasks_done": 5,
+      "last_task_completed": null,
+      "next_task_pending": "1. [rebrand] Create src/shared/branding module (product, short name, company, APP_ID, slug, URLs, attribution, export brand) with unit test",
+      "blockers": []
+    },
+    {
+      "id": "rebrand-002-app-identity",
+      "title": "native app identity and permission copy",
+      "status": "PENDING",
+      "implementation_status": "PENDING",
+      "tasks_total": 16,
+      "tasks_done": 7,
+      "last_task_completed": null,
+      "next_task_pending": "1. [release] Confirm PD-2, PD-4, PD-4b answers; check whether build:local needs the EAS projectId",
+      "blockers": []
+    },
+    {
+      "id": "rebrand-003-visual-assets",
+      "title": "icons, splash and in-app logos from brand sources",
+      "status": "PENDING",
+      "implementation_status": "PENDING",
+      "tasks_total": 10,
+      "tasks_done": 5,
+      "last_task_completed": null,
+      "next_task_pending": "1. [rebrand] Import v2.2 SVG sources into assets/branding/source with provenance",
+      "blockers": []
+    },
+    {
+      "id": "rebrand-004-design-tokens",
+      "title": "Brand Guide v2.2 color and radius tokens",
+      "status": "PENDING",
+      "implementation_status": "PENDING",
+      "tasks_total": 8,
+      "tasks_done": 4,
+      "last_task_completed": null,
+      "next_task_pending": "1. [ux] Obtain PD-11 sign-off (spacing/iconography excluded)",
+      "blockers": []
+    },
+    {
+      "id": "rebrand-005-typography",
+      "title": "brand fonts and type roles",
+      "status": "PENDING",
+      "implementation_status": "PENDING",
+      "tasks_total": 8,
+      "tasks_done": 4,
+      "last_task_completed": null,
+      "next_task_pending": "1. [ux] Vendor Space Grotesk, Inter, JetBrains Mono, Roboto TTFs with licenses",
+      "blockers": []
+    },
+    {
+      "id": "rebrand-006-design-doc",
+      "title": "DESIGN.md for The Boss mobile",
+      "status": "PENDING",
+      "implementation_status": "PENDING",
+      "tasks_total": 6,
+      "tasks_done": 3,
+      "last_task_completed": null,
+      "next_task_pending": "1. [ux] Rewrite DESIGN.md for v2.2",
+      "blockers": []
+    },
+    {
+      "id": "rebrand-007-strings-app",
+      "title": "product-name values in all app locales",
+      "status": "PENDING",
+      "implementation_status": "PENDING",
+      "tasks_total": 8,
+      "tasks_done": 4,
+      "last_task_completed": null,
+      "next_task_pending": "1. [app] Change product-name values in all 13 locales and painting-template locales per PD-6 (values only)",
+      "blockers": []
+    },
+    {
+      "id": "rebrand-008-strings-native",
+      "title": "native localized resources and share extension",
+      "status": "PENDING",
+      "implementation_status": "PENDING",
+      "tasks_total": 6,
+      "tasks_done": 3,
+      "last_task_completed": null,
+      "next_task_pending": "1. [app] Rebrand SystemIntegration.xcstrings and Android strings.xml; CherryStrings.swift fallbacks",
+      "blockers": []
+    },
+    {
+      "id": "rebrand-009-docs-readme",
+      "title": "README and documentation",
+      "status": "PENDING",
+      "implementation_status": "PENDING",
+      "tasks_total": 12,
+      "tasks_done": 6,
+      "last_task_completed": null,
+      "next_task_pending": "1. [lead] Rebrand README.md (logo, title, credits, technical-contract note) and AGENTS.md heading",
+      "blockers": []
+    },
+    {
+      "id": "rebrand-010-repo-rename",
+      "title": "GitHub repository becomes `the-boss-mobile`",
+      "status": "PENDING",
+      "implementation_status": "PENDING",
+      "tasks_total": 18,
+      "tasks_done": 9,
+      "last_task_completed": null,
+      "next_task_pending": "1. [upstream] Operator confirmation; gh repo rename the-boss-mobile; update origin; add read-only upstream remote",
+      "blockers": []
+    },
+    {
+      "id": "rebrand-011-branding-guard",
+      "title": "regression guard and merge discipline",
+      "status": "PENDING",
+      "implementation_status": "PENDING",
+      "tasks_total": 10,
+      "tasks_done": 5,
+      "last_task_completed": null,
+      "next_task_pending": "1. [upstream] Write docs/contrib/upstream-merges.md and docs/contrib/fork-surface.md",
+      "blockers": []
+    }
+  ],
+  "children": {},
+  "migrationStatus": null
+}

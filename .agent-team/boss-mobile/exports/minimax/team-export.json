@@ -1,0 +1,77 @@
+{
+  "target": "minimax",
+  "verification": {
+    "level": "source-verified",
+    "source": "https://github.com/MiniMax-AI/minimax-code/blob/main/packages/local-runtime-v2/src/service/agent/storage/canonical-agent-config.ts",
+    "version": "@minimax-ai/code 0.4.12; source inspected 2026-09-24",
+    "live": "unverified"
+  },
+  "diagnostics": [
+    "Source-verified serialization only; installed native validation and live execution are unverified.",
+    "Only explicit model IDs are translated. Resolve tier, skill, capability and price policies with agent-team-models before native invocation.",
+    "mcode exec has no verified custom-agent selector. The MiniMax plugin manifest supports skills/MCP/hooks/apps, not an agents field; no agent plugin is invented.",
+    "Role overrides are preserved without native schema certification. Skill IDs refer to separately installed skills; prompt mentions do not install or authorize them."
+  ],
+  "instructions": [
+    "Review staged artifacts before installation. Export grants no execution or registration authority.",
+    "Install agents/<name>/agent.md under the active MiniMax user-data directory: MINIMAX_DATA_DIR, MAVIS_DATA_DIR, or default ~/.minimax. Export does not install there."
+  ],
+  "files": [
+    {
+      "file": "agents/boss-mobile-lead/agent.md",
+      "sha256": "40f2c034f228df8b459c067eecd666947c1aabc599743b8da39a2e537674d3f6"
+    },
+    {
+      "file": "agents/boss-mobile-product/agent.md",
+      "sha256": "570cd68e82f9d9a9aa39786a4b673763dce9dfce94bb3a19dee2e2e10d1dbb25"
+    },
+    {
+      "file": "agents/boss-mobile-rebrand/agent.md",
+      "sha256": "624b93cd2f1cbffbc00b58b9b3b5b0dfe7005c415f6726ab6ab04ce1ab8c41c3"
+    },
+    {
+      "file": "agents/boss-mobile-upstream/agent.md",
+      "sha256": "fd2c5c6e37d56a0a15b4178c3cdb6f54d3ea1ef1d6d349cd7fa20e5cfe0d7f9f"
+    },
+    {
+      "file": "agents/boss-mobile-rust-ffi/agent.md",
+      "sha256": "898875743363220d9089c2d379ae3f767aff1610f7f53f10d00cbad0a8ff7116"
+    },
+    {
+      "file": "agents/boss-mobile-p2p/agent.md",
+      "sha256": "e3e259c12cee0761106abb7558340099897c270733ea974d7ac495028c573d69"
+    },
+    {
+      "file": "agents/boss-mobile-runtime/agent.md",
+      "sha256": "c74d0228741ecc83a16f6ac1c7f76a2ee75e1aed2530207b567bf3368f5a5e1b"
+    },
+    {
+      "file": "agents/boss-mobile-data/agent.md",
+      "sha256": "d5a9715e6a06fe5c26016950b9c359cb37ad35046e16011c4721ca585c9df75f"
+    },
+    {
+      "file": "agents/boss-mobile-ux/agent.md",
+      "sha256": "8294f4313ee81678cb0f92268ef2d42d15193a89ba911cf6949e70a816b567f3"
+    },
+    {
+      "file": "agents/boss-mobile-app/agent.md",
+      "sha256": "b5883a195cc1d990893f4985a7e65611a1e9a01829c45690cf20b2e85cccf784"
+    },
+    {
+      "file": "agents/boss-mobile-release/agent.md",
+      "sha256": "d655412203cbc34f44b53f891427a2e46e74f77cd21c17844d020b0eb4a11baa"
+    },
+    {
+      "file": "agents/boss-mobile-security/agent.md",
+      "sha256": "02997d29ce1a02b35db05db822331b8db6b32f1df4302b129462b7f43a39b2f2"
+    },
+    {
+      "file": "agents/boss-mobile-verifier/agent.md",
+      "sha256": "b2cd337884fbb3c301e0962a0a887165c92bfcfff7cdb5d5b7f1b799182eff6d"
+    },
+    {
+      "file": "export-receipt.json",
+      "sha256": "808e576eb001ca185f5b7181692713258722f2e9d0a930210df4d0e3b87ea941"
+    }
+  ]
+}

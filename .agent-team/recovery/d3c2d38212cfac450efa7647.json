@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "files": [
+    {
+      "file": ".agent-team/project-routing.json",
+      "before": "{\n  \"schemaVersion\": 1,\n  \"activeTeam\": \"boss-mobile\",\n  \"manifest\": \".agent-team/boss-mobile/team.json\",\n  \"target\": \"kimi\",\n  \"nativeDefinitions\": [\n    \".kimi-code/agents/boss-mobile-lead.md\",\n    \".kimi-code/agents/boss-mobile-product.md\",\n    \".kimi-code/agents/boss-mobile-rebrand.md\",\n    \".kimi-code/agents/boss-mobile-upstream.md\",\n    \".kimi-code/agents/boss-mobile-rust-ffi.md\",\n    \".kimi-code/agents/boss-mobile-p2p.md\",\n    \".kimi-code/agents/boss-mobile-runtime.md\",\n    \".kimi-code/agents/boss-mobile-data.md\",\n    \".kimi-code/agents/boss-mobile-ux.md\",\n    \".kimi-code/agents/boss-mobile-app.md\",\n    \".kimi-code/agents/boss-mobile-release.md\",\n    \".kimi-code/agents/boss-mobile-security.md\",\n    \".kimi-code/agents/boss-mobile-verifier.md\"\n  ],\n  \"instructionFiles\": [\n    \"AGENTS.md\",\n    \"CLAUDE.md\"\n  ],\n  \"delegation\": \"native-definitions\",\n  \"limitations\": [\n    \"Native definition presence is not live invocation evidence. The active harness owns permissions, models, concurrency and delegation.\",\n    \"When delegation is unavailable, use selected role instructions sequentially and report it; builder-context review is not independent.\",\n    \"Zed external ACP agents use their native configuration; Zed parallel threads are not an automatic delegation API.\"\n  ]\n}\n",
+      "afterSha256": "3f1ee2072c1b382df101d470fd82f42bcc27bfb5679af353e130c727ab4a56e6"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "name": "boss-mobile",
+  "version": "1.0.0",
+  "description": "Rebrand and evolve the Cherry Studio mobile fork into the-boss-mobile at feature and brand parity with the-boss desktop, embedding universal-agent-runtime through Rust FFI, reaching every device the user owns from anywhere over a P2P link, and continuously merging upstream without losing fork-specific work."
+}

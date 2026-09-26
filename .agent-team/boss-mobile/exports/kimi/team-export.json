@@ -1,0 +1,136 @@
+{
+  "target": "kimi",
+  "verification": {
+    "level": "source-verified",
+    "source": "https://github.com/MoonshotAI/kimi-code/blob/main/docs/en/customization/agents.md",
+    "version": "main documentation inspected 2026-09-24",
+    "live": "unverified"
+  },
+  "diagnostics": [
+    "Source-verified serialization only; installed native validation and live execution are unverified.",
+    "Only explicit model IDs are translated. Resolve tier, skill, capability and price policies with agent-team-models before native invocation.",
+    "Role overrides are preserved without native schema certification. Skill IDs refer to separately installed skills; prompt mentions do not install or authorize them."
+  ],
+  "instructions": [
+    "Review staged artifacts before installation. Export grants no execution or registration authority.",
+    "Choose project .kimi-code/agents or the staged Kimi v2 marketplace/plugin. Literal ${base_prompt} in supplied prompts remains unchanged."
+  ],
+  "files": [
+    {
+      "file": ".kimi-code/agents/boss-mobile-lead.md",
+      "sha256": "b953c0c15de9f618f6218b5382b8177965a15fea25117dca0293fa38651c767f"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-lead.md",
+      "sha256": "b953c0c15de9f618f6218b5382b8177965a15fea25117dca0293fa38651c767f"
+    },
+    {
+      "file": ".kimi-code/agents/boss-mobile-product.md",
+      "sha256": "96062fb4c3b16f40f912e35f31f54e19aa6276c45f6ee8dbc9b197130f54b0c0"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-product.md",
+      "sha256": "96062fb4c3b16f40f912e35f31f54e19aa6276c45f6ee8dbc9b197130f54b0c0"
+    },
+    {
+      "file": ".kimi-code/agents/boss-mobile-rebrand.md",
+      "sha256": "46770072ec8cc2254d2c9d8283d6cc652846b7f6337afe4c659997d9a82fd510"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-rebrand.md",
+      "sha256": "46770072ec8cc2254d2c9d8283d6cc652846b7f6337afe4c659997d9a82fd510"
+    },
+    {
+      "file": ".kimi-code/agents/boss-mobile-upstream.md",
+      "sha256": "abf79750b7dc265748058776743c0300a5d374259df3989de24f8010c564d7ae"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-upstream.md",
+      "sha256": "abf79750b7dc265748058776743c0300a5d374259df3989de24f8010c564d7ae"
+    },
+    {
+      "file": ".kimi-code/agents/boss-mobile-rust-ffi.md",
+      "sha256": "98614ee0c7042f662e0964188c920122cec77b2f222c3275d255477d731d7d50"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-rust-ffi.md",
+      "sha256": "98614ee0c7042f662e0964188c920122cec77b2f222c3275d255477d731d7d50"
+    },
+    {
+      "file": ".kimi-code/agents/boss-mobile-p2p.md",
+      "sha256": "41b260099398cf4708cef8cad28baa9c231c439189bd498b9f65bdbe012be6f9"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-p2p.md",
+      "sha256": "41b260099398cf4708cef8cad28baa9c231c439189bd498b9f65bdbe012be6f9"
+    },
+    {
+      "file": ".kimi-code/agents/boss-mobile-runtime.md",
+      "sha256": "be82a59d46f9ce9a169326737a28887b7ef75c1f12fb326f564d9b193206aab0"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-runtime.md",
+      "sha256": "be82a59d46f9ce9a169326737a28887b7ef75c1f12fb326f564d9b193206aab0"
+    },
+    {
+      "file": ".kimi-code/agents/boss-mobile-data.md",
+      "sha256": "2cc832e0d6b0ca3eb8e21f7a0d5feb6a1b7fe83708acc4101dbe63a08330af80"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-data.md",
+      "sha256": "2cc832e0d6b0ca3eb8e21f7a0d5feb6a1b7fe83708acc4101dbe63a08330af80"
+    },
+    {
+      "file": ".kimi-code/agents/boss-mobile-ux.md",
+      "sha256": "6ad67713df8ce89217485d53b8b36a2678e6299cc89af139b88ced222dc2f57f"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-ux.md",
+      "sha256": "6ad67713df8ce89217485d53b8b36a2678e6299cc89af139b88ced222dc2f57f"
+    },
+    {
+      "file": ".kimi-code/agents/boss-mobile-app.md",
+      "sha256": "867a0b2cb7546e33c6df0b056bd096f99534326ffcec07bb38c48a8f104c3960"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-app.md",
+      "sha256": "867a0b2cb7546e33c6df0b056bd096f99534326ffcec07bb38c48a8f104c3960"
+    },
+    {
+      "file": ".kimi-code/agents/boss-mobile-release.md",
+      "sha256": "ab04f7109d964747e237ae97d226546affdd79c7db45e11adf7fdf8548f2d42b"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-release.md",
+      "sha256": "ab04f7109d964747e237ae97d226546affdd79c7db45e11adf7fdf8548f2d42b"
+    },
+    {
+      "file": ".kimi-code/agents/boss-mobile-security.md",
+      "sha256": "5a7cfe233801f31fa51963255e178e90b4ae435e50908509382d8bac9f814d27"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-security.md",
+      "sha256": "5a7cfe233801f31fa51963255e178e90b4ae435e50908509382d8bac9f814d27"
+    },
+    {
+      "file": ".kimi-code/agents/boss-mobile-verifier.md",
+      "sha256": "4483319be0455e8e740983ec855eee0d5754a93d72493adfa22aa772a53413d3"
+    },
+    {
+      "file": "plugins/boss-mobile/agents/boss-mobile-verifier.md",
+      "sha256": "4483319be0455e8e740983ec855eee0d5754a93d72493adfa22aa772a53413d3"
+    },
+    {
+      "file": "plugins/boss-mobile/kimi.plugin.json",
+      "sha256": "ba6ae6561a839806003414b58a62f3997c5a3430e223392dad66e6c0359f29d5"
+    },
+    {
+      "file": "marketplace.json",
+      "sha256": "1566d752d84328a722916eb4ec964b5b7f5f67faf67abd7b6cd972624825f68f"
+    },
+    {
+      "file": "export-receipt.json",
+      "sha256": "5ae9161cf047dc1d242e7c43a08704bc7fc0aaac049c5a94632b4da49c8ace3a"
+    }
+  ]
+}
