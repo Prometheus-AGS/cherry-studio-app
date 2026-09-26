@@ -4,6 +4,7 @@ import { Directory, File, Paths } from 'expo-file-system';
 import { fileEntryService } from '@/backend/data/services/FileEntryService';
 import { storageDirectory } from '@/backend/data/storage/storagePaths';
 import { getFileUri } from '@/backend/services/file/fileStorage';
+import { PRODUCT_NAME } from '@/shared/branding';
 import { PluginError } from '@/shared/contracts/plugins';
 import { FileEntryIdSchema } from '@/shared/data/types/file';
 
@@ -65,7 +66,8 @@ function fieldName(path: FieldPath): string {
 async function uploadFile(value: string): Promise<File> {
   const id = FileEntryIdSchema.safeParse(value);
   const uri = id.success ? await getFileUri(fileEntryService, id.data) : value;
-  if (!uri) throw new PluginError('request', 'The Cherry attachment is no longer available.');
+  if (!uri)
+    throw new PluginError('request', `The ${PRODUCT_NAME} attachment is no longer available.`);
   // These locations contain user attachments, document exports and prior Wecom downloads.
   // Never interpret a model-supplied path as permission to upload app databases/configuration.
   const roots = [
@@ -77,7 +79,7 @@ async function uploadFile(value: string): Promise<File> {
   try {
     url = new URL(uri.startsWith('/') ? `file://${uri}` : uri);
   } catch {
-    throw new PluginError('request', 'Supply a local Cherry attachment or exported file.');
+    throw new PluginError('request', `Supply a local ${PRODUCT_NAME} attachment or exported file.`);
   }
   if (
     url.protocol !== 'file:' ||
@@ -89,7 +91,7 @@ async function uploadFile(value: string): Promise<File> {
   )
     throw new PluginError(
       'access',
-      'Only Cherry attachments, exports and Wecom downloads can be uploaded.',
+      `Only ${PRODUCT_NAME} attachments, exports and Wecom downloads can be uploaded.`,
     );
   const file = new File(url.href);
   if (

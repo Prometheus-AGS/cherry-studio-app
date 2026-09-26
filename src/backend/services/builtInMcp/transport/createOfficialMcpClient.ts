@@ -1,6 +1,7 @@
 import { createMCPClient, type MCPClient, type MCPClientConfig } from '@ai-sdk/mcp';
 import { fetch as expoFetch } from 'expo/fetch';
 
+import { ATTRIBUTION_NAME } from '@/shared/branding';
 import { PluginError } from '@/shared/contracts/plugins';
 
 import type { PluginClient, PluginClientContext } from '../pluginDefinition';
@@ -113,7 +114,7 @@ export async function createOfficialMcpClient(
     }
   };
   const client = await createMCPClient({
-    clientName: 'Cherry Studio',
+    clientName: ATTRIBUTION_NAME,
     initializationOptions: { signal: context.signal },
     maxRetries: 0,
     // No authProvider: a 401 must not replay a possibly committed write.

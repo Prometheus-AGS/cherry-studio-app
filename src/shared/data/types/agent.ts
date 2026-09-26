@@ -8,12 +8,19 @@ export const AgentToolApprovalModeSchema = z.enum(['default', 'auto']);
 export type AgentToolApprovalMode = z.infer<typeof AgentToolApprovalModeSchema>;
 
 export const DEFAULT_AGENT_TOOL_APPROVAL_MODE: AgentToolApprovalMode = 'auto';
-export const CHERRY_AGENT_AVATAR = '🍒';
+/** Built-in default Agent avatar emoji. */
+export const CHERRY_AGENT_AVATAR = '🤖';
+/**
+ * Default avatar emoji from Cherry Studio forks predating the rebrand. No migration writes
+ * this value going forward, but stored data may still hold it, so detection by value must
+ * keep recognizing it as a legacy default rather than treating it as a custom emoji.
+ */
+export const LEGACY_CHERRY_AGENT_AVATAR = '🍒';
 
 export const AgentIdSchema = z.uuidv4();
 
 export const AgentSchema = z.strictObject({
-  /** Built-in Cherry emoji or a managed avatar file reference; null uses the name fallback. */
+  /** Built-in default emoji or a managed avatar file reference; null uses the name fallback. */
   avatar: z.string().nullable(),
   /**
    * Read-time projection of `avatar` into a device-local image URI; null when

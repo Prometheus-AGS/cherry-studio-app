@@ -32,14 +32,14 @@ setup/run scripts or an app opening with defaults do not prove configured prepar
 
 ### Primary Source And Local State
 
-Register one explicit primary Cherry Mobile installation in repository-local machine configuration:
+Register one explicit primary The Boss Mobile installation in repository-local machine configuration:
 platform, stable device identity and expected name, application identifier, and source kind. The
 source is the installed app's sandbox, not a repository directory or Metro process. Resolve its
 current app container on export; for Android, resolve the current serial from the stable emulator
 identity. Never choose the first booted device or guess a source from a workspace name. Missing or
 ambiguous registration blocks configured preparation until the source is identified.
 
-Direct extraction initially targets Mobile simulators/emulators. Cherry Desktop or physical-device
+Direct extraction initially targets Mobile simulators/emulators. Desktop or physical-device
 sources require a supported adapter/export format; their databases are not interchangeable with
 Mobile's. Never share the primary's live writable database or app container with a workspace. Never
 reset the primary, migrate it using a test branch, use it as the acceptance device, or include it in
@@ -61,7 +61,7 @@ after extracting configuration; retain only the allowed configuration payload an
 ### Configuration Baseline
 
 Copy the complete user-maintained configuration graph, including disabled entries, with stable
-identities and relationships. Here **Agent** means the user-configured assistant in Cherry Mobile,
+identities and relationships. Here **Agent** means the user-configured assistant in The Boss Mobile,
 while **coding agent** means the executor of this workflow.
 
 | Domain | Included configuration |

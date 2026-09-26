@@ -20,6 +20,7 @@ import type {
   McpServerRuntimeSummary,
   McpToolSummary,
 } from '@/shared/contracts';
+import { ATTRIBUTION_NAME } from '@/shared/branding';
 import { PluginError } from '@/shared/contracts/plugins';
 import { loggerService } from '@/shared/core/logger/LoggerService';
 import type { McpServer } from '@/shared/data/types/mcpServer';
@@ -192,7 +193,7 @@ function createMcpClient(
   }
   const headers = normalizeMcpHeaders(config.headers);
   return createMCPClient({
-    clientName: 'Cherry Studio',
+    clientName: ATTRIBUTION_NAME,
     initializationOptions: { signal },
     transport: {
       type: 'http',

@@ -6,3 +6,5 @@
 - [ ] 4. [verifier] i18n:check green; zero Cherry in locale values outside allowlist; device spot-check zh-cn, ja-jp, de-de
 - [x] 5. [runtime] Rebrand agentSystemPrompt.ts runtime identity and update tests under src/backend/ai/** that assert the old CherryStudioMobile user agent
 - [x] 6. [app] Update src/backend/services/webSearch/http/__tests__/requestWebSearchJson.test.ts user-agent expectation
+
+- [ ] 7. [runtime/app/ux/lead] Clear brand:check leftovers and remaining product-name docs

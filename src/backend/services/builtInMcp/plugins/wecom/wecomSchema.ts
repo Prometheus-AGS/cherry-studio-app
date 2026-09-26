@@ -1,6 +1,7 @@
 import type { ListToolsResult } from '@ai-sdk/mcp';
 import * as z from 'zod';
 
+import { PRODUCT_NAME } from '@/shared/branding';
 import { PluginError } from '@/shared/contracts/plugins';
 
 import { getWecomToolEffect } from './wecomTools';
@@ -176,7 +177,7 @@ function modelSchema(schema: WecomJsonSchema, root = schema): WecomJsonSchema {
     isWecomDirective(node['x-wecom-file-upload']) ||
     isWecomDirective(node['x-wecom-octet-stream'])
   )
-    result.description = `${typeof node.description === 'string' ? `${node.description}\n` : ''}Supply the file_entry_id from a Cherry attachment/file tool, or a local Cherry export/Wecom download path. Cherry uploads the file contents.`;
+    result.description = `${typeof node.description === 'string' ? `${node.description}\n` : ''}Supply the file_entry_id from a ${PRODUCT_NAME} attachment/file tool, or a local ${PRODUCT_NAME} export/Wecom download path. ${PRODUCT_NAME} uploads the file contents.`;
   if (schema.properties && typeof schema.properties === 'object') {
     const properties = Object.entries(schema.properties).filter(
       ([, child]) => !isWecomDirective(dereferenceWecomSchema(child, root)['x-wecom-hidden']),

@@ -88,7 +88,7 @@ export const SEMANTIC_GROUPS: SemanticGroup[] = [
   },
   {
     title: '主操作与品牌',
-    hint: '--control-active 对齐 PC 开关的固定绿色；--primary 保留明暗适配的强调色及配套前景；--brand 仅用于固定的 Cherry Studio Logo 红（#ff5757）。',
+    hint: '--control-active 对齐 PC 开关的固定绿色；--primary 保留明暗适配的强调色及配套前景；--brand 是固定的 The Boss Logo 余烬色 ember（boss-brand-500，#E04E28），明暗主题相同，仅用于品牌图形，不用于操作、选中或链接。',
     kind: 'surface',
     variables: ['--control-active', '--primary', '--primary-foreground', '--brand'],
   },

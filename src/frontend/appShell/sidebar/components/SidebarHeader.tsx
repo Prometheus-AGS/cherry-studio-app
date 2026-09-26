@@ -37,7 +37,7 @@ export function SidebarHeader() {
         }}
       >
         <Text className="flex-1 font-semibold text-2xl text-sidebar-foreground" numberOfLines={1}>
-          Cherry Studio
+          {t('common.cherryStudio')}
         </Text>
         {openSearch ? (
           <Surface interactive shape="circle">

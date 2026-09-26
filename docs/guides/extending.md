@@ -1,4 +1,4 @@
-# Extending Cherry Mobile
+# Extending The Boss Mobile
 
 This is a placement guide for extending the in-process frontend/backend architecture. Prefer an
 existing deep module over a new registry or pass-through wrapper. Read
@@ -59,7 +59,7 @@ sides belong in `src/shared/utils`
 when they are mobile-native, or in `packages/universal/src/utils` when they mirror a desktop helper,
 including model capability checks.
 
-Keep a direct Cherry Desktop service counterpart's `Service` name and public methods. Name
+Keep a direct upstream Cherry Studio desktop service counterpart's `Service` name and public methods. Name
 mobile-only owners by role: `Module`, `Runtime`, `Session`, `Client`, `Adapter`, or `Manager`; never
 add an `Impl` suffix or a forwarding `Service` wrapper. See
 [Runtime Ownership](../references/runtime-ownership.md#role-names).

@@ -1,6 +1,6 @@
 import { Avatar } from '@cherrystudio/ui/components';
 
-import { CHERRY_AGENT_AVATAR } from '@/shared/data/types/agent';
+import { CHERRY_AGENT_AVATAR, LEGACY_CHERRY_AGENT_AVATAR } from '@/shared/data/types/agent';
 
 const AGENT_AVATAR_SIZE = 40;
 
@@ -28,7 +28,8 @@ export function AgentAvatar({
   testID,
   uri,
 }: AgentAvatarProps) {
-  const avatarText = emoji?.trim() || (avatar === CHERRY_AGENT_AVATAR ? avatar : '🤖');
+  const isDefaultAvatar = avatar === CHERRY_AGENT_AVATAR || avatar === LEGACY_CHERRY_AGENT_AVATAR;
+  const avatarText = emoji?.trim() || (isDefaultAvatar ? avatar : '🤖');
 
   return (
     <Avatar accessibilityLabel={accessibilityLabel ?? name} size={size} testID={testID}>

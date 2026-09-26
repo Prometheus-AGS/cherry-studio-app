@@ -313,3 +313,17 @@ dotfiles inside owned directories, which belong to that directory's owner).
 
 - `.agent-team/boss-mobile/reviews/verification/**`
 - `.maestro/**`
+
+## Ownership Added In Phase rebrand-the-boss-mobile-ui
+
+Paths created during the rebrand phase (lead assignment, 2026-09-26). `team.json` owns lists are updated at the
+next team revision; until then this section is authoritative for these paths.
+
+| Path | Owner |
+| --- | --- |
+| `scripts/branding/**`, `assets/branding/**` (incl. `native-locales/`) | `boss-mobile-rebrand` |
+| `scripts/brandCheck.ts`, `scripts/brand-allowlist.json`, `scripts/__tests__/brandCheck.test.ts` | `boss-mobile-release` (allowlist changes reviewed by `boss-mobile-security`) |
+| `docs/contrib/**` (canonical fork-surface ledger: `docs/contrib/fork-surface.md`) | `boss-mobile-upstream` |
+| `docs/backend-services/**` | `boss-mobile-lead` |
+| `docs/webrtc/**` | `boss-mobile-p2p` |
+| `packages/design-tokens/DEVIATIONS.md`, `.impeccable.md` | `boss-mobile-ux` |

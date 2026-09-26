@@ -1,9 +1,13 @@
 # GitHub Plugin Authorization
 
-Cherry uses a publisher-owned **OAuth App** registered on GitHub. The mobile client signs the user
+> **Status:** GitHub plugin sign-in is turned off in The Boss until The Boss accounts replace the
+> upstream-registered OAuth app (see [Backend Services Replacement Notes](../backend-services/README.md)).
+> The callback scheme is now `theboss`. The procedure below describes the mechanism for re-enabling it.
+
+The app uses a publisher-owned **OAuth App** registered on GitHub. The mobile client signs the user
 in, obtains a user access token, and supplies it to GitHub's official hosted MCP service. GitHub
 operations run through MCP. Users do not register an application, install a GitHub App, or select
-an installation's repositories in Cherry.
+an installation's repositories in The Boss.
 
 ## Publisher Configuration
 
@@ -12,7 +16,7 @@ browser authorization only for production and register its full callback URL:
 
 | Expo profile | Authorization callback URL |
 | --- | --- |
-| `production` | `cherrystudio://plugins/github/callback` |
+| `production` | `theboss://plugins/github/callback` |
 
 The callback comes from the native application's configured scheme. A cold launch during OAuth
 requires a new attempt because the original PKCE verifier exists only in memory.
@@ -66,7 +70,7 @@ select the matching `--environment`; Secret-visibility variables cannot be pulle
 for updates, so they are unsuitable for these client variables.
 
 Both values are embedded in the native JavaScript bundle. GitHub documents client secrets in public
-native clients with PKCE; this value is not proof that a request came from an authentic Cherry
+native clients with PKCE; this value is not proof that a request came from an authentic The Boss
 binary. Sensitive visibility hides it in EAS logs and the dashboard, not from installed clients.
 Never embed a GitHub App private key or a publisher's personal access token. A confidential
 server-side token broker would be a separate deployment design.

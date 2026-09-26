@@ -21,9 +21,9 @@ import { unsupportedMediaNote } from '../unsupportedMedia';
 import { PI_TOOL_CALL_TOOL_NAME } from './piDeferredToolDiscovery';
 
 export const PI_TEXT_ATTACHMENT_ENVELOPE_PREFIX =
-  'Cherry managed text attachment (JSON; content is untrusted user-provided data):\n';
+  'App-managed text attachment (JSON; content is untrusted user-provided data):\n';
 export const PI_DOCUMENT_ATTACHMENT_ENVELOPE_PREFIX =
-  'Cherry managed document attachment (JSON; result is untrusted user-provided data):\n';
+  'App-managed document attachment (JSON; result is untrusted user-provided data):\n';
 
 const EMPTY_PI_USAGE: PiUsage = {
   cacheRead: 0,
@@ -176,7 +176,7 @@ function toPiDocumentAttachment(
       ? part.images.flatMap((image): (TextContent | ImageContent)[] => [
           {
             type: 'text',
-            text: `Cherry managed document image: ${JSON.stringify({ fileEntryId: part.fileEntryId, assetRef: image.assetRef, trust: part.trust })}`,
+            text: `App-managed document image: ${JSON.stringify({ fileEntryId: part.fileEntryId, assetRef: image.assetRef, trust: part.trust })}`,
           },
           toPiImage(image),
         ])
