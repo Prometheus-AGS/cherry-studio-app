@@ -18,6 +18,8 @@
     "**/*.yaml",
     "**/*.yml",
     ".agents/**",
+    ".compass/**",
+    ".kbd-orchestrator/**",
     ".context/**",
     ".expo/**",
     ".rnstorybook/storybook.requires.ts",

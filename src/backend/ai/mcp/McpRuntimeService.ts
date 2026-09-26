@@ -13,6 +13,7 @@ import {
   type PluginClient,
   type PluginToolCatalog,
 } from '@/backend/services/builtInMcp';
+import { ATTRIBUTION_NAME } from '@/shared/branding';
 import type {
   McpConnectionConfig,
   McpModule,
@@ -20,7 +21,6 @@ import type {
   McpServerRuntimeSummary,
   McpToolSummary,
 } from '@/shared/contracts';
-import { ATTRIBUTION_NAME } from '@/shared/branding';
 import { PluginError } from '@/shared/contracts/plugins';
 import { loggerService } from '@/shared/core/logger/LoggerService';
 import type { McpServer } from '@/shared/data/types/mcpServer';
