@@ -1,3 +1,5 @@
+import { PRODUCT_NAME } from '@/shared/branding';
+
 import type { RuntimeTool } from '../../runtime';
 import { buildAgentSystemPrompt } from '../agentSystemPrompt';
 
@@ -41,11 +43,11 @@ describe('buildAgentSystemPrompt', () => {
       tools: [],
     });
 
-    expect(prompt).toContain('# Cherry Studio Mobile Runtime');
+    expect(prompt).toContain(`# ${PRODUCT_NAME} Mobile Runtime`);
     expect(prompt).toContain('Treat the tools exposed for this turn as the complete');
     expect(prompt).toContain('carry it through the necessary tool steps');
     expect(prompt).toContain('persistent memory, or background execution');
-    expect(prompt).toContain('The current Cherry Studio App language is `zh-CN`.');
+    expect(prompt).toContain(`The current ${PRODUCT_NAME} App language is \`zh-CN\`.`);
     expect(prompt).toContain('The current local date is `2026-09-03`.');
     expect(prompt).toContain('You must write every response in this language');
     expect(prompt).not.toContain('## Agent Instructions');

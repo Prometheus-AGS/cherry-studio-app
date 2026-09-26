@@ -10,6 +10,7 @@ import { AssistantMessageEventStream } from '@earendil-works/pi-ai/utils/event-s
 
 import { providerRegistryService } from '@/backend/data/services/ProviderRegistryService';
 import { installProviderRegistryTestSnapshot } from '@/backend/data/services/providerRegistryTestSnapshot';
+import { USER_AGENT_NAME } from '@/shared/branding';
 import type { Model } from '@/shared/data/types/model';
 import { DEFAULT_API_FEATURES, type Provider } from '@/shared/data/types/provider';
 
@@ -407,7 +408,7 @@ describe('Pi model resolver', () => {
       expect.objectContaining({
         apiKey: 'secret-key',
         headers: expect.objectContaining({
-          'X-App-Name': 'CherryStudioMobile',
+          'X-App-Name': USER_AGENT_NAME,
           'X-Custom': 'custom',
         }),
         maxRetries: 0,
@@ -524,7 +525,7 @@ describe('Pi model resolver', () => {
         api,
         baseUrl,
         headers: {
-          'User-Agent': 'CherryStudioMobile/1.0',
+          'User-Agent': `${USER_AGENT_NAME}/1.0`,
           'x-opencode-session': 'conversation-session',
         },
       });

@@ -3,6 +3,7 @@ import { ENDPOINT_TYPE, MODEL_CAPABILITY } from '@cherrystudio/provider-registry
 import { createPresetProviderInput } from '@/backend/data/services/presetProviders';
 import { providerRegistryService } from '@/backend/data/services/ProviderRegistryService';
 import type { ResolvedProviderApiKey } from '@/backend/data/services/ProviderService';
+import { USER_AGENT_NAME } from '@/shared/branding';
 import { createUniqueModelId, type Model } from '@/shared/data/types/model';
 import type { AuthConfig, Provider } from '@/shared/data/types/provider';
 
@@ -68,7 +69,7 @@ describe('providerToAiSdkConfig', () => {
         }
         if (presetId === 'opencode') {
           expect(config.providerSettings.headers).toMatchObject({
-            'User-Agent': 'CherryStudioMobile/1.0',
+            'User-Agent': `${USER_AGENT_NAME}/1.0`,
             'x-opencode-session': 'probe-session',
           });
         }
