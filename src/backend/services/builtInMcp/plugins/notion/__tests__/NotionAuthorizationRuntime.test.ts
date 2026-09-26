@@ -23,7 +23,7 @@ const credential: NotionUserCredential = {
     clientId: 'public-client',
     authorizationEndpoint: 'https://mcp.notion.com/authorize',
     tokenEndpoint: 'https://mcp.notion.com/token',
-    redirectUrl: 'cherrystudio-dev://plugins/notion/callback',
+    redirectUrl: 'theboss-dev://plugins/notion/callback',
   },
   tokens: { accessToken: 'access-secret', refreshToken: 'refresh-secret', expiresAt: 3_601_000 },
   account: { id: 'workspace/user', label: 'Work · Member' },

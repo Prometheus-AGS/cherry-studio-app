@@ -1054,6 +1054,7 @@
   "plugins.connectionStatus.needs-reauthorization": "Authorization required",
   "plugins.connectionStatus.unavailable": "Connection unavailable",
   "plugins.credentialPrivacy": "Credentials are kept in this device's secure storage without sync and sent only to the provider's official authorization or MCP service, never to the model or chat. Connecting checks credentials and available capabilities without creating or changing content.",
+  "plugins.disabledReasons.boss-accounts-coming-soon": "Sign-in for this integration is coming with The Boss accounts.",
   "plugins.disconnect": "Disconnect",
   "plugins.disconnectFailed": "Could not disconnect. Try again.",
   "plugins.disconnectMessage": "Removing the authorization from this device makes the plugin unavailable. You can reconnect at any time.",

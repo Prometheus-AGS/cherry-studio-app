@@ -41,12 +41,24 @@ export type PluginInteractiveMethod = {
 export type PluginAuthorizationMethod = PluginCredentialMethod | PluginInteractiveMethod;
 
 /**
+ * Locale-key suffix for a plugin's user-visible sign-in unavailability reason. The UI translates
+ * it under `plugins.disabledReasons.<reason>`; add a new literal alongside a new locale entry
+ * rather than reusing this one for an unrelated reason.
+ */
+export type PluginDisabledReason = 'boss-accounts-coming-soon';
+
+/**
  * Safe catalog projection: no credentials, executable code, or transport configuration.
  * Display copy is translated under `plugins.catalog.<id>`; the guide preview retains its authored text.
  */
 export type PluginCatalogEntry = {
   readonly id: PluginId;
   readonly icon?: string;
+  /**
+   * Set when this plugin's sign-in is bundled but intentionally turned off. The catalog entry,
+   * its capabilities and its guide remain visible; only starting a new connection is blocked.
+   */
+  readonly disabledReason?: PluginDisabledReason;
   readonly links: {
     readonly credentials: string;
     readonly website: string;

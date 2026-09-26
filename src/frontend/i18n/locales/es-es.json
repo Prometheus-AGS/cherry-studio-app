@@ -1063,6 +1063,7 @@
   "plugins.connectionStatus.needs-reauthorization": "Autorización requerida",
   "plugins.connectionStatus.unavailable": "Conexión no disponible",
   "plugins.credentialPrivacy": "Las credenciales se guardan en el almacenamiento seguro de este dispositivo sin sincronización y se envían únicamente a la autorización oficial del proveedor o al servicio MCP, nunca al modelo o al chat. La conexión verifica las credenciales y las capacidades disponibles sin crear ni cambiar contenido.",
+  "plugins.disabledReasons.boss-accounts-coming-soon": "El inicio de sesión para esta integración llegará con las cuentas de The Boss.",
   "plugins.disconnect": "Desconectar",
   "plugins.disconnectFailed": "No se pudo desconectar. Intentar otra vez.",
   "plugins.disconnectMessage": "Quitar la autorización de este dispositivo hace que el complemento no esté disponible. Puedes volver a conectarte en cualquier momento.",

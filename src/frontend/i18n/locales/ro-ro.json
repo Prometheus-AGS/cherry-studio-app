@@ -1063,6 +1063,7 @@
   "plugins.connectionStatus.needs-reauthorization": "Este necesară autorizarea",
   "plugins.connectionStatus.unavailable": "Conexiune indisponibilă",
   "plugins.credentialPrivacy": "Acreditările sunt păstrate în spațiul de stocare securizat al acestui dispozitiv fără sincronizare și trimise numai către autorizația oficială a furnizorului sau serviciul MCP, niciodată către model sau chat. Conectarea verifică acreditările și capacitățile disponibile fără a crea sau modifica conținut.",
+  "plugins.disabledReasons.boss-accounts-coming-soon": "Autentificarea pentru această integrare va fi disponibilă odată cu conturile The Boss.",
   "plugins.disconnect": "Deconectați-vă",
   "plugins.disconnectFailed": "Nu s-a putut deconecta. Încearcă din nou.",
   "plugins.disconnectMessage": "Eliminarea autorizației de pe acest dispozitiv face ca pluginul să nu fie disponibil. Vă puteți reconecta în orice moment.",

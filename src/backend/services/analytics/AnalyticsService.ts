@@ -36,6 +36,14 @@ const CONSENT_PREFERENCE_KEYS = {
   policyVersion: 'app.privacy.policy_version',
 } as const;
 
+/**
+ * Operator decision: analytics reporting stays off for The Boss while its own analytics
+ * backend replaces Cherry's (see docs/backend-services/README.md). This overrides consent
+ * rather than removing it, so the existing preference and its UI keep working once a
+ * first-party endpoint lands; flip this back to `false` in that same change.
+ */
+export const ANALYTICS_REPORTING_DISABLED = true;
+
 function appVersion(): string {
   return Constants.expoConfig?.version?.trim() || '0.0.0';
 }
@@ -150,7 +158,9 @@ export class AnalyticsService extends BaseService implements Activatable {
     const { dataCollectionEnabled, policyVersion } = application
       .get('PreferenceService')
       .getMultipleCached(CONSENT_PREFERENCE_KEYS);
-    this.desiredEnabled = isDataCollectionConsented(dataCollectionEnabled, policyVersion);
+    this.desiredEnabled =
+      !ANALYTICS_REPORTING_DISABLED &&
+      isDataCollectionConsented(dataCollectionEnabled, policyVersion);
     return this.run(async () => {
       if (this.desiredEnabled) await this.activate();
       else await this.deactivate();

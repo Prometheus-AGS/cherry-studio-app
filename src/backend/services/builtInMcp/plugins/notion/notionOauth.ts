@@ -8,6 +8,7 @@ import {
 import * as z from 'zod';
 
 import { createHttpClient, isHttpError, type HttpRequest } from '@/backend/services/http';
+import { REPOSITORY_URL } from '@/shared/branding';
 import { PluginError } from '@/shared/contracts/plugins';
 
 import type { PluginAuthorizationStore } from '../../authorization/pluginAuthorization';
@@ -110,7 +111,7 @@ async function getApplication(store: PluginAuthorizationStore, signal: AbortSign
       signal,
       body: {
         client_name: 'Cherry Studio',
-        client_uri: 'https://github.com/CherryHQ/cherry-studio-app',
+        client_uri: REPOSITORY_URL,
         redirect_uris: [redirect],
         grant_types: ['authorization_code', 'refresh_token'],
         response_types: ['code'],

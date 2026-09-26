@@ -11,6 +11,7 @@ import { createPluginCredentialsSchema } from '@/shared/utils/pluginCredentials'
 import type { PluginAuthorizationManager } from './authorization/PluginAuthorizationManager';
 import type { PluginToolCatalog } from './pluginDefinition';
 import {
+  assertPluginSignInAvailable,
   getPluginDefinition,
   requirePluginAuthMethod,
   requirePluginDefinition,
@@ -79,8 +80,10 @@ export function createPluginsModule(
     authorization: {
       observe: (pluginId, methodId, listener) => observer(pluginId, methodId).observe(listener),
       check: (pluginId, methodId) => observer(pluginId, methodId).check(),
-      begin: (pluginId, methodId) =>
-        step(pluginId, methodId, () => authorizations.get(pluginId, methodId).begin()),
+      begin: (pluginId, methodId) => {
+        assertPluginSignInAvailable(requirePluginDefinition(pluginId));
+        return step(pluginId, methodId, () => authorizations.get(pluginId, methodId).begin());
+      },
       receiveCallback(pluginId, methodId, attemptId, url) {
         const auth = authorizations.get(pluginId, methodId);
         if (!auth.receiveCallback)

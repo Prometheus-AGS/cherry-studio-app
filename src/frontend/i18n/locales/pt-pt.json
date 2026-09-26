@@ -1063,6 +1063,7 @@
   "plugins.connectionStatus.needs-reauthorization": "Autorização necessária",
   "plugins.connectionStatus.unavailable": "Ligação indisponível",
   "plugins.credentialPrivacy": "As credenciais são mantidas no armazenamento seguro deste dispositivo sem sincronização e enviadas apenas para autorização oficial do fornecedor ou serviço MCP, nunca para a modelo ou chat. A ligação verifica as credenciais e os recursos disponíveis sem criar ou alterar conteúdo.",
+  "plugins.disabledReasons.boss-accounts-coming-soon": "O início de sessão para esta integração chegará com as contas The Boss.",
   "plugins.disconnect": "Desligar",
   "plugins.disconnectFailed": "Não foi possível desligar. Tente novamente.",
   "plugins.disconnectMessage": "A remoção da autorização deste dispositivo torna o plugin indisponível. Pode reconectar-se a qualquer momento.",

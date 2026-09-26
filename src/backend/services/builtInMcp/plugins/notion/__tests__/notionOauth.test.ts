@@ -7,7 +7,7 @@ import { parseNotionSelf } from '../notionSelf';
 
 jest.mock('expo-constants', () => ({
   __esModule: true,
-  default: { expoConfig: { scheme: 'cherrystudio-dev' } },
+  default: { expoConfig: { scheme: 'theboss-dev' } },
 }));
 jest.mock('expo-crypto', () => ({
   getRandomBytes: (size: number) => jest.requireActual('node:crypto').randomBytes(size),
@@ -28,7 +28,7 @@ const application: NotionApplication = {
   clientId: 'public-client',
   authorizationEndpoint: 'https://mcp.notion.com/authorize',
   tokenEndpoint: 'https://mcp.notion.com/token',
-  redirectUrl: 'cherrystudio-dev://plugins/notion/callback',
+  redirectUrl: 'theboss-dev://plugins/notion/callback',
 };
 const metadata = {
   issuer: 'https://mcp.notion.com',

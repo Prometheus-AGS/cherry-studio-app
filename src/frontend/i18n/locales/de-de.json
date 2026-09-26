@@ -1054,6 +1054,7 @@
   "plugins.connectionStatus.needs-reauthorization": "Autorisierung erforderlich",
   "plugins.connectionStatus.unavailable": "Verbindung nicht verfügbar",
   "plugins.credentialPrivacy": "Anmeldeinformationen werden im sicheren Speicher dieses Geräts ohne Synchronisierung gespeichert und nur an die offizielle Autorisierung des Anbieters oder den MCP-Dienst gesendet, niemals an das Model oder den Chat. Connecting überprüft Anmeldeinformationen und verfügbare Funktionen, ohne Inhalte zu erstellen oder zu ändern.",
+  "plugins.disabledReasons.boss-accounts-coming-soon": "Die Anmeldung für diese Integration kommt mit den The Boss-Konten.",
   "plugins.disconnect": "Trennen",
   "plugins.disconnectFailed": "Die Verbindung konnte nicht getrennt werden. Versuchen Sie es erneut.",
   "plugins.disconnectMessage": "Durch das Entfernen der Autorisierung von diesem Gerät ist das Plugin nicht mehr verfügbar. Sie können die Verbindung jederzeit wiederherstellen.",

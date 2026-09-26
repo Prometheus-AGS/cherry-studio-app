@@ -1045,6 +1045,7 @@
   "plugins.connectionStatus.needs-reauthorization": "許可が必要です",
   "plugins.connectionStatus.unavailable": "接続できません",
   "plugins.credentialPrivacy": "認証情報は同期せずにこのデバイスの安全なストレージに保存され、プロバイダーの公式認証または MCP サービスにのみ送信され、モデルやチャットには送信されません。接続すると、コンテンツを作成または変更せずに、資格情報と利用可能な機能がチェックされます。",
+  "plugins.disabledReasons.boss-accounts-coming-soon": "この連携のサインインは、The Boss アカウントとともに追加される予定です。",
   "plugins.disconnect": "切断",
   "plugins.disconnectFailed": "接続を切断できませんでした。もう一度やり直してください。",
   "plugins.disconnectMessage": "このデバイスから認証を削除すると、プラグインが使用できなくなります。いつでも再接続できます。",

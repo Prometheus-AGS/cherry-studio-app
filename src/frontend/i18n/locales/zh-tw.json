@@ -1045,6 +1045,7 @@
   "plugins.connectionStatus.needs-reauthorization": "需要重新授權",
   "plugins.connectionStatus.unavailable": "連接暫不可用",
   "plugins.credentialPrivacy": "密鑰儲存在此設備的系統安全存儲中，不參與同步，僅發送到平台官方的授權接口或 MCP 服務，不會發送給模型或寫入聊天。連接時只驗證憑證和可用能力，不會創建或修改內容。",
+  "plugins.disabledReasons.boss-accounts-coming-soon": "此整合的登入功能將隨 The Boss 帳戶一起推出。",
   "plugins.disconnect": "斷開連接",
   "plugins.disconnectFailed": "斷開失敗，請重試",
   "plugins.disconnectMessage": "移除此設備上的授權後，該插件將無法使用。你可以隨時重新連接。",

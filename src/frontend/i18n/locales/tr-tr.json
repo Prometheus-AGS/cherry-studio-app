@@ -1054,6 +1054,7 @@
   "plugins.connectionStatus.needs-reauthorization": "Yetkilendirme gerekli",
   "plugins.connectionStatus.unavailable": "Bağlantı kullanılamıyor",
   "plugins.credentialPrivacy": "Kimlik bilgileri bu cihazın güvenli deposunda senkronizasyon olmadan tutulur ve yalnızca sağlayıcının resmi yetkilendirmesine veya MCP hizmetine gönderilir, asla modele veya sohbete gönderilmez. Bağlanma, içerik oluşturmadan veya değiştirmeden kimlik bilgilerini ve mevcut yetenekleri kontrol eder.",
+  "plugins.disabledReasons.boss-accounts-coming-soon": "Bu entegrasyon için oturum açma, The Boss hesaplarıyla birlikte gelecek.",
   "plugins.disconnect": "Bağlantıyı kes",
   "plugins.disconnectFailed": "Bağlantı kurulamadı. Tekrar deneyin.",
   "plugins.disconnectMessage": "Yetkilendirmenin bu cihazdan kaldırılması eklentiyi kullanılamaz hale getiriyor. İstediğiniz zaman yeniden bağlanabilirsiniz.",

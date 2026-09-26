@@ -36,6 +36,8 @@ export const githubPlugin: PluginDefinition = {
   catalog: {
     id: 'github',
     icon: 'github',
+    // Operator decision: GitHub sign-in is paused until The Boss accounts replace it.
+    disabledReason: 'boss-accounts-coming-soon',
     links: {
       credentials: githubTokenCredentialsUrl,
       website: 'https://github.com',

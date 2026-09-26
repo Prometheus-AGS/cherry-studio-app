@@ -1045,6 +1045,7 @@
   "plugins.connectionStatus.needs-reauthorization": "Cần có sự cho phép",
   "plugins.connectionStatus.unavailable": "Không có kết nối",
   "plugins.credentialPrivacy": "Thông tin xác thực được lưu giữ trong bộ lưu trữ an toàn của thiết bị này mà không cần đồng bộ hóa và chỉ được gửi tới ủy quyền chính thức của nhà cung cấp hoặc dịch vụ MCP, không bao giờ gửi tới mô hình hoặc cuộc trò chuyện. Kết nối kiểm tra thông tin xác thực và khả năng sẵn có mà không cần tạo hoặc thay đổi nội dung.",
+  "plugins.disabledReasons.boss-accounts-coming-soon": "Đăng nhập cho tích hợp này sẽ có cùng với tài khoản The Boss.",
   "plugins.disconnect": "Ngắt kết nối",
   "plugins.disconnectFailed": "Không thể ngắt kết nối. Hãy thử lại.",
   "plugins.disconnectMessage": "Việc xóa ủy quyền khỏi thiết bị này sẽ khiến plugin không khả dụng. Bạn có thể kết nối lại bất cứ lúc nào.",
