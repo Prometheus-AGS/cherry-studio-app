@@ -66,6 +66,14 @@ They are the source of truth for how the repository works today.
 | [Remote Access](./references/remote-access/README.md) | Plan for pairing, configuration sync, and Agent access over the desktop's encrypted channel |
 | [Web Search](./references/web-search.md) | External search providers and provider-native web search |
 
+## Designs
+
+Designs describe planned work that is not implemented yet. They become references once shipped.
+
+| Document | Description |
+| --- | --- |
+| [Cross-Device Sync And Remote Control](./webrtc/README.md) | boss-link: iroh transport, device roster, remote control and data sync shared with The Boss desktop (`Status: design`) |
+
 ## Documentation Governance
 
 - Put task-oriented procedures under `docs/guides`.
