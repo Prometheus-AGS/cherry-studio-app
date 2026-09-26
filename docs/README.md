@@ -73,6 +73,7 @@ Designs describe planned work that is not implemented yet. They become reference
 | Document | Description |
 | --- | --- |
 | [Cross-Device Sync And Remote Control](./webrtc/README.md) | boss-link: iroh transport, device roster, remote control and data sync shared with The Boss desktop (`Status: design`) |
+| [Backend Services Replacement Notes](./backend-services/README.md) | Cherry-operated services and accounts the app depends on, what the rebrand turned off, and what The Boss backend must provide (`Status: planning input`) |
 
 ## Documentation Governance
 

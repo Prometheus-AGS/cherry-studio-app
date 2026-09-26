@@ -25,8 +25,9 @@ Configure the GitCode token in **Settings → Secrets and variables → Actions*
 have write access to the target GitCode repository. Tokens are supplied through headers and process
 environment variables, never embedded in a Git URL or committed file.
 
-`submit.production.ios.ascAppId` in `eas.json` must identify the App Store Connect app for the
-production bundle identifier in `app.json`. Set up its submission API key with
+`submit.production.ios.ascAppId` in `eas.json` is currently unset: the previous value identified
+upstream's App Store Connect app, not one Know Me Tools controls. Add it back once a Know Me Tools
+App Store Connect app exists for `tools.know-me.the-boss`, then set up its submission API key with
 `eas credentials --platform ios` before the first unattended submission. See [local build configuration](./local-builds.md)
 for app identities and production environment requirements.
 

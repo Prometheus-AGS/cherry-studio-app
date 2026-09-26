@@ -1,17 +1,17 @@
 {
   "expo": {
-    "name": "Cherry Studio",
-    "slug": "cherry-studio",
+    "name": "The Boss",
+    "slug": "the-boss-mobile",
     "version": "0.1.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "scheme": "cherrystudio",
+    "scheme": "theboss",
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true,
       "requireFullScreen": false,
       "icon": "./assets/icon.png",
-      "bundleIdentifier": "com.cherryai.cherrystudio-app",
+      "bundleIdentifier": "tools.know-me.the-boss",
       "appleTeamId": "87242QY66T",
       "privacyManifests": {
         "NSPrivacyTracking": false,
@@ -70,7 +70,7 @@
       },
       "entitlements": {
         "com.apple.developer.healthkit": true,
-        "com.apple.security.application-groups": ["group.com.cherryai.cherrystudio-app"]
+        "com.apple.security.application-groups": ["group.tools.know-me.the-boss"]
       },
       "infoPlist": {
         "UISupportedInterfaceOrientations~ipad": [
@@ -94,9 +94,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#F65D5D"
+        "backgroundColor": "#111827"
       },
-      "package": "com.cherryai.cherrystudio_app",
+      "package": "tools.know_me.the_boss",
       "predictiveBackGestureEnabled": false,
       "blockedPermissions": [
         "android.permission.RECORD_AUDIO",
@@ -124,20 +124,12 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/cherry-studio-logo.png"
+          "icon": "./assets/branding/notification-icon.png"
         }
       ],
       "./scripts/withAndroidBackgroundGeneration.js",
       "./scripts/withSystemIntegration.js",
       "./scripts/withTabletOrientation.js",
-      [
-        "@sentry/react-native/expo",
-        {
-          "url": "https://sentry.io/",
-          "organization": "cherryai",
-          "project": "cherry-studio-app"
-        }
-      ],
       [
         "expo-widgets",
         {
@@ -147,12 +139,12 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#FFFFFF",
-          "image": "./assets/icon.png",
+          "backgroundColor": "#F7F7F8",
+          "image": "./assets/branding/splash-logo.png",
           "imageWidth": 96,
           "resizeMode": "contain",
           "dark": {
-            "backgroundColor": "#000000"
+            "backgroundColor": "#0B0F14"
           }
         }
       ],
@@ -190,7 +182,14 @@
       [
         "expo-font",
         {
-          "fonts": ["./assets/fonts/GeistMono-Regular.ttf"]
+          "fonts": [
+            "./assets/fonts/SpaceGrotesk-SemiBold.ttf",
+            "./assets/fonts/Inter-Regular.ttf",
+            "./assets/fonts/Inter-Medium.ttf",
+            "./assets/fonts/Roboto-Regular.ttf",
+            "./assets/fonts/JetBrainsMono-Regular.ttf",
+            "./assets/fonts/JetBrainsMono-SemiBold.ttf"
+          ]
         }
       ],
       "expo-image",
@@ -238,16 +237,15 @@
     },
     "extra": {
       "eas": {
-        "projectId": "80096eaf-3ad0-4b87-a466-15f04da1bacc",
         "build": {
           "experimental": {
             "ios": {
               "appExtensions": [
                 {
                   "targetName": "ExpoWidgetsTarget",
-                  "bundleIdentifier": "com.cherryai.cherrystudio-app.ExpoWidgetsTarget",
+                  "bundleIdentifier": "tools.know-me.the-boss.ExpoWidgetsTarget",
                   "entitlements": {
-                    "com.apple.security.application-groups": ["group.com.cherryai.cherrystudio-app"]
+                    "com.apple.security.application-groups": ["group.tools.know-me.the-boss"]
                   }
                 }
               ]

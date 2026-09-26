@@ -2,7 +2,17 @@ import 'tsx/cjs';
 import type { ConfigContext, ExpoConfig } from 'expo/config';
 
 import reportingServices from './src/frontend/appShell/observability/reportingServices.json';
+import { URL_SCHEME } from './src/shared/branding';
 import { APP_LANGUAGES } from './src/shared/utils/languages';
+
+/**
+ * Outbound reporting (Sentry upload/error reporting, EAS Observe, EAS Insights) is off in every
+ * profile for this fork: the registered accounts (`cherryai`/`cherry-studio-app`) belong to
+ * upstream, and Know Me Tools does not yet have its own (docs/backend-services/README.md, PD-4).
+ * Re-enable per service once Know Me Tools owns the accounts by flipping this to `false` — the
+ * production/Storybook/registry gate below (untouched) then governs each service as before.
+ */
+const REPORTING_DISABLED = true;
 
 export default ({ config }: ConfigContext): ExpoConfig => {
   const profile = process.env.PROFILE ?? 'production';
@@ -20,7 +30,8 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     services: Object.fromEntries(
       Object.entries(reportingServices).map(([name, service]) => [
         name,
-        profile === 'production' &&
+        !REPORTING_DISABLED &&
+          profile === 'production' &&
           process.env.EXPO_PUBLIC_STORYBOOK_ENABLED !== 'true' &&
           service.enabled,
       ]),
@@ -36,7 +47,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
           ? `${config.name} Preview`
           : config.name!,
     slug: config.slug!,
-    scheme: `cherrystudio${suffix.replace('.', '-')}`,
+    scheme: `${URL_SCHEME}${suffix.replace('.', '-')}`,
     ios: {
       ...config.ios,
       buildNumber: process.env.EAS_BUILD_IOS_BUILD_NUMBER ?? config.ios?.buildNumber,
