@@ -1,0 +1,44 @@
+{
+  "$comment": "Exceptions for pnpm brand:check (scripts/brandCheck.ts). Only exact identifiers (a trailing * matches an identifier prefix; optional \"paths\" scopes an identifier to files) or path globs, each with a reason. Reviewed by boss-mobile-security. Rules: docs/contrib/upstream-merges.md.",
+  "identifiers": [
+    {
+      "identifier": "CherryIN",
+      "reason": "Service name of the CherryIN model service this app consumes (PD-6: service names stay unchanged)."
+    },
+    {
+      "identifier": "CherryAI",
+      "reason": "Service name of the CherryAI service this app consumes (PD-6: service names stay unchanged)."
+    },
+    {
+      "identifier": "common.cherryStudio*",
+      "reason": "i18n key names (common.cherryStudio, common.cherryStudioDescription) referenced from values through $t() nesting; keys are identifiers, their values carry the name."
+    },
+    {
+      "identifier": "_cherry-remote._tcp",
+      "reason": "Bonjour service type the desktop advertises for pairing (app.json NSBonjourServices); a wire contract (PD-5), not display text."
+    },
+    {
+      "identifier": "Cherry",
+      "paths": ["scripts/withSystemIntegration.js"],
+      "reason": "File-name prefix that selects the share-extension sources (CherryShareExtension, CherryShareViewController, CherryStrings); PD-5 native target names."
+    }
+  ],
+  "paths": [
+    {
+      "glob": "**/__tests__/**",
+      "reason": "Tests and fixtures assert historical and upstream values on purpose; they are not shipped copy."
+    },
+    {
+      "glob": "**/*.test.*",
+      "reason": "Co-located tests; same reason as __tests__."
+    },
+    {
+      "glob": "**/*.stories.tsx",
+      "reason": "Storybook fixtures are development-only and never shipped."
+    },
+    {
+      "glob": "packages/design-tokens/scripts/sync-desktop.ts",
+      "reason": "Developer tool that reads the upstream CherryHQ/cherry-studio desktop checkout; its messages name that upstream product (provenance, not our brand)."
+    }
+  ]
+}

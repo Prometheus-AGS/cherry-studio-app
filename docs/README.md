@@ -75,6 +75,16 @@ Designs describe planned work that is not implemented yet. They become reference
 | [Cross-Device Sync And Remote Control](./webrtc/README.md) | boss-link: iroh transport, device roster, remote control and data sync shared with The Boss desktop (`Status: design`) |
 | [Backend Services Replacement Notes](./backend-services/README.md) | Cherry-operated services and accounts the app depends on, what the rebrand turned off, and what The Boss backend must provide (`Status: planning input`) |
 
+## Fork Maintenance
+
+How this fork consumes upstream Cherry Studio work without losing The Boss identity or fork-only code.
+
+| Document | Description |
+| --- | --- |
+| [Consuming Upstream](./contrib/upstream-merges.md) | Merge and desktop-port procedure, conflict ownership, resolution rules, naming table, values that are not branding, and `pnpm brand:check` |
+| [Fork Surface](./contrib/fork-surface.md) | Every fork-owned path or pattern and the role that resolves merge conflicts in it |
+| [Upstream Merge Log](./contrib/upstream-merge-log.md) | Dated record of each upstream merge, its conflicts and resolutions, and open carry-over items |
+
 ## Documentation Governance
 
 - Put task-oriented procedures under `docs/guides`.
