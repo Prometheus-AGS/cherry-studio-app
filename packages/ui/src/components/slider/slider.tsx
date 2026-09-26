@@ -40,11 +40,11 @@ export function Slider({
   return (
     <View className="flex-row items-center gap-3" style={style}>
       {minimumValueLabel ? (
-        <Text className="text-foreground text-sm">{minimumValueLabel}</Text>
+        <Text className="font-ui text-foreground text-sm">{minimumValueLabel}</Text>
       ) : null}
       {slider}
       {maximumValueLabel ? (
-        <Text className="text-foreground text-sm">{maximumValueLabel}</Text>
+        <Text className="font-ui text-foreground text-sm">{maximumValueLabel}</Text>
       ) : null}
     </View>
   );

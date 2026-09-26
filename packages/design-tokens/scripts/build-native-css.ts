@@ -48,6 +48,18 @@ export async function buildNativeCss(): Promise<string> {
   const publicColors = unique([...SHADCN_PUBLIC_COLOR_TOKENS, ...CHERRY_PRODUCT_COLOR_TOKENS]);
   // Font weights need no adapter line either: `tokens/typography.css` already
   // authors `--font-weight-bold` under its final Tailwind name.
+  // Font roles are read from JS as well as through `font-*` utilities
+  // (MarkdownText passes `--font-mono` to a native renderer, Storybook shows
+  // every role). Bare `@theme` is pruned by className usage, so the roles go in
+  // `@theme static`, which Uniwind always resolves. Weights stay in `@theme`.
+  const isFontRole = (name: string) =>
+    name.startsWith('--font-') && !name.startsWith('--font-weight-');
+  const themeDeclarations = [...staticDeclarations.values()].filter(
+    ({ name }) => !isFontRole(name),
+  );
+  const fontRoleDeclarations = [...staticDeclarations.values()].filter(({ name }) =>
+    isFontRole(name),
+  );
   const adapterLines = [
     ...publicColors.map((name) => `--color-${name}: var(--${name});`),
     ...radiusLines,
@@ -63,7 +75,11 @@ export async function buildNativeCss(): Promise<string> {
  */
 
 @theme {
-${renderDeclarations(staticDeclarations.values(), '  ')}
+${renderDeclarations(themeDeclarations, '  ')}
+}
+
+@theme static {
+${renderDeclarations(fontRoleDeclarations, '  ')}
 }
 
 @theme inline static {

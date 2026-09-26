@@ -20,7 +20,7 @@ let mockTheme = 'light';
 jest.mock('uniwind', () => ({
   useCSSVariable: (names: string[]) =>
     names.map((name) =>
-      name === '--font-mono' ? 'GeistMono-Regular' : name.replace('--color-', ''),
+      name === '--font-mono' ? 'JetBrainsMono-Regular' : name.replace('--color-', ''),
     ),
   useUniwind: () => ({ theme: mockTheme }),
 }));
@@ -86,14 +86,14 @@ describe('MarkdownText', () => {
             backgroundColor: 'inline-code',
             borderColor: 'inline-code',
             color: 'inline-code-foreground',
-            fontFamily: 'GeistMono-Regular',
+            fontFamily: 'JetBrainsMono-Regular',
             fontSize: 18,
           }),
           codeBlock: expect.objectContaining({
             backgroundColor: 'code-block',
             borderColor: 'border',
             color: 'foreground',
-            fontFamily: 'GeistMono-Regular',
+            fontFamily: 'JetBrainsMono-Regular',
             fontSize: 18,
             lineHeight: 28,
           }),

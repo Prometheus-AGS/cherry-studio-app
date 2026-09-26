@@ -1,25 +1,45 @@
 /**
  * Typography
- * 排版系统 - 只剩一档字重
+ * Font roles and the one remapped weight. Sizes are not here.
  *
- * ⚠️ 已 fork：本包不再从 Cherry Studio 桌面端镜像任何东西。取值改用 Vercel Brand
- * Guidelines（Geist）的排版刻度，token 名字也随之归移动端自有 ——
- * `pnpm design:sync` 现在只同步图标。
+ * - Sizes and line heights: the `@cherrystudio/ui/utils` scale (PD-8). It is the
+ *   accessibility ladder, shifted per step at runtime into `--ui-text-*`; editing
+ *   CSS does not change it.
+ * - Font roles: The Boss Brand Guide v2.2 §03, the same four faces as desktop
+ *   (`the-boss/src/renderer/assets/styles/font.css`). The files are vendored in
+ *   `assets/fonts/` and registered by the expo-font plugin in `app.json`, so a
+ *   change here needs a prebuild and a native rebuild, not a Metro reload.
  *
- * 这里曾经还有 31 个字号/行高/段落间距/字体族 token，全部零消费者，已删。
- * 真正的来源分别是：
- * - 字号 / 行高：`@cherrystudio/ui/utils` 的字号阶梯
- *   （运行时按无障碍档位平移，写进 `--ui-text-*`）；
- * - 正文字体族：不设，各平台走系统字体；
- * - 等宽字体族：`src/frontend/styles/global.css` 的 `--font-mono`（Geist Mono）。
+ * React Native takes exactly one registered font per `fontFamily` and does not
+ * fall back through a stack. Each role therefore names one static face by its
+ * PostScript name, which is also its file name: iOS resolves a PostScript name,
+ * and Android resolves `assets/fonts/<name>.ttf`. A role is a family *and* a
+ * weight. Pair it with the matching weight class (`font-display` with
+ * `font-semibold`, `font-ui-medium` with `font-medium`): iOS then picks that face
+ * from the family, Android keeps the asset as-is because every role weight is
+ * below 700, and before a native rebuild both platforms fall back to the system
+ * font at the right weight instead of Regular.
  *
- * 三档字重里也只剩这一档。`--font-weight-regular`(400) 对应的 `font-regular`
- * 全仓零使用；`--font-weight-medium`(500) 与 Tailwind 的默认值逐字相同，声明它
- * 等于没声明。只有 bold 是真的在改写默认值 —— Tailwind 默认 700，而 VBG 最重的
- * 一档就是 600 semibold。副作用是 `font-bold` 与 `font-semibold` 现在同重，这是
- * VBG 刻度本身的结果，不是笔误。
+ * - display: Space Grotesk SemiBold. Headings. 600 is the heaviest weight the
+ *   mobile system uses (see `--font-weight-bold`), where desktop H1 uses 700.
+ * - ui: Inter. Control labels and UI chrome.
+ * - body: Roboto. Descriptive copy inside components. Chat prose stays on the
+ *   platform font, as desktop keeps message text on the user's font.
+ * - mono: JetBrains Mono. Code, commands, paths, identifiers. Replaces Geist Mono.
+ * - eyebrow: JetBrains Mono SemiBold. The `eyebrow` utility in global.css adds
+ *   the uppercase, tracking, colour and size.
+ *
+ * Only `--font-weight-bold` rewrites a weight default: Tailwind ships 700 and the
+ * heaviest step here is 600, so `font-bold` and `font-semibold` render the same.
  */
 
 :root {
   --font-weight-bold: 600;
+
+  --font-display: SpaceGrotesk-SemiBold;
+  --font-ui: Inter-Regular;
+  --font-ui-medium: Inter-Medium;
+  --font-body: Roboto-Regular;
+  --font-mono: JetBrainsMono-Regular;
+  --font-eyebrow: JetBrainsMono-SemiBold;
 }

@@ -3,7 +3,15 @@ import { Text, View } from 'react-native';
 import { useCSSVariable } from 'uniwind';
 
 import { FoundationPage, formatTokenValue, Group, SpecRow, ThemeSplit } from './showcase';
-import { MONO_VARIABLE, SIZE_VARIABLES, TYPE_SCALE, WEIGHT_SAMPLE, WEIGHTS } from './tokens';
+import {
+  FONT_ROLE_VARIABLES,
+  FONT_ROLES,
+  MONO_VARIABLE,
+  SIZE_VARIABLES,
+  TYPE_SCALE,
+  WEIGHT_SAMPLE,
+  WEIGHTS,
+} from './tokens';
 
 function TypeScaleRows() {
   const values = useCSSVariable(SIZE_VARIABLES);
@@ -31,6 +39,23 @@ function WeightRows() {
         <View className="gap-1" key={label}>
           <Text className={`text-xl text-foreground ${className}`}>{WEIGHT_SAMPLE}</Text>
           <Text className="text-xs text-muted-foreground">{`${label} · ${note}`}</Text>
+        </View>
+      ))}
+    </View>
+  );
+}
+
+function FontRoleRows() {
+  const families = useCSSVariable(FONT_ROLE_VARIABLES);
+
+  return (
+    <View className="gap-5">
+      {FONT_ROLES.map(({ className, role, sample, variable }, index) => (
+        <View className="gap-1" key={variable}>
+          <Text className={`${className} text-foreground`}>{sample}</Text>
+          <Text className="text-xs text-muted-foreground">
+            {`${role} · ${variable}: ${formatTokenValue(families[index])}`}
+          </Text>
         </View>
       ))}
     </View>
@@ -100,11 +125,24 @@ export const Weights: Story = {
   ),
 };
 
+export const FontRoles: Story = {
+  render: () => (
+    <ThemeSplit>
+      <Group
+        hint="Brand Guide v2.2 roles. Each role is one static face, paired with its matching weight class. Chat prose stays on the platform font; CJK glyphs fall back to the system font."
+        title="Font roles"
+      >
+        <FontRoleRows />
+      </Group>
+    </ThemeSplit>
+  ),
+};
+
 export const Mono: Story = {
   render: () => (
     <ThemeSplit>
       <Group
-        hint="正文保持系统字体：Geist 没有中文字形。只有等宽字体换成 Geist Mono。"
+        hint="Code, commands and identifiers use JetBrains Mono. Never set a full sentence in mono."
         title="等宽字体"
       >
         <MonoRows />

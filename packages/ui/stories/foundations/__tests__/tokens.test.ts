@@ -39,6 +39,7 @@ const declared = (source: string) => new Set(source.match(/--[a-z0-9-]+(?=\s*:)/
  */
 const resolvable = new Set([
   ...declared(braceBlock(read('packages/design-tokens/src/styles/native.css'), '@layer theme')),
+  ...declared(braceBlock(read('packages/design-tokens/src/styles/native.css'), '@theme static')),
   ...declared(braceBlock(read('src/frontend/styles/global.css'), '@layer theme')),
   ...declared(braceBlock(read('src/frontend/styles/global.css'), '@theme static')),
 ]);

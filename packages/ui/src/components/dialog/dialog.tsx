@@ -26,7 +26,7 @@ export function Dialog({ children, onOpenChange, open, testID, title }: DialogPr
         >
           <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
             <View className="gap-4">
-              <HeroDialog.Title className="font-semibold text-foreground text-lg">
+              <HeroDialog.Title className="font-display font-semibold text-foreground text-lg">
                 {title}
               </HeroDialog.Title>
               {children}

@@ -10,7 +10,7 @@
  *   neutral ladder, feedback hues), behind the core surfaces, primary, link,
  *   borders and feedback roles
  * - radius.css: The hairline radii that are not multiples of --radius
- * - typography.css: One font weight (the rest of the type scale is runtime-owned)
+ * - typography.css: Font roles and the one remapped weight (the size scale is runtime-owned)
  *
  * Nothing here carries a prefix any more. Every variable used to be `--cs-*`,
  * which marked it internal and distinguished it from the unprefixed public

@@ -151,7 +151,7 @@ export function MarkdownText({
   const codeBlock = resolveCSSString(codeBlockValue);
   const inlineCode = resolveCSSString(inlineCodeValue);
   const inlineCodeForeground = resolveCSSString(inlineCodeForegroundValue);
-  const monoFontFamily = resolveCSSString(monoFontFamilyValue, 'GeistMono-Regular');
+  const monoFontFamily = resolveCSSString(monoFontFamilyValue, 'JetBrainsMono-Regular');
   const [hasStreamed, setHasStreamed] = useState(isStreaming);
   if (isStreaming && !hasStreamed) {
     setHasStreamed(true);
