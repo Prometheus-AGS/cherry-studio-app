@@ -45,7 +45,7 @@ describe.each(['ios', 'android'])('BackgroundActivityManager on %s', (platform) 
   let presentationEnabledListener: (() => void) | undefined;
   let isPresentationEnabled: boolean;
   const mockLeases: { release: jest.Mock }[] = [];
-  const mockPrepareLogo = jest.fn(async () => 'file:///widgets/cherry-studio-logo.png');
+  const mockPrepareLogo = jest.fn(async () => 'file:///widgets/the-boss-logo.png');
   const mockAcquire = jest.fn((_tag: string) => {
     const lease = { release: jest.fn() };
     mockLeases.push(lease);
@@ -102,7 +102,7 @@ describe.each(['ios', 'android'])('BackgroundActivityManager on %s', (platform) 
       expect.objectContaining({
         colorScheme: 'dark',
         detail: 'preparing',
-        logoUri: 'file:///widgets/cherry-studio-logo.png',
+        logoUri: 'file:///widgets/the-boss-logo.png',
       }),
       'cherrystudio:///?agentId=agent-1&sessionId=session-1',
     );

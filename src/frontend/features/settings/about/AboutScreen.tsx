@@ -20,9 +20,10 @@ const APP_BUILD = Platform.select({
   ios: Constants.platform?.ios?.buildNumber ?? Constants.expoConfig?.ios?.buildNumber,
 });
 const APP_PROFILE = Constants.expoConfig?.extra?.sentryEnvironment;
-// Exact desktop `src/renderer/assets/images/logo.png`; the launcher icon is a
-// separate build asset with platform-safe transparent corners.
-const ABOUT_APP_LOGO = require('@/assets/cherry-studio-logo.png');
+// The Boss mark tile (hexagon + spokes, transparent, theme-invariant — see
+// `assets/branding/source/PROVENANCE.md`); the launcher icon is a separate
+// build asset with platform-safe transparent corners.
+const ABOUT_APP_LOGO = require('@/assets/branding/splash-logo.png');
 const ABOUT_LINKS = {
   feedback: `${ISSUES_URL}/new/choose`,
   repository: REPOSITORY_URL,

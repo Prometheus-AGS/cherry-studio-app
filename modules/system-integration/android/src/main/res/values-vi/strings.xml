@@ -1,0 +1,8 @@
+<resources>
+  <string name="cherry_share_title">Chia sẻ đến The Boss</string>
+  <string name="cherry_share_continue">Tiếp tục trong The Boss</string>
+  <string name="cherry_share_close">Đóng</string>
+  <string name="cherry_share_confirm">The Boss sẽ đưa nội dung này vào ô nhập của một cuộc trò chuyện mới, sẵn sàng để bạn chỉnh sửa và gửi.</string>
+  <string name="cherry_share_preparing">Đang chuẩn bị nội dung chia sẻ…</string>
+  <string name="cherry_share_failed">Không thể đọc nội dung chia sẻ này. Hãy chia sẻ tối đa 10 tệp (mỗi tệp 25 MB, tổng cộng 50 MB) và thử lại.</string>
+</resources>

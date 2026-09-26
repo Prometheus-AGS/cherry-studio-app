@@ -1,0 +1,8 @@
+<resources>
+  <string name="cherry_share_title">分享到 The Boss</string>
+  <string name="cherry_share_continue">在 The Boss 中繼續</string>
+  <string name="cherry_share_close">關閉</string>
+  <string name="cherry_share_confirm">The Boss 會把內容放進新對話的輸入框，可繼續編輯後傳送。</string>
+  <string name="cherry_share_preparing">正在準備分享內容…</string>
+  <string name="cherry_share_failed">無法讀取分享內容。請分享最多 10 個檔案（單個 25 MB，總計 50 MB）後重試。</string>
+</resources>

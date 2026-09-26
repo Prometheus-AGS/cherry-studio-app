@@ -14,10 +14,10 @@ every offered format. `useHtmlConversion(options)` also uses it for PNG and PPTX
 footer only to the final captured slide, without adding a slide.
 
 `useExportWatermark` resolves the selected style into an `ExportWatermark` once per operation.
-The `cherry` variant carries the original artwork, constant white/black colors, brand and a frozen
-timestamp; `none` carries no rendering data. New styles extend the closed style/variant contract and
+The `cherry` variant (legacy contract name) carries The Boss icon-tile artwork, constant white/black
+colors, brand and a frozen timestamp; `none` carries no rendering data. New styles extend the closed style/variant contract and
 its renderers, rather than adding booleans to feature pages. `shared/utils/exportSignature.ts`
-owns Cherry footer geometry and time formatting. Markdown renders only the brand and timestamp.
+owns the footer geometry and time formatting. Markdown renders only the brand and timestamp.
 
 ## Source And Finalized Files
 

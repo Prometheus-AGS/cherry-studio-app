@@ -1,0 +1,8 @@
+<resources>
+  <string name="cherry_share_title">Für The Boss teilen</string>
+  <string name="cherry_share_continue">In The Boss fortsetzen</string>
+  <string name="cherry_share_close">Schließen</string>
+  <string name="cherry_share_confirm">The Boss legt dies in das Eingabefeld eines neuen Chats, bereit zum Bearbeiten und Senden.</string>
+  <string name="cherry_share_preparing">Geteilte Inhalte werden vorbereitet…</string>
+  <string name="cherry_share_failed">Diese Freigabe konnte nicht gelesen werden. Teile bis zu 10 Dateien (je 25 MB, insgesamt 50 MB) und versuche es erneut.</string>
+</resources>

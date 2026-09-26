@@ -1,0 +1,8 @@
+<resources>
+  <string name="cherry_share_title">Κοινή χρήση στο The Boss</string>
+  <string name="cherry_share_continue">Συνέχεια στο The Boss</string>
+  <string name="cherry_share_close">Κλείσιμο</string>
+  <string name="cherry_share_confirm">Το The Boss το τοποθετεί στο πεδίο εισαγωγής μιας νέας συνομιλίας, έτοιμο για επεξεργασία και αποστολή.</string>
+  <string name="cherry_share_preparing">Προετοιμασία κοινοποιημένου περιεχομένου…</string>
+  <string name="cherry_share_failed">Δεν ήταν δυνατή η ανάγνωση αυτής της κοινοποίησης. Κοινοποίησε έως 10 αρχεία (25 MB το καθένα, 50 MB συνολικά) και δοκίμασε ξανά.</string>
+</resources>

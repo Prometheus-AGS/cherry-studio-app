@@ -1,0 +1,8 @@
+<resources>
+  <string name="cherry_share_title">Trimite către The Boss</string>
+  <string name="cherry_share_continue">Continuă în The Boss</string>
+  <string name="cherry_share_close">Închide</string>
+  <string name="cherry_share_confirm">The Boss adaugă acest conținut în câmpul unei conversații noi, pregătit pentru editare și trimitere.</string>
+  <string name="cherry_share_preparing">Se pregătește conținutul partajat…</string>
+  <string name="cherry_share_failed">Nu s-a putut citi această partajare. Partajează până la 10 fișiere (25 MB fiecare, 50 MB în total) și încearcă din nou.</string>
+</resources>

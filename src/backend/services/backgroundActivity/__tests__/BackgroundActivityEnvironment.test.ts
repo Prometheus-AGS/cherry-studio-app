@@ -7,7 +7,7 @@ let mockWidgetsDirectory: string | null = 'file:///widgets';
 
 jest.mock('expo-file-system', () => ({
   File: class MockFile {
-    readonly uri = 'file:///widgets/cherry-studio-logo.png';
+    readonly uri = 'file:///widgets/the-boss-logo.png';
     write = mockWrite;
   },
 }));
@@ -38,7 +38,7 @@ describe('BackgroundActivityEnvironment', () => {
   it('prepares the shared activity logo and returns its file URI', async () => {
     const environment = new BackgroundActivityEnvironment();
 
-    await expect(environment.prepareLogo()).resolves.toBe('file:///widgets/cherry-studio-logo.png');
+    await expect(environment.prepareLogo()).resolves.toBe('file:///widgets/the-boss-logo.png');
     expect(mockWrite).toHaveBeenCalledWith(CHERRY_ACTIVITY_LOGO_BASE64, {
       encoding: 'base64',
     });

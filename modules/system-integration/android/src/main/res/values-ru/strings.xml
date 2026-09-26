@@ -1,0 +1,8 @@
+<resources>
+  <string name="cherry_share_title">Поделиться в The Boss</string>
+  <string name="cherry_share_continue">Продолжить в The Boss</string>
+  <string name="cherry_share_close">Закрыть</string>
+  <string name="cherry_share_confirm">The Boss помещает это в поле ввода нового чата, готовое для редактирования и отправки.</string>
+  <string name="cherry_share_preparing">Подготовка общего контента…</string>
+  <string name="cherry_share_failed">Не удалось прочитать этот файл. Поделитесь не более чем 10 файлами (по 25 МБ каждый, всего 50 МБ) и повторите попытку.</string>
+</resources>
