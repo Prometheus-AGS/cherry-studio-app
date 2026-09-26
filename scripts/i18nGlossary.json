@@ -1,5 +1,5 @@
 {
-  "doNotTranslate": ["Cherry Studio", "MCP", "OpenAI", "Ollama", "GitHub", "OAuth"],
+  "doNotTranslate": ["The Boss", "MCP", "OpenAI", "Ollama", "GitHub", "OAuth"],
   "terms": {
     "Agent": {
       "note": "A configured agent with instructions and tools. Follow Mobile's domain language; do not replace it with Assistant.",

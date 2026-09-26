@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { Linking, Platform, Text, View } from 'react-native';
 
 import { openExternalUrl } from '@/frontend/utils/openExternalUrl';
+import { ISSUES_URL, REPOSITORY_URL, SUPPORT_EMAIL, WEBSITE_URL } from '@/shared/branding';
 
 import { SettingsScrollPage } from '../components/SettingsScrollPage';
 
@@ -19,14 +20,13 @@ const APP_BUILD = Platform.select({
   ios: Constants.platform?.ios?.buildNumber ?? Constants.expoConfig?.ios?.buildNumber,
 });
 const APP_PROFILE = Constants.expoConfig?.extra?.sentryEnvironment;
-const SUPPORT_EMAIL = 'support@cherry-ai.com';
 // Exact desktop `src/renderer/assets/images/logo.png`; the launcher icon is a
 // separate build asset with platform-safe transparent corners.
 const ABOUT_APP_LOGO = require('@/assets/cherry-studio-logo.png');
 const ABOUT_LINKS = {
-  feedback: 'https://github.com/CherryHQ/cherry-studio-app/issues/new/choose',
-  repository: 'https://github.com/CherryHQ/cherry-studio-app',
-  website: 'https://www.cherry-ai.com/',
+  feedback: `${ISSUES_URL}/new/choose`,
+  repository: REPOSITORY_URL,
+  website: WEBSITE_URL,
 } as const;
 
 export default function AboutSettingsScreen() {

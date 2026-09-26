@@ -13,6 +13,7 @@ import {
   Phase,
   ServicePhase,
 } from '@/backend/core/lifecycle';
+import { USER_AGENT_NAME } from '@/shared/branding';
 import { isDataCollectionConsented } from '@/shared/utils/privacyConsent';
 
 import { localDateKey } from './analyticsActivity';
@@ -20,7 +21,7 @@ import { isAnalyticsClientId, resolveClientId } from './analyticsIdentity';
 
 const logger = loggerService.withContext('AnalyticsService');
 
-const APP_NAME = 'CherryStudioMobile';
+const APP_NAME = USER_AGENT_NAME;
 /** One channel per store listing; the analytics service splits its reports on it. */
 const CHANNEL = Platform.OS === 'ios' ? 'cherry-studio-ios' : 'cherry-studio-android';
 /**

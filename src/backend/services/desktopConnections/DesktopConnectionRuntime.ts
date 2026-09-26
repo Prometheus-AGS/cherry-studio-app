@@ -13,6 +13,7 @@ import {
   ServicePhase,
 } from '@/backend/core/lifecycle';
 import type { DesktopConnectionService } from '@/backend/data/services/DesktopConnectionService';
+import { PRODUCT_NAME } from '@/shared/branding';
 import type { DesktopConnectionsModule } from '@/shared/contracts';
 import { DataApiError, ErrorCode } from '@/shared/data/api/errors';
 import {
@@ -345,7 +346,7 @@ export class DesktopConnectionRuntime extends BaseService implements DesktopConn
 
 function deviceName(): string {
   const reported = (Device.deviceName ?? Device.modelName ?? '').trim();
-  return (reported || 'Cherry Studio Mobile').slice(0, 64);
+  return (reported || `${PRODUCT_NAME} Mobile`).slice(0, 64);
 }
 
 /** Protocol failures become the reason codes the settings screens already translate. */

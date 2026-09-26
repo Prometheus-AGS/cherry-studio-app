@@ -1,5 +1,6 @@
 import type { ListToolsResult } from '@ai-sdk/mcp';
 
+import { PRODUCT_NAME } from '@/shared/branding';
 import { PluginError } from '@/shared/contracts/plugins';
 
 import type { PluginClient, PluginClientContext } from '../../pluginDefinition';
@@ -67,7 +68,7 @@ export async function createFeishuClient(context: PluginClientContext): Promise<
 
   return {
     get serverInfo() {
-      return remote?.serverInfo ?? { name: 'Cherry Studio Feishu', version: '1' };
+      return remote?.serverInfo ?? { name: `${PRODUCT_NAME} Feishu`, version: '1' };
     },
     get discoveryWarnings() {
       return discoveryWarnings;
