@@ -1,0 +1,17 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "The Boss'un masaüstüyle eşleştirme için QR kodlarını taramasına ve sohbet mesajları ile çizimler için fotoğraf çekmesine izin verir.",
+    "NSCalendarsUsageDescription": "Asistana sorduğunuzda The Boss'un takvimlere erişmesine izin verir.",
+    "NSCalendarsFullAccessUsageDescription": "Asistana sorduğunuzda The Boss'un takvimlere erişmesine izin verir.",
+    "NSCalendarsWriteOnlyAccessUsageDescription": "Asistana sorduğunuzda The Boss'un takvime etkinlik eklemesine izin verir.",
+    "NSRemindersUsageDescription": "Asistana sorduğunuzda The Boss'un hatırlatıcılara erişmesine izin verir.",
+    "NSRemindersFullAccessUsageDescription": "Asistana sorduğunuzda The Boss'un hatırlatıcılara erişmesine izin verir.",
+    "NSMotionUsageDescription": "The Boss, hareket ve fitness etkinliğinizi okumaz veya takip etmez. Bu izin açıklaması, uygulamaya dahil olan konum hizmeti tarafından gereklidir.",
+    "NSLocationWhenInUseUsageDescription": "Asistana sorduğunuzda The Boss'un konumunuzu kullanmasına izin verir.",
+    "NSPhotoLibraryUsageDescription": "The Boss'un çizimler ve sohbet mesajları için fotoğrafları önizlemesine ve seçmesine izin verir.",
+    "NSPhotoLibraryAddUsageDescription": "The Boss'un fotoğrafları kaydetmesine izin verir.",
+    "NSHealthShareUsageDescription": "Asistana sorduğunuzda The Boss'un seçili sağlık ve fitness verilerini okumasına izin verir.",
+    "NSHealthUpdateUsageDescription": "The Boss, sağlık ve fitness sorularınızı yanıtlamak için seçili Apple Health verilerini okur. Apple Health'teki verileri kaydetmez veya değiştirmez.",
+    "NSLocalNetworkUsageDescription": "The Boss'un yerel ağınızdaki The Boss masaüstü uygulamasına, yapay zeka sağlayıcılarına ve MCP sunucularına bağlanmasına izin verir."
+  }
+}

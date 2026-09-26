@@ -1,0 +1,17 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Επιτρέψτε στο The Boss να σκανάρει κωδικούς QR σύζευξης με τον υπολογιστή και να τραβά φωτογραφίες για μηνύματα συνομιλίας και σχέδια.",
+    "NSCalendarsUsageDescription": "Επιτρέψτε στο The Boss να έχει πρόσβαση στα ημερολόγια όταν ρωτάτε τον βοηθό.",
+    "NSCalendarsFullAccessUsageDescription": "Επιτρέψτε στο The Boss να έχει πρόσβαση στα ημερολόγια όταν ρωτάτε τον βοηθό.",
+    "NSCalendarsWriteOnlyAccessUsageDescription": "Επιτρέψτε στο The Boss να προσθέτει συμβάντα ημερολογίου όταν ρωτάτε τον βοηθό.",
+    "NSRemindersUsageDescription": "Επιτρέψτε στο The Boss να έχει πρόσβαση στις υπενθυμίσεις όταν ρωτάτε τον βοηθό.",
+    "NSRemindersFullAccessUsageDescription": "Επιτρέψτε στο The Boss να έχει πρόσβαση στις υπενθυμίσεις όταν ρωτάτε τον βοηθό.",
+    "NSMotionUsageDescription": "Το The Boss δεν διαβάζει και δεν παρακολουθεί την κίνηση και τη φυσική δραστηριότητά σας. Αυτή η περιγραφή άδειας απαιτείται από την υπηρεσία τοποθεσίας που περιλαμβάνεται στην εφαρμογή.",
+    "NSLocationWhenInUseUsageDescription": "Επιτρέψτε στο The Boss να χρησιμοποιεί την τοποθεσία σας όταν ρωτάτε τον βοηθό.",
+    "NSPhotoLibraryUsageDescription": "Επιτρέψτε στο The Boss να προεπισκοπεί και να επιλέγει φωτογραφίες για σχέδια και μηνύματα συνομιλίας.",
+    "NSPhotoLibraryAddUsageDescription": "Επιτρέψτε στο The Boss να αποθηκεύει φωτογραφίες.",
+    "NSHealthShareUsageDescription": "Επιτρέψτε στο The Boss να διαβάζει επιλεγμένα δεδομένα υγείας και φυσικής κατάστασης όταν ρωτάτε τον βοηθό.",
+    "NSHealthUpdateUsageDescription": "Το The Boss διαβάζει επιλεγμένα δεδομένα του Apple Health για να απαντά στις ερωτήσεις σας σχετικά με την υγεία και τη φυσική κατάσταση. Δεν αποθηκεύει και δεν τροποποιεί δεδομένα στο Apple Health.",
+    "NSLocalNetworkUsageDescription": "Επιτρέψτε στο The Boss να συνδέεται με την εφαρμογή The Boss για υπολογιστή, παρόχους AI και διακομιστές MCP στο τοπικό σας δίκτυο."
+  }
+}

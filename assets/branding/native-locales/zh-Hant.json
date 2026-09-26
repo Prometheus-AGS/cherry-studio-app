@@ -1,0 +1,17 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "允許 The Boss 掃描桌面配對 QR Code，並為聊天訊息和繪畫拍攝照片。",
+    "NSCalendarsUsageDescription": "當你要求助手時，允許 The Boss 存取日曆。",
+    "NSCalendarsFullAccessUsageDescription": "當你要求助手時，允許 The Boss 存取日曆。",
+    "NSCalendarsWriteOnlyAccessUsageDescription": "當你要求助手時，允許 The Boss 新增日曆事件。",
+    "NSRemindersUsageDescription": "當你要求助手時，允許 The Boss 存取提醒事項。",
+    "NSRemindersFullAccessUsageDescription": "當你要求助手時，允許 The Boss 存取提醒事項。",
+    "NSMotionUsageDescription": "The Boss 不會讀取或追蹤你的動作與健身活動。此權限說明是應用程式內建的定位服務所要求的。",
+    "NSLocationWhenInUseUsageDescription": "當你要求助手時，允許 The Boss 使用你的位置。",
+    "NSPhotoLibraryUsageDescription": "允許 The Boss 預覽並選取用於繪畫和聊天訊息的照片。",
+    "NSPhotoLibraryAddUsageDescription": "允許 The Boss 儲存照片。",
+    "NSHealthShareUsageDescription": "當你要求助手時，允許 The Boss 讀取所選的健康與健身資料。",
+    "NSHealthUpdateUsageDescription": "The Boss 會讀取所選的 Apple 健康資料以回答你的健康與健身問題，但不會儲存或修改 Apple 健康中的資料。",
+    "NSLocalNetworkUsageDescription": "允許 The Boss 在你的本機網路中連線 The Boss 桌面應用程式、AI 服務商和 MCP 伺服器。"
+  }
+}

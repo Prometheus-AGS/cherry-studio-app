@@ -1,0 +1,17 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Permite que The Boss escanee códigos QR de emparejamiento con el escritorio y tome fotos para mensajes de chat y dibujos.",
+    "NSCalendarsUsageDescription": "Permite que The Boss acceda a los calendarios cuando se lo pidas al asistente.",
+    "NSCalendarsFullAccessUsageDescription": "Permite que The Boss acceda a los calendarios cuando se lo pidas al asistente.",
+    "NSCalendarsWriteOnlyAccessUsageDescription": "Permite que The Boss añada eventos de calendario cuando se lo pidas al asistente.",
+    "NSRemindersUsageDescription": "Permite que The Boss acceda a los recordatorios cuando se lo pidas al asistente.",
+    "NSRemindersFullAccessUsageDescription": "Permite que The Boss acceda a los recordatorios cuando se lo pidas al asistente.",
+    "NSMotionUsageDescription": "The Boss no lee ni registra tu actividad de movimiento y estado físico. Esta descripción de permiso es requerida por el servicio de ubicación incluido en la app.",
+    "NSLocationWhenInUseUsageDescription": "Permite que The Boss use tu ubicación cuando se lo pidas al asistente.",
+    "NSPhotoLibraryUsageDescription": "Permite que The Boss muestre y seleccione fotos para dibujos y mensajes de chat.",
+    "NSPhotoLibraryAddUsageDescription": "Permite que The Boss guarde fotos.",
+    "NSHealthShareUsageDescription": "Permite que The Boss lea datos de salud y actividad física seleccionados cuando se lo pidas al asistente.",
+    "NSHealthUpdateUsageDescription": "The Boss lee datos seleccionados de Apple Salud para responder tus preguntas sobre salud y actividad física. No guarda ni modifica datos en Apple Salud.",
+    "NSLocalNetworkUsageDescription": "Permite que The Boss se conecte a la app de escritorio The Boss, a proveedores de IA y a servidores MCP en tu red local."
+  }
+}

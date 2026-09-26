@@ -1,0 +1,17 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Cho phép The Boss quét mã QR ghép nối với máy tính để bàn và chụp ảnh cho tin nhắn trò chuyện và bản vẽ.",
+    "NSCalendarsUsageDescription": "Cho phép The Boss truy cập lịch khi bạn yêu cầu trợ lý.",
+    "NSCalendarsFullAccessUsageDescription": "Cho phép The Boss truy cập lịch khi bạn yêu cầu trợ lý.",
+    "NSCalendarsWriteOnlyAccessUsageDescription": "Cho phép The Boss thêm sự kiện vào lịch khi bạn yêu cầu trợ lý.",
+    "NSRemindersUsageDescription": "Cho phép The Boss truy cập lời nhắc khi bạn yêu cầu trợ lý.",
+    "NSRemindersFullAccessUsageDescription": "Cho phép The Boss truy cập lời nhắc khi bạn yêu cầu trợ lý.",
+    "NSMotionUsageDescription": "The Boss không đọc hoặc theo dõi hoạt động di chuyển và thể chất của bạn. Mô tả quyền này được dịch vụ định vị có trong ứng dụng yêu cầu.",
+    "NSLocationWhenInUseUsageDescription": "Cho phép The Boss sử dụng vị trí của bạn khi bạn yêu cầu trợ lý.",
+    "NSPhotoLibraryUsageDescription": "Cho phép The Boss xem trước và chọn ảnh cho bản vẽ và tin nhắn trò chuyện.",
+    "NSPhotoLibraryAddUsageDescription": "Cho phép The Boss lưu ảnh.",
+    "NSHealthShareUsageDescription": "Cho phép The Boss đọc dữ liệu sức khỏe và thể chất đã chọn khi bạn yêu cầu trợ lý.",
+    "NSHealthUpdateUsageDescription": "The Boss đọc dữ liệu Apple Health đã chọn để trả lời các câu hỏi về sức khỏe và thể chất của bạn. The Boss không lưu hoặc chỉnh sửa dữ liệu trong Apple Health.",
+    "NSLocalNetworkUsageDescription": "Cho phép The Boss kết nối với ứng dụng máy tính để bàn The Boss, các nhà cung cấp AI và máy chủ MCP trên mạng cục bộ của bạn."
+  }
+}

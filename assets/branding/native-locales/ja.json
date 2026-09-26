@@ -1,0 +1,17 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "The Bossがデスクトップとのペアリング用QRコードをスキャンし、チャットメッセージや描画のために写真を撮ることを許可します。",
+    "NSCalendarsUsageDescription": "アシスタントに頼んだときに、The Bossがカレンダーにアクセスすることを許可します。",
+    "NSCalendarsFullAccessUsageDescription": "アシスタントに頼んだときに、The Bossがカレンダーにアクセスすることを許可します。",
+    "NSCalendarsWriteOnlyAccessUsageDescription": "アシスタントに頼んだときに、The Bossがカレンダーにイベントを追加することを許可します。",
+    "NSRemindersUsageDescription": "アシスタントに頼んだときに、The Bossがリマインダーにアクセスすることを許可します。",
+    "NSRemindersFullAccessUsageDescription": "アシスタントに頼んだときに、The Bossがリマインダーにアクセスすることを許可します。",
+    "NSMotionUsageDescription": "The Bossはモーションやフィットネスのアクティビティを読み取ったり追跡したりしません。この権限の説明は、アプリに含まれる位置情報サービスによって必要とされます。",
+    "NSLocationWhenInUseUsageDescription": "アシスタントに頼んだときに、The Bossが位置情報を使用することを許可します。",
+    "NSPhotoLibraryUsageDescription": "The Bossが描画やチャットメッセージのために写真をプレビューして選択することを許可します。",
+    "NSPhotoLibraryAddUsageDescription": "The Bossが写真を保存することを許可します。",
+    "NSHealthShareUsageDescription": "アシスタントに頼んだときに、The Bossが選択した健康およびフィットネスデータを読み取ることを許可します。",
+    "NSHealthUpdateUsageDescription": "The Bossは、健康やフィットネスに関する質問に答えるために選択されたApple ヘルスケアのデータを読み取ります。Apple ヘルスケア内のデータを保存または変更することはありません。",
+    "NSLocalNetworkUsageDescription": "The Bossがローカルネットワーク上のThe Bossデスクトップアプリ、AIプロバイダー、MCPサーバーに接続することを許可します。"
+  }
+}

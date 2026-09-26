@@ -1,0 +1,17 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Autorise The Boss à scanner les codes QR de jumelage avec le bureau et à prendre des photos pour les messages de chat et les dessins.",
+    "NSCalendarsUsageDescription": "Autorise The Boss à accéder aux calendriers lorsque vous le demandez à l'assistant.",
+    "NSCalendarsFullAccessUsageDescription": "Autorise The Boss à accéder aux calendriers lorsque vous le demandez à l'assistant.",
+    "NSCalendarsWriteOnlyAccessUsageDescription": "Autorise The Boss à ajouter des événements au calendrier lorsque vous le demandez à l'assistant.",
+    "NSRemindersUsageDescription": "Autorise The Boss à accéder aux rappels lorsque vous le demandez à l'assistant.",
+    "NSRemindersFullAccessUsageDescription": "Autorise The Boss à accéder aux rappels lorsque vous le demandez à l'assistant.",
+    "NSMotionUsageDescription": "The Boss ne lit ni ne suit votre activité de mouvement et de fitness. Cette description d'autorisation est requise par le service de localisation inclus dans l'application.",
+    "NSLocationWhenInUseUsageDescription": "Autorise The Boss à utiliser votre position lorsque vous le demandez à l'assistant.",
+    "NSPhotoLibraryUsageDescription": "Autorise The Boss à afficher un aperçu et à sélectionner des photos pour les dessins et les messages de chat.",
+    "NSPhotoLibraryAddUsageDescription": "Autorise The Boss à enregistrer des photos.",
+    "NSHealthShareUsageDescription": "Autorise The Boss à lire les données de santé et d'activité physique sélectionnées lorsque vous le demandez à l'assistant.",
+    "NSHealthUpdateUsageDescription": "The Boss lit certaines données Apple Santé sélectionnées pour répondre à vos questions de santé et de fitness. Il n'enregistre ni ne modifie aucune donnée dans Apple Santé.",
+    "NSLocalNetworkUsageDescription": "Autorise The Boss à se connecter à l'application de bureau The Boss, aux fournisseurs d'IA et aux serveurs MCP sur votre réseau local."
+  }
+}

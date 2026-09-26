@@ -1,0 +1,17 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Permite ca The Boss să scaneze codurile QR de asociere cu desktopul și să facă fotografii pentru mesaje de chat și desene.",
+    "NSCalendarsUsageDescription": "Permite ca The Boss să acceseze calendarele atunci când ceri asistentului.",
+    "NSCalendarsFullAccessUsageDescription": "Permite ca The Boss să acceseze calendarele atunci când ceri asistentului.",
+    "NSCalendarsWriteOnlyAccessUsageDescription": "Permite ca The Boss să adauge evenimente în calendar atunci când ceri asistentului.",
+    "NSRemindersUsageDescription": "Permite ca The Boss să acceseze mementourile atunci când ceri asistentului.",
+    "NSRemindersFullAccessUsageDescription": "Permite ca The Boss să acceseze mementourile atunci când ceri asistentului.",
+    "NSMotionUsageDescription": "The Boss nu citește și nu urmărește activitatea ta de mișcare și fitness. Această descriere a permisiunii este necesară de serviciul de localizare inclus în aplicație.",
+    "NSLocationWhenInUseUsageDescription": "Permite ca The Boss să folosească locația ta atunci când ceri asistentului.",
+    "NSPhotoLibraryUsageDescription": "Permite ca The Boss să previzualizeze și să selecteze fotografii pentru desene și mesaje de chat.",
+    "NSPhotoLibraryAddUsageDescription": "Permite ca The Boss să salveze fotografii.",
+    "NSHealthShareUsageDescription": "Permite ca The Boss să citească date de sănătate și fitness selectate atunci când ceri asistentului.",
+    "NSHealthUpdateUsageDescription": "The Boss citește date selectate din Apple Health pentru a răspunde la întrebările tale despre sănătate și fitness. Nu salvează și nu modifică date în Apple Health.",
+    "NSLocalNetworkUsageDescription": "Permite ca The Boss să se conecteze la aplicația desktop The Boss, la furnizorii de AI și la serverele MCP din rețeaua ta locală."
+  }
+}
