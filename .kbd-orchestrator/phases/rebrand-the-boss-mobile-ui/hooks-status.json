@@ -1,15 +1,1 @@
-{
-  "totalRuns": 16,
-  "failedRuns": 0,
-  "lastRun": {
-    "ts": "2026-09-26T14:41:46Z",
-    "kind": "execute",
-    "edge": "before",
-    "name": "rebrand-the-boss-mobile-ui",
-    "hookId": "memory-task-stream",
-    "layer": "builtin",
-    "mode": "augment",
-    "status": 0
-  },
-  "lastFailure": null
-}
+{"totalRuns":274,"failedRuns":40,"lastRun":{"ts":"2026-09-26T20:33:36Z","kind":"task","edge":"after","name":"rebrand-010-repo-rename:7","hookId":"karpathy-progress-task-boundary","layer":"builtin","mode":"augment","status":0},"lastFailure":{"ts":"2026-09-26T20:31:40Z","kind":"task","edge":"after","name":"rebrand-010-repo-rename:4","hookId":"karpathy-progress-task-boundary","layer":"builtin","mode":"augment","status":124,"stderrSnippet":"","logPath":".kbd-orchestrator/phases/rebrand-the-boss-mobile-ui/hooks.log.jsonl"}}
