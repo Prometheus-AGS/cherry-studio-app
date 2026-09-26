@@ -157,4 +157,4 @@ Before approval, reviewers should be able to answer all of the following with "y
 - Is every exported type necessary for a frontend caller or contract-level test?
 
 See the [Architecture Overview](../../../docs/references/architecture-overview.md) and
-[Extending Cherry Mobile](../../../docs/guides/extending.md) for the surrounding architecture.
+[Extending The Boss Mobile](../../../docs/guides/extending.md) for the surrounding architecture.

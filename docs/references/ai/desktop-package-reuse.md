@@ -1,12 +1,12 @@
 # Desktop AI Reuse
 
-Status: **selected provider and non-conversation AI SDK changes from Cherry Desktop commit
-`246e46b6b04796696a9a4903f4604f5fe9d1ae4b` are ported. Mobile does not mirror Desktop's
+Status: **selected provider and non-conversation AI SDK changes from upstream Cherry Studio
+desktop commit `246e46b6b04796696a9a4903f4604f5fe9d1ae4b` are ported. Mobile does not mirror Desktop's
 conversation Runtime. Provider registry admission remains incomplete, and Mobile's remote registry
 compatibility stays pinned to Desktop `2.0.8` pending an explicit compatibility review.**
 
-This reference defines what Mobile may reuse from Cherry Desktop. A Desktop implementation is a
-source of behavior to assess, not a tree to copy. Every port needs a concrete Mobile consumer and
+This reference defines what Mobile may reuse from upstream Cherry Studio desktop. A Desktop implementation is
+a source of behavior to assess, not a tree to copy. Every port needs a concrete Mobile consumer and
 must fit one of Mobile's existing execution boundaries.
 
 ## Decision

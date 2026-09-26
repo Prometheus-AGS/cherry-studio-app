@@ -215,7 +215,7 @@ discovered input schemas and applies result-size limits.
 ## WeCom Official API
 
 WeCom business operations use the current official CLI HTTP gateway under
-`https://qyapi.weixin.qq.com/cli`. Cherry implements the protocol in native TypeScript; it does not
+`https://qyapi.weixin.qq.com/cli`. The Boss implements the protocol in native TypeScript; it does not
 bundle a CLI executable. `wecomBotApi.ts` owns confirmation-link creation, polling for bot identity
 and the signed `get_cli_config` exchange. Native credentials store bot identity, secret and the
 resulting bearer token. The single `wecom_bot` authorization method retains confirmation inside WeCom.
@@ -241,7 +241,7 @@ with `X-Long-Poll-TaskId` and an empty payload; original write content is not re
 `wecomFiles.ts` resolves attachment/file-tool `file_entry_id` values through the existing file
 service and follows schema references along actual data, including recursive fields, to apply
 official file directives to native files. Media uploads replace local paths with media IDs;
-octet-stream methods use multipart fields. Uploads are limited to Cherry attachment,
+octet-stream methods use multipart fields. Uploads are limited to The Boss attachment,
 document-export and WeCom-download directories, with a 100 MiB file/multipart limit. Binary/range
 downloads are bounded at 64 MiB. File-save fields become actual paths under the app cache, with safe
 unique filenames; large JSON results are saved intact instead of being silently truncated. File

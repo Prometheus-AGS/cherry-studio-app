@@ -1,6 +1,6 @@
 # UI Package
 
-Shared Cherry Studio UI for the mobile app. This package owns product interaction
+Shared The Boss UI (CherryUI) for the mobile app. This package owns product interaction
 components and the mobile WebP runtime for the desktop UI icon set.
 
 ## Components
@@ -190,7 +190,7 @@ translations, file identifiers, or application navigation:
   statusText="3 results"
   title="Web search"
 >
-  <MessagePart.Source label="Cherry Studio" onPress={openSource} url="https://cherry-ai.com" />
+  <MessagePart.Source label="The Boss" onPress={openSource} url="https://the-boss.know-me.tools" />
 </MessagePart.Tool>
 ```
 
@@ -451,7 +451,7 @@ import { TextAnimation } from '@cherrystudio/ui/components';
 import { Text } from 'react-native';
 
 <TextAnimation duration={2200}>
-  <Text>Cherry Studio is </Text>
+  <Text>The Boss is </Text>
   <TextAnimation.Rotating
     text={['focused', 'fluid', 'yours']}
     textClassName="font-semibold text-primary"
@@ -482,7 +482,7 @@ typography primitives:
 </TextField>
 ```
 
-The component family owns its text presentation and maps neutral Cherry state to the private UI
+The component family owns its text presentation and maps neutral CherryUI state to the private UI
 provider. Product code should pass the same neutral state directly to an `Input` only when that
 input needs to override the enclosing field.
 
@@ -575,7 +575,7 @@ The Android scroll boundary keeps a drag/momentum cancellation sticky until a fr
 A touch-cancel event alone is not evidence of scrolling: a successful native long press cancels
 React Native touches too, and must still be allowed to open its menu.
 
-Cherry-rendered menus use an opaque `popover` surface with a soft external shadow, keeping the
+CherryUI-rendered menus use an opaque `popover` surface with a soft external shadow, keeping the
 panel distinct from the composer and page. Dark mode layers a neutral `secondary` fill over that
 opaque base for separation from other dark surfaces. The private `MenuSurface` also supplies
 `Composer.Popover`; content clipping stays inside the shadow boundary. Leading icons sit in
@@ -589,7 +589,7 @@ tap and accessibility actions.
 
 The Android menus keep a 208-point width cap, wrapping labels, checkmarks, destructive text,
 bounded scrolling, and safe-area positioning. They open above or below their anchor according to
-available space. All Cherry-rendered menus, including `Composer.Menu`, use the same private
+available space. All CherryUI-rendered menus, including `Composer.Menu`, use the same private
 `MenuOverlay`, `MenuRow`, `MenuPanel`, and lifecycle hooks. The transparent system modal isolates
 background accessibility, preserves the caller's theme/context, and owns Back/Escape. Opening
 focuses the first item; dismissing without a selection restores the trigger's focus. A viewport

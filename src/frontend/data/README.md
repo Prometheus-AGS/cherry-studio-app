@@ -29,11 +29,13 @@ their caches; content refresh does not rely on a draft's timestamp changing. Com
 Agent callers only perform their file operation. Library and picker readers reuse fresh pages and
 receive updates without owning focus or write refreshes.
 
-Preferences remain a separate client and hook family, matching Cherry Desktop. `BackendProvider`
+Preferences remain a separate client and hook family, matching upstream Cherry Studio desktop.
+`BackendProvider`
 is reserved for multi-step workflows and long-lived sessions defined in `shared/contracts`; it is
 not a generic data module registry.
 
-Its top-level `CacheService.ts` mirrors Cherry Desktop's renderer-data placement. Mobile keeps only
+Its top-level `CacheService.ts` mirrors upstream Cherry Studio desktop's renderer-data
+placement. Mobile keeps only
 the renderer-owned memory and persisted UI tiers; cache schemas, types, and pure key helpers remain
 under `src/shared/data/cache`, while the MMKV adapter is a private implementation detail of the
 service.

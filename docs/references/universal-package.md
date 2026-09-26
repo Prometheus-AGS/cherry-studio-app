@@ -1,8 +1,8 @@
 # Universal Package
 
 `packages/universal` (`@cherrystudio/universal`) was extracted as the cross-platform subset of
-Cherry Desktop's `src/shared`, so the desktop mirror is a visible boundary instead of being mixed
-into mobile-native code.
+upstream Cherry Studio desktop's `src/shared`, so the desktop mirror is a visible boundary instead
+of being mixed into mobile-native code.
 
 It is named `universal` rather than `shared` because three different "shared" scopes are in play —
 desktop's process-shared `src/shared`, this cross-platform subset, and the mobile-native remainder

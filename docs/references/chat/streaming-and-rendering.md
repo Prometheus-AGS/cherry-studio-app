@@ -5,7 +5,7 @@
 This reference describes the implemented local Agent Session stream, transcript window, live
 projection, and rendering boundaries. Remote chat/sidebar now reuse the consumption boundary; see
 [Service Dependencies And Ownership](../remote-access/service-ownership.md). Terms follow [Domain Language](../domain-language.md)
-and [Cherry Agent Protocol](../agent/agent-protocol.md).
+and [The Boss Agent Protocol](../agent/agent-protocol.md).
 
 ## Principles
 

@@ -84,7 +84,7 @@ total. HTML/image targets receive validated logical width, resolved typography a
 The page freezes typography/time at opening. Images always use a 360-logical-pixel width; HTML
 uses a responsive reading column capped at 720 logical pixels. Theme changes regenerate the preview
 except during delivery.
-Image output uses the message-list hierarchy, theme surfaces, Cherry branding and the local
+Image output uses the message-list hierarchy, theme surfaces, The Boss branding and the local
 `YYYY.MM.DD HH:mm` timestamp inside the captured document.
 
 Markdown/HTML artifacts hold one file and source text. Image artifacts hold a layout (`pages` or
@@ -102,8 +102,8 @@ the signature, matches.
 HTML and image presentation share an optional resolved `watermark`. The application follows the
 global Share watermark setting, enabled by default. Explicit `cherry` or `none` options override
 that preference; `none` omits the brand footer from every preview and output format.
-The Cherry variant contains a `signature` with resolved background/text colors, the embedded Cherry
-logo, brand name and frozen timestamp. The frontend supplies the shared white
+The `cherry` variant (legacy contract name) contains a `signature` with resolved background/text
+colors, the embedded The Boss logo, brand name and frozen timestamp. The frontend supplies the shared white
 footer with black text used by painting and file image exports. The renderer copies and validates
 the presentation, escapes its text and includes the signature after the content inside `main`.
 The image-only `imageFrame` uses the document background and supplies an accessible document label.

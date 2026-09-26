@@ -1,6 +1,6 @@
-# Cherry Studio Mobile
+# The Boss Mobile
 
-Cherry Mobile is Cherry Studio's Expo and React Native client.
+the-boss-mobile is The Boss's Expo and React Native client, forked from Cherry Studio Mobile.
 
 Use `pnpm@12.2.1`. This repository has no root application build script: build workspace packages
 with `pnpm packages:build`, and run the complete repository type check with `pnpm typecheck`.

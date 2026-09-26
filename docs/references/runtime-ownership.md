@@ -6,8 +6,9 @@ Terms follow [Domain Language](./domain-language.md).
 
 ## Role Names
 
-Name an owner by who calls it and who controls its lifetime. A class that directly corresponds to a
-Cherry Desktop service keeps the upstream `XxxService` name and public methods. This includes
+Name an owner by who calls it and who controls its lifetime. A class that directly corresponds to an
+upstream Cherry Studio desktop service keeps the upstream `XxxService` name and public methods.
+This includes
 `DbService`, `CacheService`, `PreferenceService`, persistence services, `DataApiService`,
 `AiService`, `McpRuntimeService`, and `WebSearchService`.
 

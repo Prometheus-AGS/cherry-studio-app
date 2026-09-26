@@ -66,7 +66,7 @@ Request-only registry facts that intentionally are not persisted, such as reason
 and service-tier delivery mappings, are rehydrated by `ProviderRegistryService` at request time.
 
 `UniqueModelId` combines provider id and model id and is the runtime model identifier used by Agents,
-paintings, and settings. Provider and Model shapes follow Cherry Desktop unless mobile has a
+paintings, and settings. Provider and Model shapes follow upstream Cherry Studio desktop unless mobile has a
 documented runtime compatibility reason to diverge.
 
 ## AI SDK Provider Resolution

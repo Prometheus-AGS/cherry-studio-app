@@ -1,4 +1,4 @@
-# Cherry Agent Protocol
+# The Boss Agent Protocol
 
 > Status: Version 1 is as-built for device-local execution. A PC Agent Controller extension is
 > implemented as the separate application-facing version 2 contract; device verification is pending.

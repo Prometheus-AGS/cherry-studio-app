@@ -3,8 +3,8 @@
 > Status: local Version 1 is as-built. The separate PC Agent Controller version 2 is implemented;
 > PC/mobile interoperability verification is pending.
 
-This directory documents Cherry Mobile's conversation execution boundary. For mobile-originated
-local execution, Cherry Mobile owns Agents, Sessions, persistence, application capabilities, and
+This directory documents The Boss Mobile's conversation execution boundary. For mobile-originated
+local execution, The Boss Mobile owns Agents, Sessions, persistence, application capabilities, and
 the frontend protocol. Pi is the sole local conversation engine.
 
 ## Boundaries

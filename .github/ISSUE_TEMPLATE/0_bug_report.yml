@@ -1,5 +1,5 @@
 name: 🐛 Bug 反馈
-description: 帮助我们改进 Cherry Studio 移动应用
+description: 帮助我们改进 The Boss 移动应用
 title: '[Bug]: '
 labels: ['BUG']
 body:
@@ -17,13 +17,11 @@ body:
       options:
         - label: 我明白 issue 是用于反馈和解决问题的，而不是用于在评论区抱怨的，并会尽可能提供详细信息以帮助解决问题。
           required: true
-        - label: 我的问题不在 [常见问题 FAQ](https://github.com/CherryHQ/cherry-studio-app/issues) 中。
-          required: true
-        - label: 我已经查看了**置顶问题**，并搜索了现有的 [Open Issues](https://github.com/CherryHQ/cherry-studio-app/issues)、[Closed Issues](https://github.com/CherryHQ/cherry-studio-app/issues?q=is%3Aissue%20state%3Aclosed) 和 [Discussions](https://github.com/CherryHQ/cherry-studio-app/discussions)，没有发现类似的问题或讨论。
+        - label: 我已经查看了**置顶问题**，并搜索了现有的 [Open Issues](https://github.com/Prometheus-AGS/cherry-studio-app/issues) 和 [Closed Issues](https://github.com/Prometheus-AGS/cherry-studio-app/issues?q=is%3Aissue%20state%3Aclosed)，没有发现类似的问题。
           required: true
         - label: 我已经填写了简短、清晰的标题，以便开发者在浏览问题列表时可以快速识别问题的大致内容。而不是"一个建议"、"卡住了"等。
           required: true
-        - label: 我已确认正在使用最新版本的 Cherry Studio。
+        - label: 我已确认正在使用最新版本的 The Boss。
           required: true
 
   - type: dropdown
@@ -59,7 +57,7 @@ body:
     id: version
     attributes:
       label: 应用版本
-      description: 您正在运行的 Cherry Studio 版本是什么？
+      description: 您正在运行的 The Boss 版本是什么？
       placeholder: 例如：v0.1.0
     validations:
       required: true

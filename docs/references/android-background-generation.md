@@ -181,7 +181,7 @@ library's iOS-only `expiration` event.
 
 These native dependencies, both patches, and config plugins require a rebuilt development client. Metro reloads
 and EAS Updates cannot add native modules. Use [Local EAS Builds](../guides/local-builds.md) when a
-build is authorized. Compatibility with Cherry's Expo 57 / React Native 0.86 and device behavior
+build is authorized. Compatibility with the app's Expo 57 / React Native 0.86 and device behavior
 must be verified in that client; source review and lint do not establish runtime compatibility.
 
 `package.json` opts `expo-notifications` into `expo.autolinking.android.buildFromSource`. Expo's

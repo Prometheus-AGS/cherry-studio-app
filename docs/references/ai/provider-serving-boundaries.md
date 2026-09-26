@@ -3,13 +3,13 @@
 Status: **Phases 1 and 2 landed (Phase 2 reshaped by the
 [target architecture](./target-architecture.md)); Phase 3 started**.
 
-This reference defines how Cherry Mobile shares Provider connection facts without turning image,
+This reference defines how The Boss Mobile shares Provider connection facts without turning image,
 language, embedding, rerank, audio, or video execution into one universal adapter. It complements
 [AI Provider Integration](./provider-integration.md), which remains the current runtime inventory.
 
 ## Decision
 
-Cherry Mobile uses one Provider control plane and capability-specific execution planes:
+The Boss Mobile uses one Provider control plane and capability-specific execution planes:
 
 ```text
 Provider + Model records
@@ -188,7 +188,7 @@ Those projections remain explicit and small.
 
 ## Mobile And Desktop Relationship
 
-Cherry Desktop is a semantic reference for:
+Upstream Cherry Studio desktop is a semantic reference for:
 
 - one authoritative owner per Provider fact;
 - the `provider.id` -> `endpointType` -> `adapterFamily` identity stack;

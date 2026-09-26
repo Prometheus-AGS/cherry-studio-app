@@ -150,7 +150,7 @@ not be forced through the non-streaming HTTP client. For future OAuth connection
 fetch adapter for ordinary OAuth metadata/form requests. Retain the returned registration/issuer
 facts for the authorization runtime's renewal. Do not attach a second refresh owner to the active
 transport: keep `maxRetries: 0` and leave transport-level `authProvider` unset so refresh
-concurrency and write replay stay under Cherry's operation policy.
+concurrency and write replay stay under The Boss's operation policy.
 
 Before supporting uploaded files or exported binaries, extend the owning file/transport boundary
 with managed-file inputs, bounded streaming downloads and content validation. The present HTTP
@@ -190,7 +190,7 @@ Preserve actionable failures such as `authorization_required`, `insufficient_sco
 Protocol failures and failed tool operations remain distinct.
 
 Version 1 returns JSON/text, remote IDs and URLs with `artifacts: []` through the existing MCP
-adapter. It does not promise that a Canva export URL is a local attachment. A later explicit Cherry
+adapter. It does not promise that a Canva export URL is a local attachment. A later explicit application
 importer may download approved bytes, create managed entries and grant them through the Host's
 resource ledger. No local or remote MCP JSON is promoted into a file grant by shape-matching it to
 `{ value, artifacts }`.

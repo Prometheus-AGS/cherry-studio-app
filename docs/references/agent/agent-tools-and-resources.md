@@ -14,7 +14,7 @@ request whether to call it.
 Office generation, inspection, and editing are not implemented. Sections that a shipped tool still
 diverges from carry an **As-built** note.
 
-This document defines how Cherry Mobile exposes application capabilities to Pi. Pi remains the
+This document defines how The Boss Mobile exposes application capabilities to Pi. Pi remains the
 sole conversation engine and owns the model → tool → result loop. Application services own every
 side effect, credential, system permission, managed file, and provider-specific capability.
 
@@ -66,7 +66,7 @@ never falls back to display-name matching. The Host snapshots a display name sep
 historical UI remains understandable after configuration changes.
 
 Every system capability has a stable `ToolRef` whose `capabilityId` doubles as its provider alias,
-which is unambiguous because the catalog is Cherry-owned and collision-free.
+which is unambiguous because the catalog is application-owned and collision-free.
 `src/shared/data/types/builtInTool.ts` is the single catalog consumed by the Host. Its descriptors
 own platform, permission, application-configuration, base approval, capability-group membership,
 and auto-approval eligibility. The Agent editor enables or disables capability groups
@@ -122,7 +122,7 @@ The physical SQLite shape and typed Data API are implemented in `agent_tool_bind
 only MCP bindings. MCP server ids intentionally have no foreign key: deleting a server disables its
 rows without erasing their stable identity, display snapshot, or approval. Upsert and replace preserve
 the row id for a stable identity, reject duplicates atomically, and cannot create authorization for
-a missing server unless that exact dangling identity already exists. Bindings belong to Cherry
+a missing server unless that exact dangling identity already exists. Bindings belong to application
 persistence, the Host resolves them, and Pi must never read them directly.
 
 The data resolver chooses a specific tool row before its server default, then combines that policy
@@ -148,7 +148,7 @@ Before admitting a turn, the Host resolves tools in this order:
    the turn.
 
 Configuration changes affect the next turn. Permission and resource checks that can change outside
-Cherry are repeated inside `execute()` immediately before the side effect. A missing tool, revoked
+the app are repeated inside `execute()` immediately before the side effect. A missing tool, revoked
 permission, deleted file, or disconnected server fails closed; the callback never performs a
 fallback action with broader access.
 
@@ -234,7 +234,7 @@ are never compiled or executed.
 
 ## Controlled File Ledger
 
-Mobile has no desktop-style working directory. Every file first enters Cherry managed storage and
+Mobile has no desktop-style working directory. Every file first enters the app's managed storage and
 receives a [`file_entry`](../data/file-model.md) id. Protocol operations and file tools accept only
 that managed id; raw `file://`, `content://`, sandbox, provider, and user-entered paths are transient
 import sources, never authority.
@@ -269,7 +269,7 @@ and records that id before the callback resolves. The tool catalog and approval 
 immutable; only this ledger grows monotonically.
 
 An MCP payload or model-produced string never joins the ledger merely because it looks like a
-`cherry://file/` ref. An MCP result is ordinary remote data unless a separate Cherry importer
+`cherry://file/` ref. An MCP result is ordinary remote data unless a separate application importer
 validates its bytes, creates a managed entry, and records the new id. The ledger never grants access
 to the whole file library or app sandbox. Independently, `edit_file` validates a supplied UUID
 against active managed storage because its explicit policy treats knowledge of an id as authority.
@@ -278,7 +278,7 @@ against active managed storage because its explicit policy treats knowledge of a
 
 Every callback returns the typed `RuntimeToolResult` defined by
 [Agent Runtime](./agent-runtime.md#tools). Remote MCP JSON is always wrapped as its `value`; it is
-never shape-matched as a Cherry result envelope. Only an application capability may return managed
+never shape-matched as an application result envelope. Only an application capability may return managed
 artifacts, and it does so after creating and validating each entry and granting it through the turn
 ledger.
 
@@ -523,7 +523,8 @@ limits are application constants rather than user settings in Version 1.
 
 ## Desktop Relationship
 
-Cherry Desktop proves the useful semantics: Pi owns its tool loop, MCP tools are adapted into Pi,
+Upstream Cherry Studio desktop proves the useful semantics: Pi owns its tool loop, MCP tools are
+adapted into Pi,
 tools are disabled and approved by application policy, and skills are injected explicitly. Mobile
 ports those semantics but not the Electron/Node execution surface. Desktop workspaces, shell tools,
 JavaScript tool execution, arbitrary filesystem paths, local MCP processes, and executable Skill

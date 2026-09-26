@@ -9,7 +9,7 @@
 | Requirement | Result | Boundary |
 | --- | --- | --- |
 | Open one sheet and navigate through multiple page depths | **Supported by composition** | `BottomSheet` accepts arbitrary `children`, but it does not provide page history. The feature owns its stack. |
-| Animate consistently between sheet pages | **Not part of the shared shell** | Cherry's reduced `BottomSheet` swaps feature-owned content directly and only standardizes the nested-page back action. |
+| Animate consistently between sheet pages | **Not part of the shared shell** | The Boss's reduced `BottomSheet` swaps feature-owned content directly and only standardizes the nested-page back action. |
 | Present a second physical sheet above an existing sheet | **Supported on iOS when nested** | Expo's current docs require the second `BottomSheet` to be nested inside the first sheet's content, not rendered beside it. |
 | Use a managed `stackBehavior`-style sheet stack | **Not supported by Expo UI** | There is no stack coordinator, `stackBehavior`, or `useBottomSheetModal` equivalent. The compatibility provider is a no-op. |
 
