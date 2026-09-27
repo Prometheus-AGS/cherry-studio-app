@@ -134,6 +134,7 @@ export function createPluginsModule(
     connect(input, signal) {
       const parsed = ConnectPluginSchema.parse(input);
       const plugin = requirePluginDefinition(parsed.pluginId);
+      assertPluginSignInAvailable(plugin);
       const method = requirePluginAuthMethod(plugin, parsed.authMethod);
       if (method.kind !== 'credentials')
         throw new PluginError(

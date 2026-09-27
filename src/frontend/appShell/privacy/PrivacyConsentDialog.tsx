@@ -34,16 +34,18 @@ export function PrivacyConsentDialog({
     >
       <View className="gap-2">
         <Text className="text-base text-muted-foreground">{t('privacyConsent.intro')}</Text>
-        <View className="items-start">
-          <Button
-            accessibilityRole="link"
-            onPress={() => void openExternalUrl(policyUrl)}
-            size="inline"
-            variant="link"
-          >
-            {t('privacyConsent.readPolicy')}
-          </Button>
-        </View>
+        {policyUrl ? (
+          <View className="items-start">
+            <Button
+              accessibilityRole="link"
+              onPress={() => void openExternalUrl(policyUrl)}
+              size="inline"
+              variant="link"
+            >
+              {t('privacyConsent.readPolicy')}
+            </Button>
+          </View>
+        ) : null}
       </View>
       <View className="gap-3">
         <Button disabled={isSaving} loading={isSaving} onPress={onAccept}>

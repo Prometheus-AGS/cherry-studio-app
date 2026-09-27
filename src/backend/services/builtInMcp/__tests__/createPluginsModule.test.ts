@@ -1,6 +1,7 @@
 import { authorizationStoreFixture } from '../authorization/__tests__/_authorizationStoreFixture';
 import { PluginAuthorizationManager } from '../authorization/PluginAuthorizationManager';
 import { createPluginsModule as createModule } from '../createPluginsModule';
+import { requirePluginAuthMethod, requirePluginDefinition } from '../pluginRegistry';
 import type { FeishuAuthorizationRuntime } from '../plugins/feishu/FeishuAuthorizationRuntime';
 
 type Runtime = Parameters<typeof createModule>[0];
@@ -40,9 +41,12 @@ jest.mock('../authorization/PluginCredentialStore', () => ({
   },
 }));
 
-const input = { pluginId: 'github', authMethod: 'personal_token', fields: { token: 'test-token' } };
+// A credentials-kind method on a plugin that is not paused (unlike GitHub/Notion, see
+// `assertPluginSignInAvailable`), so these fixtures exercise `connect()` itself rather than the
+// disabled-plugin guard, which has its own dedicated test below.
+const input = { pluginId: 'amap', authMethod: 'api_key', fields: { key: 'test-key' } };
 const connection = {
-  pluginId: 'github',
+  pluginId: 'amap',
   accountLabel: 'cherry',
   serverId: 'server-1',
   connectedAt: '2026-09-09T00:00:00.000Z',
@@ -50,9 +54,9 @@ const connection = {
 const validation = {
   accountLabel: 'cherry',
   catalog: {
-    tools: [{ name: 'get_me', inputSchema: { type: 'object' as const, properties: {} } }],
+    tools: [{ name: 'maps_geo', inputSchema: { type: 'object' as const, properties: {} } }],
     discoveryWarnings: [],
-    serverInfo: { name: 'GitHub', version: '1' },
+    serverInfo: { name: 'Amap', version: '1' },
   },
 };
 let mockFixture: ReturnType<typeof authorizationStoreFixture>;
@@ -176,11 +180,11 @@ it('invalidates the runtime only after the new grant commits', async () => {
   await expect(plugins.connect(input)).resolves.toEqual(connection);
   expect(operations).toEqual(['commit', 'invalidate', 'cache']);
   expect(mockConnect.mock.calls[0][0]).toEqual({
-    pluginId: 'github',
-    authMethod: 'personal_token',
-    serverName: 'GitHub',
+    pluginId: 'amap',
+    authMethod: 'api_key',
+    serverName: '高德地图',
     accountLabel: 'cherry',
-    credential: { version: 1, token: 'test-token' },
+    credential: { version: 1, key: 'test-key' },
   });
 });
 
@@ -224,7 +228,7 @@ it('serializes disconnect behind an in-progress connect and leaves it disconnect
   });
   const plugins = createPluginsModule({ invalidateServer: jest.fn() });
   const connect = plugins.connect(input);
-  const disconnect = plugins.disconnect('github');
+  const disconnect = plugins.disconnect('amap');
   await new Promise((resolve) => setImmediate(resolve));
   expect(mockDisconnect).not.toHaveBeenCalled();
   finishValidation();
@@ -252,14 +256,11 @@ it('rejects unregistered plugins and invalid plugin-owned fields before network 
       fields: { token: 'secret' },
     }),
   ).toThrow('not available');
-  for (const fields of [
-    { token: 'bad key' },
-    { token: 'secret', unexpected: 'value' },
-    {},
-  ] as Record<string, string>[]) {
-    expect(() =>
-      plugins.connect({ pluginId: 'github', authMethod: 'personal_token', fields }),
-    ).toThrow();
+  for (const fields of [{ key: 'bad key' }, { key: 'secret', unexpected: 'value' }, {}] as Record<
+    string,
+    string
+  >[]) {
+    expect(() => plugins.connect({ pluginId: 'amap', authMethod: 'api_key', fields })).toThrow();
   }
   expect(mockValidateConnection).not.toHaveBeenCalled();
   expect(mockConnect).not.toHaveBeenCalled();
@@ -274,10 +275,37 @@ it('allows disconnecting a plugin no longer bundled by this app version', async 
 });
 
 it('requires an explicit disconnect before a credential method replaces an identity it cannot compare', async () => {
-  mockCurrentGrant.mockResolvedValue({ id: 'old-grant', authMethod: 'github_user' });
-  await expect(
-    createPluginsModule({ invalidateServer: jest.fn() }).connect(input),
-  ).rejects.toMatchObject({ reason: 'requires-disconnect' });
+  // Amap's `api_key` method does not itself require disconnect-before-replace; borrow that
+  // behavior for this one assertion (restored below) since GitHub, the plugin that actually
+  // has it, is paused and `connect()` now refuses it before reaching this check.
+  const method = requirePluginAuthMethod(requirePluginDefinition('amap'), 'api_key');
+  Object.assign(method, { requiresDisconnect: true });
+  try {
+    mockCurrentGrant.mockResolvedValue({ id: 'old-grant', authMethod: 'api_key' });
+    await expect(
+      createPluginsModule({ invalidateServer: jest.fn() }).connect(input),
+    ).rejects.toMatchObject({ reason: 'requires-disconnect' });
+    expect(mockValidateConnection).not.toHaveBeenCalled();
+    expect(mockConnect).not.toHaveBeenCalled();
+  } finally {
+    Object.assign(method, { requiresDisconnect: false });
+  }
+});
+
+it('refuses to connect a plugin whose sign-in is paused, the same as beginning one', () => {
+  // Both `begin()` and `connect()` call `assertPluginSignInAvailable` before doing any async
+  // work, so each throws synchronously rather than rejecting a promise.
+  const plugins = createPluginsModule({ invalidateServer: jest.fn() });
+  let beginError: unknown;
+  try {
+    plugins.authorization.begin('github', 'personal_token');
+  } catch (error) {
+    beginError = error;
+  }
+  expect(beginError).toBeInstanceOf(Error);
+  expect(() =>
+    plugins.connect({ pluginId: 'github', authMethod: 'personal_token', fields: { token: 'x' } }),
+  ).toThrow((beginError as Error).message);
   expect(mockValidateConnection).not.toHaveBeenCalled();
   expect(mockConnect).not.toHaveBeenCalled();
 });
