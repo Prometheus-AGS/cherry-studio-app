@@ -138,7 +138,7 @@ function formatLocalDate(date: Date): string {
 function buildResponseLanguageSection(appLanguage: LanguageVarious): string {
   return `## Response Language
 
-The current ${PRODUCT_NAME} App language is \`${appLanguage}\`. You must write every response in this language unless the user explicitly requests another language. This rule takes precedence over the Agent Instructions.`;
+The current app language in ${PRODUCT_NAME} is \`${appLanguage}\`. You must write every response in this language unless the user explicitly requests another language. This rule takes precedence over the Agent Instructions.`;
 }
 
 function findBuiltInToolNames(
