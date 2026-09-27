@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "files": [
+    {
+      "file": ".codex/agents/boss-mobile-lead.toml",
+      "before": null,
+      "afterSha256": "b1958e0cb8e0f6064d65125e8b04d65f08112ac003c801254e2f7160ff0e5cf4"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-product.toml",
+      "before": null,
+      "afterSha256": "7a88f8e31459cc9ee4ababeaa2d7f1619177b09c03e294480b433840ce10fe07"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-rebrand.toml",
+      "before": null,
+      "afterSha256": "3196f94319c9adab9c18b910c6f7bb3f4ef1b5c64253eb22274d1e56cd7245df"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-upstream.toml",
+      "before": null,
+      "afterSha256": "15a55c7286afe58b891be7978e49a5422f5cb155e8dd192dd7227ea973993525"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-rust-ffi.toml",
+      "before": null,
+      "afterSha256": "d3a20e7866939fca7b362f1faf4e5de6bd58cb12e2632b5edb49c5f8e27cb446"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-p2p.toml",
+      "before": null,
+      "afterSha256": "c64d7bc3ccb6fd4b8152a1b3e4c599dc725f2978427ab877f1e50ea657fa74f0"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-runtime.toml",
+      "before": null,
+      "afterSha256": "a7434dc9cedc073004cd3fc262ea0883bab1a633897001668a1430772367b964"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-data.toml",
+      "before": null,
+      "afterSha256": "9a126942a1787f3836c2fe04b89d231dfc0ca9315af0ad7901e868cfd0d9f4a5"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-ux.toml",
+      "before": null,
+      "afterSha256": "b33d4dfb9fa967e2693e472f391ad97ff33b2771d3091e8361514931837210cf"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-app.toml",
+      "before": null,
+      "afterSha256": "136c53caee8605cd1edd636a2d112abff1978f81b25745d37984303f440efbb4"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-release.toml",
+      "before": null,
+      "afterSha256": "2b2583615c6156925e24f0d5c8a1f9bd41617ce80a1c7d1f694a3d14fa4cd7be"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-security.toml",
+      "before": null,
+      "afterSha256": "77ec3deafe761004014fc56da6fd518d5201d638dbdad8ae084826d6fbbe19d4"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-verifier.toml",
+      "before": null,
+      "afterSha256": "bf58fe757e07b1ad5ca255f9380e7a1c3af0536cabfb4c9ee750c7da8f9f29e7"
+    },
+    {
+      "file": ".agent-team/project-routing.json",
+      "before": "{\n  \"schemaVersion\": 1,\n  \"activeTeam\": \"boss-mobile\",\n  \"manifest\": \".agent-team/boss-mobile/team.json\",\n  \"target\": \"claude\",\n  \"nativeDefinitions\": [\n    \".claude/agents/boss-mobile-lead.md\",\n    \".claude/agents/boss-mobile-product.md\",\n    \".claude/agents/boss-mobile-rebrand.md\",\n    \".claude/agents/boss-mobile-upstream.md\",\n    \".claude/agents/boss-mobile-rust-ffi.md\",\n    \".claude/agents/boss-mobile-p2p.md\",\n    \".claude/agents/boss-mobile-runtime.md\",\n    \".claude/agents/boss-mobile-data.md\",\n    \".claude/agents/boss-mobile-ux.md\",\n    \".claude/agents/boss-mobile-app.md\",\n    \".claude/agents/boss-mobile-release.md\",\n    \".claude/agents/boss-mobile-security.md\",\n    \".claude/agents/boss-mobile-verifier.md\"\n  ],\n  \"instructionFiles\": [\n    \"AGENTS.md\",\n    \"CLAUDE.md\"\n  ],\n  \"delegation\": \"native-definitions\",\n  \"limitations\": [\n    \"Native definition presence is not live invocation evidence. The active harness owns permissions, models, concurrency and delegation.\",\n    \"When delegation is unavailable, use selected role instructions sequentially and report it; builder-context review is not independent.\",\n    \"Zed external ACP agents use their native configuration; Zed parallel threads are not an automatic delegation API.\"\n  ]\n}\n",
+      "afterSha256": "eff9f5b95da5d5e1daa155d3059f88a14ff3e924d0454e4a651ed548a8326746"
+    }
+  ]
+}

@@ -43,7 +43,7 @@ Feature owners translate text before passing it to CherryUI. Translate user-visi
 accessibility labels, notifications, and user-facing errors. Keep technical identifiers, logs,
 model output, and user-authored content unchanged. Follow
 [Domain Language](../references/domain-language.md) for Agent, Session, Provider, and other product
-terms; preserve product and protocol names such as Cherry Studio, MCP, OpenAI, and GitHub.
+terms; preserve product and protocol names such as The Boss, MCP, OpenAI, and GitHub.
 [`scripts/i18nGlossary.json`](../../scripts/i18nGlossary.json) owns protected names and preferred
 terminology. Protected names are checked automatically; preferred terms guide translation and
 review rather than rejecting legitimate grammatical inflections.

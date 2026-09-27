@@ -1,12 +1,12 @@
 # Navigation And Insets
 
-This reference defines Cherry Studio Mobile navigation gestures, Android predictive back,
+This reference defines The Boss Mobile navigation gestures, Android predictive back,
 edge-to-edge layout, and safe-area/inset strategy. Terms follow
 [Domain Language](./domain-language.md).
 
 ## Principles
 
-- Android edge back is a platform-native capability. Cherry Mobile does not simulate edge-swipe back in JavaScript.
+- Android edge back is a platform-native capability. The Boss Mobile does not simulate edge-swipe back in JavaScript.
 - Expo Router `Stack` / React Navigation native-stack bridges native screen stacks and back animations through `react-native-screens`.
 - Edge-to-edge is a platform window layout capability. The app is responsible for fitting headers, chat input, message lists, sheets, and keyboard areas against insets.
 - System gesture zones belong to the system. Product horizontal gestures must not compete with Android screen edges.
@@ -19,7 +19,7 @@ edge-to-edge layout, and safe-area/inset strategy. Terms follow
 
 ## Android Back Gesture
 
-Left/right edge back on Android devices is handled by system navigation gestures. Cherry Mobile only declares navigation structure and screen options:
+Left/right edge back on Android devices is handled by system navigation gestures. The Boss Mobile only declares navigation structure and screen options:
 
 ```tsx
 <Stack
@@ -247,7 +247,7 @@ Do not add more growing pickers as JavaScript bottom sheets unless the flow expl
 
 ## Edge-to-Edge And Insets
 
-Android edge-to-edge should not be avoided by pinning a system navigation bar background color. Cherry Mobile must handle layout explicitly:
+Android edge-to-edge should not be avoided by pinning a system navigation bar background color. The Boss Mobile must handle layout explicitly:
 
 - Top headers avoid the status bar inset.
 - Chat input handles both bottom inset and keyboard inset.

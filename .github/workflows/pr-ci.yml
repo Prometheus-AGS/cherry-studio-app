@@ -98,6 +98,9 @@ jobs:
       - name: Translation Check
         run: pnpm i18n:check
 
+      - name: Brand Check
+        run: pnpm brand:check
+
       - name: UI Boundary Check
         run: pnpm ui:check-boundaries
 

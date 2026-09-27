@@ -262,7 +262,7 @@ describe('auditRepositories', () => {
       ),
       'nested/package.json': `${JSON.stringify({ name: 'CherryStudio' }, null, 2)}\n`,
     });
-    const mobileRoot = createRepository('cherry-studio-app', sharedPackageFiles('mobile'));
+    const mobileRoot = createRepository('the-boss-mobile', sharedPackageFiles('mobile'));
 
     await expect(
       auditRepositories({
@@ -276,7 +276,7 @@ describe('auditRepositories', () => {
 
   test('rejects a checkout with the wrong desktop package identity', async () => {
     const desktopRoot = createRepository('not-CherryStudio', sharedPackageFiles('desktop'));
-    const mobileRoot = createRepository('cherry-studio-app', sharedPackageFiles('mobile'));
+    const mobileRoot = createRepository('the-boss-mobile', sharedPackageFiles('mobile'));
 
     await expect(
       auditRepositories({
@@ -288,12 +288,26 @@ describe('auditRepositories', () => {
     ).rejects.toThrow(/desktop package name must be CherryStudio/i);
   });
 
+  test('rejects a mobile checkout that still carries the pre-rename package identity', async () => {
+    const desktopRoot = createRepository('CherryStudio', sharedPackageFiles('desktop'));
+    const mobileRoot = createRepository('cherry-studio-app', sharedPackageFiles('mobile'));
+
+    await expect(
+      auditRepositories({
+        desktopRoot,
+        mobileRoot,
+        manifest: manifestWithDomains({ 'ai-core': mirrorDomain() }),
+        domains: ['ai-core'],
+      }),
+    ).rejects.toThrow(/mobile package name must be the-boss-mobile/i);
+  });
+
   test('rejects uncommitted changes under a selected desktop source path', async () => {
     const desktopRoot = createRepository('CherryStudio', {
       ...sharedPackageFiles('desktop'),
       'packages/aiCore/src/index.ts': 'export const value = 1;\n',
     });
-    const mobileRoot = createRepository('cherry-studio-app', {
+    const mobileRoot = createRepository('the-boss-mobile', {
       ...sharedPackageFiles('mobile'),
       'packages/ai-core/src/index.ts': 'export const value = 1;\n',
     });
@@ -316,7 +330,7 @@ describe('auditRepositories', () => {
         ...sharedPackageFiles('desktop'),
         'packages/aiCore/src/index.ts': 'export const provider = true;\n',
       });
-      const mobileRoot = createRepository('cherry-studio-app', {
+      const mobileRoot = createRepository('the-boss-mobile', {
         ...sharedPackageFiles('mobile'),
         'packages/ai-core/src/index.ts': 'export const provider = true;\n',
       });
@@ -349,7 +363,7 @@ describe('auditRepositories', () => {
       'packages/aiCore/src/core/agents/createAgent.ts': 'export const createAgent = true;\n',
       'src/shared/ai/index.ts': 'export const shared = true;\n',
     });
-    const mobileRoot = createRepository('cherry-studio-app', {
+    const mobileRoot = createRepository('the-boss-mobile', {
       ...sharedPackageFiles('mobile'),
       'packages/ai-core/src/index.ts': 'export const value = 1;\n',
       'packages/ai-core/src/core/agents/createAgent.ts': 'export const createAgent = true;\n',
@@ -431,7 +445,7 @@ describe('auditRepositories', () => {
       'src/main/services/oauth/runtime/providers/codex.ts': codex,
       'src/renderer/services/oauth.ts': renderer,
     });
-    const mobileRoot = createRepository('cherry-studio-app', {
+    const mobileRoot = createRepository('the-boss-mobile', {
       ...sharedPackageFiles('mobile'),
       'src/backend/services/oauth/desktop-sync-map.json': delegatedServiceMap([
         {

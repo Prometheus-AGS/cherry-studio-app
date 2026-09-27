@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "activeTeam": "boss-mobile",
+  "manifest": ".agent-team/boss-mobile/team.json",
+  "target": "claude",
+  "nativeDefinitions": [
+    ".claude/agents/boss-mobile-lead.md",
+    ".claude/agents/boss-mobile-product.md",
+    ".claude/agents/boss-mobile-rebrand.md",
+    ".claude/agents/boss-mobile-upstream.md",
+    ".claude/agents/boss-mobile-rust-ffi.md",
+    ".claude/agents/boss-mobile-p2p.md",
+    ".claude/agents/boss-mobile-runtime.md",
+    ".claude/agents/boss-mobile-data.md",
+    ".claude/agents/boss-mobile-ux.md",
+    ".claude/agents/boss-mobile-app.md",
+    ".claude/agents/boss-mobile-release.md",
+    ".claude/agents/boss-mobile-security.md",
+    ".claude/agents/boss-mobile-verifier.md"
+  ],
+  "instructionFiles": ["AGENTS.md", "CLAUDE.md"],
+  "delegation": "native-definitions",
+  "limitations": [
+    "Native definition presence is not live invocation evidence. The active harness owns permissions, models, concurrency and delegation.",
+    "When delegation is unavailable, use selected role instructions sequentially and report it; builder-context review is not independent.",
+    "Zed external ACP agents use their native configuration; Zed parallel threads are not an automatic delegation API."
+  ]
+}

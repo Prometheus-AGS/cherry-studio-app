@@ -120,16 +120,12 @@ function createStalledClient() {
   return client;
 }
 
-it('reports through the platform channel once consent is in place', async () => {
+it('never activates while analytics reporting is disabled, even with consent in place', async () => {
   const { client } = await startService();
 
-  expect(analyticsClientMock).toHaveBeenCalledTimes(1);
-  expect(analyticsClientMock.mock.calls[0][0]).toMatchObject({
-    channel: 'cherry-studio-ios',
-    clientId: LOCAL_CLIENT_ID,
-  });
-  expect(client.trackAppLaunch).toHaveBeenCalledTimes(1);
-  expect(client.trackAppUpdate).toHaveBeenCalledTimes(1);
+  expect(analyticsClientMock).not.toHaveBeenCalled();
+  expect(client.trackAppLaunch).not.toHaveBeenCalled();
+  expect(client.trackAppUpdate).not.toHaveBeenCalled();
 });
 
 it('collects nothing while the accepted policy is out of date', async () => {
@@ -146,12 +142,13 @@ it('collects nothing while the accepted policy is out of date', async () => {
   expect(client.trackTokenUsage).not.toHaveBeenCalled();
 });
 
-it('discards queued events when consent is revoked, and keeps the launch report once', async () => {
+it('stays inactive across consent changes while analytics reporting is disabled', async () => {
   const { client, preference, service } = await startService();
 
   await preference.set('app.privacy.data_collection.enabled', false as never);
   await settle();
-  expect(client.destroy).toHaveBeenCalledWith(expect.objectContaining({ flush: false }));
+  // Nothing was ever activated, so there is nothing to destroy.
+  expect(client.destroy).not.toHaveBeenCalled();
 
   service.trackTokenUsage({
     input_tokens: 1,
@@ -163,8 +160,7 @@ it('discards queued events when consent is revoked, and keeps the launch report 
 
   await preference.set('app.privacy.data_collection.enabled', true as never);
   await settle();
-  // A relaunch report per process, not per activation.
-  expect(client.trackAppLaunch).toHaveBeenCalledTimes(1);
+  expect(client.trackAppLaunch).not.toHaveBeenCalled();
 });
 
 it('reports activity at most once a day', async () => {
@@ -175,16 +171,14 @@ it('reports activity at most once a day', async () => {
   expect(client.trackAppUpdate).not.toHaveBeenCalled();
 });
 
-it('drains events under the old identity before adopting the desktop one', async () => {
+it('adopts the paired desktop identity locally without a live client to drain', async () => {
   const { client, preference, service } = await startService();
 
   await service.adoptClientId(DESKTOP_CLIENT_ID);
 
-  expect(client.flush).toHaveBeenCalled();
-  expect(client.flush.mock.invocationCallOrder[0]).toBeLessThan(
-    client.setClientId.mock.invocationCallOrder[0],
-  );
-  expect(client.setClientId).toHaveBeenCalledWith(DESKTOP_CLIENT_ID);
+  // No client is ever active while analytics reporting is disabled.
+  expect(client.flush).not.toHaveBeenCalled();
+  expect(client.setClientId).not.toHaveBeenCalled();
   expect(preference.values['app.user.id']).toBe(DESKTOP_CLIENT_ID);
 });
 
@@ -197,23 +191,23 @@ it('ignores an unusable or unchanged desktop identity', async () => {
   expect(client.setClientId).not.toHaveBeenCalled();
 });
 
-it('activates and tears down while the activity ping is still unanswered', async () => {
+it('never pings activity while analytics reporting is disabled, even with a stalled client available', async () => {
   const { client, preference } = await startService({ client: createStalledClient() });
 
-  expect(client.trackAppUpdate).toHaveBeenCalledTimes(1);
+  expect(client.trackAppUpdate).not.toHaveBeenCalled();
 
   await preference.set('app.privacy.data_collection.enabled', false as never);
   await settle();
 
-  expect(client.destroy).toHaveBeenCalledWith(expect.objectContaining({ flush: false }));
+  expect(client.destroy).not.toHaveBeenCalled();
 });
 
-it('reports the day once when foreground events overlap an unanswered ping', async () => {
+it('ignores foreground events while analytics reporting is disabled', async () => {
   const { changeAppState, client } = await startService({ client: createStalledClient() });
 
   changeAppState('active');
   changeAppState('active');
   await settle();
 
-  expect(client.trackAppUpdate).toHaveBeenCalledTimes(1);
+  expect(client.trackAppUpdate).not.toHaveBeenCalled();
 });

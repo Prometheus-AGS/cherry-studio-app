@@ -57,7 +57,10 @@ module.exports = (config) => {
       }
       writePlist(path.join(directory, 'Info.plist'), {
         CFBundleDevelopmentRegion: 'en',
-        CFBundleDisplayName: 'Cherry Studio',
+        // Literal, not imported: this file is plain CommonJS with no TypeScript loader
+        // registered when Expo resolves config plugins standalone. Source of truth is
+        // PRODUCT_NAME in src/shared/branding/branding.ts — keep this in sync with it.
+        CFBundleDisplayName: 'The Boss',
         CFBundleExecutable: '$(EXECUTABLE_NAME)',
         CFBundleIdentifier: '$(PRODUCT_BUNDLE_IDENTIFIER)',
         CFBundleInfoDictionaryVersion: '6.0',

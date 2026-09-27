@@ -82,7 +82,7 @@ function ContentStateFrame({
             <Text
               className={cn(
                 isCentered ? 'text-center' : 'text-left',
-                'font-semibold',
+                'font-display font-semibold',
                 isProminent ? 'text-lg' : 'text-base',
                 kind === 'error' ? 'text-error' : 'text-foreground',
               )}
@@ -95,7 +95,7 @@ function ContentStateFrame({
             <Text
               className={cn(
                 isCentered ? 'text-center' : 'text-left',
-                'text-muted-foreground text-sm',
+                'font-body text-muted-foreground text-sm',
               )}
               selectable
             >

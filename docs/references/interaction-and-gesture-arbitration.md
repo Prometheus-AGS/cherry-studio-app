@@ -5,7 +5,7 @@
 > This document defines the target interaction contract. Conformance must be verified at each
 > implementation boundary.
 
-This reference defines how Cherry Studio Mobile distinguishes tap, long press, scrolling,
+This reference defines how The Boss Mobile distinguishes tap, long press, scrolling,
 app-defined pan gestures, system gestures, and native text selection. It is written for both people
 reviewing interaction behavior and agents changing UI code. It does not inventory feature-specific
 behavior, affected components, or current implementation gaps; track those in the relevant issue,

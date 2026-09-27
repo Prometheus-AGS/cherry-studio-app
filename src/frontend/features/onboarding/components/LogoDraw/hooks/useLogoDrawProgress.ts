@@ -9,7 +9,7 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 
-import { checkSpringConfig, LOGO_DRAW_SEGMENTS, logoDrawTiming } from '../utils/constants';
+import { hubSpringConfig, LOGO_DRAW_SEGMENTS, logoDrawTiming } from '../utils/constants';
 
 type UseLogoDrawProgressOptions = {
   /** Master progress the timeline drives (or only observes when controlled). */
@@ -23,9 +23,10 @@ type UseLogoDrawProgressOptions = {
 };
 
 /**
- * Drives the master progress: the orange phase is one ease-in-out ramp up to
- * the check segment, then a spring lands (and slightly overshoots) the green
- * check. Returns `play`, which (re)starts the timeline from zero.
+ * Drives the master progress: the spokes-and-hexagon phase is one
+ * ease-in-out ramp up to the hub segment, then a spring lands (and slightly
+ * overshoots) the center hub. Returns `play`, which (re)starts the timeline
+ * from zero.
  *
  * In controlled mode nothing is driven; `onSettle` fires each time the
  * external progress crosses 1 from below.
@@ -51,8 +52,8 @@ export function useLogoDrawProgress({
     cancelAnimation(progress);
     progress.value = 0;
     progress.value = withSequence(
-      withTiming(LOGO_DRAW_SEGMENTS.check.from, logoDrawTiming),
-      withSpring(1, checkSpringConfig, (settled) => {
+      withTiming(LOGO_DRAW_SEGMENTS.hub.from, logoDrawTiming),
+      withSpring(1, hubSpringConfig, (settled) => {
         if (settled) {
           runOnJS(settle)();
         }

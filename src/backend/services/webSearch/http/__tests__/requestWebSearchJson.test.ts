@@ -2,6 +2,7 @@ import * as z from 'zod';
 
 import { createHttpClient, type HttpClient } from '@/backend/services/http';
 import { defaultAppHeaders } from '@/backend/utils/defaultAppHeaders';
+import { USER_AGENT_NAME } from '@/shared/branding';
 
 import { requestWebSearchJson } from '../requestWebSearchJson';
 
@@ -10,7 +11,7 @@ jest.mock('@/backend/services/http', () => ({
   createHttpClient: jest.fn(),
 }));
 jest.mock('@/backend/utils/defaultAppHeaders', () => ({
-  defaultAppHeaders: jest.fn(() => ({ 'X-App-Name': 'CherryStudioMobile' })),
+  defaultAppHeaders: jest.fn(() => ({ 'X-App-Name': 'TheBossMobile' })),
 }));
 
 const createHttpClientMock = jest.mocked(createHttpClient);
@@ -59,7 +60,7 @@ describe('requestWebSearchJson', () => {
     expect(defaultAppHeadersMock).toHaveBeenCalledTimes(1);
     expect(createHttpClientMock).toHaveBeenCalledWith({
       baseUrl: 'https://search.example.com',
-      headers: { 'X-App-Name': 'CherryStudioMobile' },
+      headers: { 'X-App-Name': USER_AGENT_NAME },
     });
     expect(requestMock).toHaveBeenCalledWith({
       errorDecoder: expect.any(Function),

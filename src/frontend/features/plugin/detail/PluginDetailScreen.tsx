@@ -116,7 +116,7 @@ function PluginDetail({ pluginId }: { pluginId: PluginId }) {
             >
               {t('common.retry')}
             </Button>
-          ) : entry && !isLoading ? (
+          ) : entry && !isLoading && !entry.disabledReason ? (
             <Button
               size="lg"
               disabled={isDisconnecting}
@@ -148,6 +148,11 @@ function PluginDetail({ pluginId }: { pluginId: PluginId }) {
                 </Text>
               </View>
             )}
+            {entry?.disabledReason ? (
+              <Text className="text-sm text-muted-foreground">
+                {t(`plugins.disabledReasons.${entry.disabledReason}`)}
+              </Text>
+            ) : null}
             {connection ? (
               <View className="gap-3 rounded-2xl bg-secondary p-5">
                 <View className="flex-row items-center gap-2">

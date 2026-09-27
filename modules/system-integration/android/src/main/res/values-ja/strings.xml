@@ -1,0 +1,8 @@
+<resources>
+  <string name="cherry_share_title">The Boss に共有</string>
+  <string name="cherry_share_continue">The Boss で続ける</string>
+  <string name="cherry_share_close">閉じる</string>
+  <string name="cherry_share_confirm">The Boss が新しいチャットの入力欄にこの内容を入れます。編集して送信してください。</string>
+  <string name="cherry_share_preparing">共有コンテンツを準備しています…</string>
+  <string name="cherry_share_failed">この共有内容を読み取れませんでした。最大10個のファイル（各25MB、合計50MB）を共有してもう一度お試しください。</string>
+</resources>

@@ -1,5 +1,6 @@
 import type { ListToolsResult } from '@ai-sdk/mcp';
 
+import { PRODUCT_NAME } from '@/shared/branding';
 import { PluginError } from '@/shared/contracts/plugins';
 
 import type { PluginCredential } from '../../authorization/pluginCredential';
@@ -184,7 +185,7 @@ export async function createDingtalkClient(context: PluginClientContext): Promis
     return { tools };
   }
   return {
-    serverInfo: { name: 'Cherry Studio Dingtalk', version: '1' },
+    serverInfo: { name: `${PRODUCT_NAME} Dingtalk`, version: '1' },
     get discoveryWarnings() {
       return warnings;
     },

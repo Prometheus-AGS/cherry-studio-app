@@ -1,4 +1,4 @@
-# Cherry Studio Mobile Documentation
+# The Boss Mobile Documentation
 
 This directory is the entry point for project-owned documentation.
 
@@ -9,7 +9,7 @@ Guides are task-oriented procedures for changing or extending the application.
 | Document | Description |
 | --- | --- |
 | [Development](./guides/development.md) | Set up the environment, run the development client, and find validation and packaging guides |
-| [Extending Cherry Mobile](./guides/extending.md) | Add resource endpoints, workflows, persistence, backend behavior, and UI |
+| [Extending The Boss Mobile](./guides/extending.md) | Add resource endpoints, workflows, persistence, backend behavior, and UI |
 | [Git Workflow](./guides/git-workflow.md) | Commits, stacked PRs, review readiness, and case-only renames |
 | [Internationalization](./guides/internationalization.md) | Supported languages, shared resolution, translation resources, and PR checks |
 | [GitHub Plugin Authorization](./guides/github-plugin-authorization.md) | Publisher OAuth App configuration, in-app browser authorization, token renewal, and acceptance prerequisites |
@@ -73,6 +73,17 @@ Designs describe planned work that is not implemented yet. They become reference
 | Document | Description |
 | --- | --- |
 | [Cross-Device Sync And Remote Control](./webrtc/README.md) | boss-link: iroh transport, device roster, remote control and data sync shared with The Boss desktop (`Status: design`) |
+| [Backend Services Replacement Notes](./backend-services/README.md) | Cherry-operated services and accounts the app depends on, what the rebrand turned off, and what The Boss backend must provide (`Status: planning input`) |
+
+## Fork Maintenance
+
+How this fork consumes upstream Cherry Studio work without losing The Boss identity or fork-only code.
+
+| Document | Description |
+| --- | --- |
+| [Consuming Upstream](./contrib/upstream-merges.md) | Merge and desktop-port procedure, conflict ownership, resolution rules, naming table, values that are not branding, and `pnpm brand:check` |
+| [Fork Surface](./contrib/fork-surface.md) | Every fork-owned path or pattern and the role that resolves merge conflicts in it |
+| [Upstream Merge Log](./contrib/upstream-merge-log.md) | Dated record of each upstream merge, its conflicts and resolutions, and open carry-over items |
 
 ## Documentation Governance
 

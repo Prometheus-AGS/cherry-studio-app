@@ -5,15 +5,21 @@
  * contract. Feature-local and historical migration values stay outside this
  * public runtime contract.
  *
- * ⚠️ 已 fork：本包不再从 Cherry Studio 桌面端镜像任何东西。取值改用 Vercel Brand
- * Guidelines（Geist）色彩体系，token 名字也随之归移动端自有 —— `pnpm design:sync`
- * 现在只同步图标。原先此处的 hex / rgba 字面量一并换成 VBG 的 oklch 取值。
+ * Link, control, brand, border-tier and feedback values follow The Boss Brand
+ * Guide v2.2, ported from desktop (`the-boss` `packages/ui/src/styles/
+ * {product.css,tokens/colors/providers.css,tokens/colors/status-legacy.css}`)
+ * with the oklch values unchanged; the steps live in `tokens/colors/boss.css`.
+ * The product-domain tokens further down (code, chat, tags, usage heat) are
+ * mobile-owned and keep their Vercel (Geist) steps. Token names are
+ * mobile-owned throughout; `pnpm design:sync` still syncs icons only.
  *
- * 每条直接指向 `vercel.css` 的调色板档位，理由同 `shadcn.css`。反馈色此前还多绕
- * 一层：`--success` → `--cs-success` → `--cs-success-base` → `--cs-green-900`，
- * 三跳之后才看得到档位。
+ * Each role points straight at a palette step. The feedback colours used to
+ * take three hops (`--success` → `--cs-success` → `--cs-success-base` →
+ * `--cs-green-900`) before the step was visible.
  *
- * `.dark` 只写真正换档的那两条，其余角色指向的调色板名本身就按主题翻转。
+ * `.dark` states every v2.2 role that changes step, because `boss.css` steps do
+ * not flip with the theme (as on desktop). Roles still on `vercel.css` flip
+ * through the palette itself.
  */
 
 :root {
@@ -21,50 +27,56 @@
   --background-subtle: var(--background-200);
   --foreground-tertiary: var(--gray-800);
   --foreground-disabled: var(--foreground-tertiary);
-  /* 边框四级。Geist 的灰阶不单调 —— 浅色下 `gray-alpha-400`(0.08) 比
-   * `gray-alpha-300`(0.1) 更淡，深色下 `gray-alpha-800`(0.47) 比 `-700`(0.54)
-   * 更淡。若按名字顺序对齐四级边框，浅色模式层级会反转。故跳过 300/400 档，
-   * 取 100/200/500/700，两套主题都单调递增。默认档 `--border` 在 shadcn.css。 */
-  --border-subtle: var(--gray-alpha-100);
-  --border-strong: var(--gray-alpha-500);
-  --border-selected: var(--gray-alpha-700);
-  --link: var(--blue-900);
+  /* Border tiers, per desktop v2.2. The default tier `--border` (solid
+   * #D8DEE6) lives in shadcn.css; these overlays sit either side of it and
+   * stay monotonic in both themes: subtle < border < strong < selected. */
+  --border-subtle: oklch(0 0 0 / 0.04);
+  --border-strong: oklch(0 0 0 / 0.2);
+  --border-selected: oklch(0 0 0 / 0.3);
+  --link: var(--boss-blue-600);
   /* Pressed state for `--secondary` fills. Not a Shadcn name — upstream models
    * interaction states as hover, which a touch surface does not have. */
-  --secondary-active: var(--gray-alpha-300);
-  /* Fixed control fill from desktop's switch brand-600; not a text color. */
-  --control-active: oklch(0.67 0.192 146);
+  --secondary-active: oklch(0 0 0 / 0.15);
+  /* Switch and other "on" control fills. Ember, following the theme's primary
+   * step (brand-500 light, brand-400 dark); not a text colour. */
+  --control-active: var(--primary);
 
-  /* Feedback.
-   * 每个 intent 的 base 档位不同（error/info 取 700，success/warning 取 900），
-   * 这是 VBG 刻意的对比度调校，照搬。subtle 是 100 号浅底，其上的文字用 1000
-   * 号，边框用 400 号。 */
-  --success: var(--green-900);
-  --success-subtle: var(--green-100);
-  --success-subtle-foreground: var(--green-1000);
-  --success-border: var(--green-400);
-  --warning: var(--amber-900);
-  --warning-subtle: var(--amber-100);
-  --warning-subtle-foreground: var(--amber-1000);
-  --warning-border: var(--amber-400);
-  --info: var(--blue-700);
-  --info-subtle: var(--blue-100);
-  --info-subtle-foreground: var(--blue-1000);
-  --info-border: var(--blue-400);
-  /* `--error` 与 shadcn 的 `--destructive` 同为 red-700：前者是反馈语气，后者是
-   * 破坏性操作，语义不同而取值相同。 */
-  --error: var(--red-700);
-  --error-subtle: var(--red-100);
-  --error-subtle-foreground: var(--red-1000);
-  --error-border: var(--red-400);
+  /* Feedback, per desktop v2.2, except the light base colours. Desktop uses
+   * the 500 steps in light, which measure 2.0–3.5:1 on the page; mobile uses
+   * these roles as text, so light takes the lightest step of the same hue ramp
+   * that reaches 4.5:1 on background, card and popover (DEVIATION, see
+   * DEVIATIONS.md). Dark keeps desktop's 400 steps. Each subtle family is a 50
+   * tint with 800 text and a 200 border in light, and a 900 fill with 100 text
+   * and a 700 border in dark. `--error` is a feedback tone and shadcn's
+   * `--destructive` a dangerous action, so their values are chosen separately. */
+  --success: var(--boss-green-700);
+  --success-subtle: var(--boss-green-50);
+  --success-subtle-foreground: var(--boss-green-800);
+  --success-border: var(--boss-green-200);
+  --warning: var(--boss-amber-700);
+  --warning-subtle: var(--boss-amber-50);
+  --warning-subtle-foreground: var(--boss-amber-800);
+  --warning-border: var(--boss-amber-200);
+  --info: var(--boss-blue-600);
+  --info-subtle: var(--boss-blue-50);
+  --info-subtle-foreground: var(--boss-blue-800);
+  --info-border: var(--boss-blue-200);
+  --error: var(--boss-red-700);
+  --error-subtle: var(--boss-red-50);
+  --error-subtle-foreground: var(--boss-red-800);
+  --error-border: var(--boss-red-200);
 
   /* Stable product domain: rich text and code (MarkdownText) */
   --code-block: var(--gray-100);
   --inline-code: var(--gray-alpha-100);
-  --inline-code-foreground: var(--primary);
+  /* Ember text on the 5% inline-code tint. Light uses brand-700 (6.17:1):
+   * primary (brand-600) measures 4.43:1 there and `--link` 4.44:1, both below
+   * 4.5:1. Dark follows primary (5.77:1). See DEVIATIONS.md. */
+  --inline-code-foreground: var(--boss-brand-700);
 
-  /* Fixed logo artwork color. Actions and content must use their semantic roles. */
-  --brand: #ff5757;
+  /* Fixed logo artwork colour: the v2.2 ember brand value (#E04E28), the same
+   * in both themes. Actions and content must use their semantic roles. */
+  --brand: var(--boss-brand-500);
 
   /* Stable product domain: user-message surface (UserMessageItem) */
   --chat-user: var(--gray-alpha-100);
@@ -116,5 +128,30 @@
 }
 
 .dark {
+  --inline-code-foreground: var(--primary);
+
+  --border-subtle: oklch(1 0 0 / 0.05);
+  --border-strong: oklch(1 0 0 / 0.2);
+  --border-selected: oklch(1 0 0 / 0.3);
+  --link: var(--boss-blue-400);
+  --secondary-active: oklch(1 0 0 / 0.25);
+
+  --success: var(--boss-green-400);
+  --success-subtle: var(--boss-green-900);
+  --success-subtle-foreground: var(--boss-green-100);
+  --success-border: var(--boss-green-700);
+  --warning: var(--boss-amber-400);
+  --warning-subtle: var(--boss-amber-900);
+  --warning-subtle-foreground: var(--boss-amber-100);
+  --warning-border: var(--boss-amber-700);
+  --info: var(--boss-blue-400);
+  --info-subtle: var(--boss-blue-900);
+  --info-subtle-foreground: var(--boss-blue-100);
+  --info-border: var(--boss-blue-700);
+  --error: var(--boss-red-400);
+  --error-subtle: var(--boss-red-900);
+  --error-subtle-foreground: var(--boss-red-100);
+  --error-border: var(--boss-red-700);
+
   --chat-background: var(--background);
 }

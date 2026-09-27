@@ -1,17 +1,32 @@
 {
   "expo": {
-    "name": "Cherry Studio",
-    "slug": "cherry-studio",
+    "name": "The Boss",
+    "slug": "the-boss-mobile",
     "version": "0.1.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "scheme": "cherrystudio",
+    "scheme": "theboss",
     "userInterfaceStyle": "automatic",
+    "locales": {
+      "de": "./assets/branding/native-locales/de.json",
+      "el": "./assets/branding/native-locales/el.json",
+      "en": "./assets/branding/native-locales/en.json",
+      "es": "./assets/branding/native-locales/es.json",
+      "fr": "./assets/branding/native-locales/fr.json",
+      "ja": "./assets/branding/native-locales/ja.json",
+      "pt-PT": "./assets/branding/native-locales/pt-PT.json",
+      "ro": "./assets/branding/native-locales/ro.json",
+      "ru": "./assets/branding/native-locales/ru.json",
+      "tr": "./assets/branding/native-locales/tr.json",
+      "vi": "./assets/branding/native-locales/vi.json",
+      "zh-Hans": "./assets/branding/native-locales/zh-Hans.json",
+      "zh-Hant": "./assets/branding/native-locales/zh-Hant.json"
+    },
     "ios": {
       "supportsTablet": true,
       "requireFullScreen": false,
       "icon": "./assets/icon.png",
-      "bundleIdentifier": "com.cherryai.cherrystudio-app",
+      "bundleIdentifier": "tools.know-me.the-boss",
       "appleTeamId": "87242QY66T",
       "privacyManifests": {
         "NSPrivacyTracking": false,
@@ -70,7 +85,7 @@
       },
       "entitlements": {
         "com.apple.developer.healthkit": true,
-        "com.apple.security.application-groups": ["group.com.cherryai.cherrystudio-app"]
+        "com.apple.security.application-groups": ["group.tools.know-me.the-boss"]
       },
       "infoPlist": {
         "UISupportedInterfaceOrientations~ipad": [
@@ -79,10 +94,10 @@
           "UIInterfaceOrientationLandscapeLeft",
           "UIInterfaceOrientationLandscapeRight"
         ],
-        "NSCalendarsWriteOnlyAccessUsageDescription": "Allow Cherry Studio to add calendar events when you ask the assistant.",
-        "NSHealthShareUsageDescription": "Allow Cherry Studio to read selected health and fitness data when you ask the assistant.",
-        "NSHealthUpdateUsageDescription": "Cherry Studio reads selected Apple Health data to answer your health and fitness questions. It does not save or modify data in Apple Health.",
-        "NSLocalNetworkUsageDescription": "Allow Cherry Studio to connect to the Cherry Studio desktop app, AI providers, and MCP servers on your local network.",
+        "NSCalendarsWriteOnlyAccessUsageDescription": "Allow The Boss to add calendar events when you ask the assistant.",
+        "NSHealthShareUsageDescription": "Allow The Boss to read selected health and fitness data when you ask the assistant.",
+        "NSHealthUpdateUsageDescription": "The Boss reads selected Apple Health data to answer your health and fitness questions. It does not save or modify data in Apple Health.",
+        "NSLocalNetworkUsageDescription": "Allow The Boss to connect to The Boss desktop app, AI providers, and MCP servers on your local network.",
         "NSBonjourServices": ["_cherry-remote._tcp"],
         "NSAppTransportSecurity": {
           "NSAllowsLocalNetworking": true
@@ -94,9 +109,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#F65D5D"
+        "backgroundColor": "#111827"
       },
-      "package": "com.cherryai.cherrystudio_app",
+      "package": "tools.know_me.the_boss",
       "predictiveBackGestureEnabled": false,
       "blockedPermissions": [
         "android.permission.RECORD_AUDIO",
@@ -124,20 +139,12 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/cherry-studio-logo.png"
+          "icon": "./assets/branding/notification-icon.png"
         }
       ],
       "./scripts/withAndroidBackgroundGeneration.js",
       "./scripts/withSystemIntegration.js",
       "./scripts/withTabletOrientation.js",
-      [
-        "@sentry/react-native/expo",
-        {
-          "url": "https://sentry.io/",
-          "organization": "cherryai",
-          "project": "cherry-studio-app"
-        }
-      ],
       [
         "expo-widgets",
         {
@@ -147,12 +154,12 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#FFFFFF",
-          "image": "./assets/icon.png",
+          "backgroundColor": "#F7F7F8",
+          "image": "./assets/branding/splash-logo.png",
           "imageWidth": 96,
           "resizeMode": "contain",
           "dark": {
-            "backgroundColor": "#000000"
+            "backgroundColor": "#0B0F14"
           }
         }
       ],
@@ -161,7 +168,7 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Allow Cherry Studio to scan desktop pairing QR codes and take photos for chat messages and drawings.",
+          "cameraPermission": "Allow The Boss to scan desktop pairing QR codes and take photos for chat messages and drawings.",
           "microphonePermission": false,
           "recordAudioAndroid": false,
           "barcodeScannerEnabled": true
@@ -170,8 +177,8 @@
       [
         "expo-calendar",
         {
-          "calendarPermission": "Allow Cherry Studio to access calendars when you ask the assistant.",
-          "remindersPermission": "Allow Cherry Studio to access reminders when you ask the assistant."
+          "calendarPermission": "Allow The Boss to access calendars when you ask the assistant.",
+          "remindersPermission": "Allow The Boss to access reminders when you ask the assistant."
         }
       ],
       [
@@ -182,31 +189,38 @@
           "isIosBackgroundLocationEnabled": false,
           "locationAlwaysAndWhenInUsePermission": false,
           "locationAlwaysPermission": false,
-          "motionUsagePermission": "Cherry Studio does not read or track your motion and fitness activity. This permission description is required by the location service included in the app.",
-          "locationWhenInUsePermission": "Allow Cherry Studio to use your location when you ask the assistant."
+          "motionUsagePermission": "The Boss does not read or track your motion and fitness activity. This permission description is required by the location service included in the app.",
+          "locationWhenInUsePermission": "Allow The Boss to use your location when you ask the assistant."
         }
       ],
       "expo-document-picker",
       [
         "expo-font",
         {
-          "fonts": ["./assets/fonts/GeistMono-Regular.ttf"]
+          "fonts": [
+            "./assets/fonts/SpaceGrotesk-SemiBold.ttf",
+            "./assets/fonts/Inter-Regular.ttf",
+            "./assets/fonts/Inter-Medium.ttf",
+            "./assets/fonts/Roboto-Regular.ttf",
+            "./assets/fonts/JetBrainsMono-Regular.ttf",
+            "./assets/fonts/JetBrainsMono-SemiBold.ttf"
+          ]
         }
       ],
       "expo-image",
       [
         "expo-image-picker",
         {
-          "photosPermission": "Allow Cherry Studio to preview and select photos for drawings and chat messages.",
-          "cameraPermission": "Allow Cherry Studio to scan desktop pairing QR codes and take photos for chat messages and drawings.",
+          "photosPermission": "Allow The Boss to preview and select photos for drawings and chat messages.",
+          "cameraPermission": "Allow The Boss to scan desktop pairing QR codes and take photos for chat messages and drawings.",
           "microphonePermission": false
         }
       ],
       [
         "expo-media-library",
         {
-          "photosPermission": "Allow Cherry Studio to preview photos for drawings and chat messages.",
-          "savePhotosPermission": "Allow Cherry Studio to save photos.",
+          "photosPermission": "Allow The Boss to preview photos for drawings and chat messages.",
+          "savePhotosPermission": "Allow The Boss to save photos.",
           "preventAutomaticLimitedAccessAlert": true,
           "granularPermissions": ["photo"]
         }
@@ -238,16 +252,15 @@
     },
     "extra": {
       "eas": {
-        "projectId": "80096eaf-3ad0-4b87-a466-15f04da1bacc",
         "build": {
           "experimental": {
             "ios": {
               "appExtensions": [
                 {
                   "targetName": "ExpoWidgetsTarget",
-                  "bundleIdentifier": "com.cherryai.cherrystudio-app.ExpoWidgetsTarget",
+                  "bundleIdentifier": "tools.know-me.the-boss.ExpoWidgetsTarget",
                   "entitlements": {
-                    "com.apple.security.application-groups": ["group.com.cherryai.cherrystudio-app"]
+                    "com.apple.security.application-groups": ["group.tools.know-me.the-boss"]
                   }
                 }
               ]

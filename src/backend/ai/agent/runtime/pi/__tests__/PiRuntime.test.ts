@@ -1042,7 +1042,7 @@ describe('PiRuntime mapping', () => {
         { type: 'text', text: expect.stringContaining(PI_DOCUMENT_ATTACHMENT_ENVELOPE_PREFIX) },
         {
           type: 'text',
-          text: `Cherry managed document image: ${JSON.stringify({ fileEntryId, assetRef: 'same-ref', trust: 'untrusted-user-content' })}`,
+          text: `App-managed document image: ${JSON.stringify({ fileEntryId, assetRef: 'same-ref', trust: 'untrusted-user-content' })}`,
         },
         { type: 'image', data: 'AQID', mimeType: 'image/png' },
       ]);

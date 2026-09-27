@@ -27,7 +27,7 @@ jest.mock('../githubOauth', () => {
 const application = {
   clientId: 'cherry_oauth_client',
   clientSecret: 'public-client-secret',
-  redirectUrl: 'cherrystudio-dev://plugins/github/callback' as const,
+  redirectUrl: 'theboss-dev://plugins/github/callback' as const,
 };
 const tokens = {
   accessToken: 'private-access',
@@ -127,7 +127,7 @@ it('consumes a callback once even when the authentication session and route deli
 });
 
 it.each([
-  callback.replace('cherrystudio-dev:', 'https:'),
+  callback.replace('theboss-dev:', 'https:'),
   callback.replace('/callback', '/callback/other'),
   callback.replace('private-state', 'wrong-state'),
   `${callback}&state=private-state`,

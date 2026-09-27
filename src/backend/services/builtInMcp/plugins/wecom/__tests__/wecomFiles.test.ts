@@ -86,7 +86,7 @@ it('permits restored attachments only from the selected storage generation', asy
   );
   call.mockClear();
   await expect(prepareWecomFiles(api, schema, { file: uri }, signal())).rejects.toThrow(
-    'Only Cherry attachments',
+    'Only The Boss attachments',
   );
   expect(call).not.toHaveBeenCalled();
 });

@@ -3,7 +3,7 @@
 > Status: design for general Skills. Skill persistence, importing, and Agent-to-Skill bindings are not
 > implemented. Bundled plugin guides are implemented separately as described below.
 
-Cherry Mobile Skills are application-owned instruction resources designed for the mobile Agent
+The Boss Mobile Skills are application-owned instruction resources designed for the mobile Agent
 surface. Agent configuration selects which Skills are enabled. For each Session turn, the Host
 resolves that current configuration and provides only the enabled, mobile-supported Skills; it never
 loads the application's entire Skill catalog into the Session.
@@ -18,7 +18,7 @@ Mobile Agent Host
 Pi Runtime
 ```
 
-Cherry owns Skill storage, validation, attribution, enablement, and user-facing compatibility
+The Boss owns Skill storage, validation, attribution, enablement, and user-facing compatibility
 status. The Host resolves the current Agent's enabled Skills before execution. Pi receives only the
 prepared instruction context and does not read Skill persistence directly.
 
@@ -36,8 +36,8 @@ available for data and backup parity, but retention does not make their content 
 mobile Runtime.
 
 A future importer may adopt compatible `SKILL.md` conventions, but it must document the exact
-mobile subset and report unsupported content explicitly. This document does not promise full Cherry
-Desktop or open-ecosystem Skill compatibility.
+mobile subset and report unsupported content explicitly. This document does not promise full upstream
+Cherry Studio desktop or open-ecosystem Skill compatibility.
 
 The initial product scope exposes Skill-enabled Agents only with models that support native tool
 calling. Product behavior for other models is deferred and must fail clearly rather than silently

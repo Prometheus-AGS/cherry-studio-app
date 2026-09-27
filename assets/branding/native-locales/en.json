@@ -1,0 +1,17 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Allow The Boss to scan desktop pairing QR codes and take photos for chat messages and drawings.",
+    "NSCalendarsUsageDescription": "Allow The Boss to access calendars when you ask the assistant.",
+    "NSCalendarsFullAccessUsageDescription": "Allow The Boss to access calendars when you ask the assistant.",
+    "NSCalendarsWriteOnlyAccessUsageDescription": "Allow The Boss to add calendar events when you ask the assistant.",
+    "NSRemindersUsageDescription": "Allow The Boss to access reminders when you ask the assistant.",
+    "NSRemindersFullAccessUsageDescription": "Allow The Boss to access reminders when you ask the assistant.",
+    "NSMotionUsageDescription": "The Boss does not read or track your motion and fitness activity. This permission description is required by the location service included in the app.",
+    "NSLocationWhenInUseUsageDescription": "Allow The Boss to use your location when you ask the assistant.",
+    "NSPhotoLibraryUsageDescription": "Allow The Boss to preview and select photos for drawings and chat messages.",
+    "NSPhotoLibraryAddUsageDescription": "Allow The Boss to save photos.",
+    "NSHealthShareUsageDescription": "Allow The Boss to read selected health and fitness data when you ask the assistant.",
+    "NSHealthUpdateUsageDescription": "The Boss reads selected Apple Health data to answer your health and fitness questions. It does not save or modify data in Apple Health.",
+    "NSLocalNetworkUsageDescription": "Allow The Boss to connect to The Boss desktop app, AI providers, and MCP servers on your local network."
+  }
+}

@@ -8,7 +8,7 @@ import { getGithubApplication, githubOauth } from '../githubOauth';
 
 jest.mock('expo-constants', () => ({
   __esModule: true,
-  default: { expoConfig: { scheme: 'cherrystudio-dev' } },
+  default: { expoConfig: { scheme: 'theboss-dev' } },
 }));
 
 const mockRequest = jest.fn();
@@ -29,7 +29,7 @@ jest.mock('expo-crypto', () => ({
 const application = {
   clientId: 'cherry_oauth_client',
   clientSecret: 'public-client-secret',
-  redirectUrl: 'cherrystudio-dev://plugins/github/callback' as const,
+  redirectUrl: 'theboss-dev://plugins/github/callback' as const,
 };
 const originalOauthEnv = [
   'EXPO_PUBLIC_GITHUB_OAUTH_CLIENT_ID',

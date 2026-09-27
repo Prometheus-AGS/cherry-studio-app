@@ -1,0 +1,8 @@
+<resources>
+  <string name="cherry_share_title">Partilhar com o The Boss</string>
+  <string name="cherry_share_continue">Continuar no The Boss</string>
+  <string name="cherry_share_close">Fechar</string>
+  <string name="cherry_share_confirm">O The Boss coloca isto no campo de introdução de uma nova conversa, pronto para editar e enviar.</string>
+  <string name="cherry_share_preparing">A preparar o conteúdo partilhado…</string>
+  <string name="cherry_share_failed">Não foi possível ler esta partilha. Partilhe até 10 ficheiros (25 MB cada, 50 MB no total) e tente novamente.</string>
+</resources>

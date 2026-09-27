@@ -147,7 +147,7 @@ describe('AgentService persistence', () => {
     const initial = await agentService.createInitialAgent({ name: 'Cherry Agent' });
 
     expect(initial).toMatchObject({
-      avatar: '🍒',
+      avatar: '🤖',
       name: 'Cherry Agent',
       toolApprovalMode: 'auto',
     });
@@ -156,16 +156,16 @@ describe('AgentService persistence', () => {
 
     await agentService.update(initial!.id, { name: 'My Assistant' });
     expect(await agentService.getById(initial!.id)).toMatchObject({
-      avatar: '🍒',
+      avatar: '🤖',
       name: 'My Assistant',
     });
   });
 
-  it('persists the Cherry avatar when onboarding creates a replacement Agent', async () => {
-    const agent = await agentService.create({ avatar: '🍒', name: 'Cherry 小助手' });
+  it('persists the default avatar when onboarding creates a replacement Agent', async () => {
+    const agent = await agentService.create({ avatar: '🤖', name: 'Cherry 小助手' });
 
     expect(await agentService.getById(agent.id)).toMatchObject({
-      avatar: '🍒',
+      avatar: '🤖',
       avatarUri: null,
       toolApprovalMode: 'auto',
     });

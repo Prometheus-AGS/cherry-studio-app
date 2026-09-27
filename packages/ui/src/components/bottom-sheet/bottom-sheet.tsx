@@ -245,7 +245,7 @@ export function BottomSheet(props: BottomSheetProps) {
             <Text
               accessibilityRole="header"
               className={cn(
-                'min-w-0 font-semibold text-foreground text-lg',
+                'min-w-0 font-display font-semibold text-foreground text-lg',
                 isCloseActionVisible ? 'shrink px-2 text-center' : 'flex-1',
               )}
               numberOfLines={2}

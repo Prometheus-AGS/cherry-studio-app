@@ -1,4 +1,4 @@
-import { Canvas, Group, Mask, Path } from '@shopify/react-native-skia';
+import { Canvas, Circle, Group, Path } from '@shopify/react-native-skia';
 import { type Ref, useCallback, useImperativeHandle, useState } from 'react';
 import {
   Extrapolation,
@@ -10,25 +10,26 @@ import {
 
 import { useLogoDrawProgress } from '../hooks/useLogoDrawProgress';
 import {
-  CHECK_MASK_STROKE_WIDTH,
-  CHECK_OVERSHOOT_RANGE,
-  CHECK_OVERSHOOT_SCALE,
+  CROWN_NODE_RADIUS,
+  HUB_OVERSHOOT_RANGE,
+  HUB_OVERSHOOT_SCALE,
+  HUB_RADIUS,
   LOGO_ASPECT_RATIO,
   LOGO_DRAW_SEGMENTS,
   LOGO_VIEWBOX_HEIGHT,
-  LOGO_VIEWBOX_INSET,
-  SWIRL_MASK_STROKE_WIDTH,
+  SHADOW_NODE_RADIUS,
+  SHADOW_NODE_RING_WIDTH,
+  SPOKE_STROKE_WIDTH,
 } from '../utils/constants';
 import { segmentProgress } from '../utils/logoDrawMath';
 import { logoBrandColors } from '../utils/logoPalette';
 import {
-  CHECK_CENTERLINE,
-  CHECK_FILL,
-  CHECK_PIVOT,
-  SWIRL_LEFT_CENTERLINE,
-  SWIRL_LEFT_FILL,
-  SWIRL_RIGHT_CENTERLINE,
-  SWIRL_RIGHT_FILL,
+  CROWN_NODES,
+  CROWN_SPOKES,
+  HEX_CENTER,
+  HEX_FILL,
+  SHADOW_NODES,
+  SHADOW_SPOKES,
 } from '../utils/logoPaths';
 
 export type LogoDrawAnimationRef = {
@@ -55,12 +56,12 @@ export type LogoDrawAnimationProps = {
 };
 
 /**
- * Paint-on reveal of the brand logo: the two orange swirls draw first as one
- * continuous gesture (their pen caps interlock), then the green check lands
- * with a spring. Each fill path is revealed through an alpha mask whose
- * content is a thick round-cap stroke growing along the reconstructed pen
- * centerline (`utils/logoPaths.ts`); all per-frame work stays on the UI
- * thread via Skia's Reanimated integration.
+ * Paint-on reveal of The Boss mark: the six spokes draw outward from the
+ * hub as one continuous gesture (crown then shadow), the hexagon fill
+ * settles into place, and the center hub lands with a spring. The spokes
+ * are real strokes, so their reveal trims the path itself (Skia `end`);
+ * all per-frame work stays on the UI thread via Skia's Reanimated
+ * integration.
  */
 export function LogoDrawAnimation({
   size,
@@ -97,114 +98,174 @@ export function LogoDrawAnimation({
 
   useImperativeHandle(ref, () => ({ play: replay, replay }), [replay]);
 
-  const leftTrim = useDerivedValue(
+  const crownTrim = useDerivedValue(
     () =>
       segmentProgress(
         master.value,
-        LOGO_DRAW_SEGMENTS.swirlLeft.from,
-        LOGO_DRAW_SEGMENTS.swirlLeft.to,
+        LOGO_DRAW_SEGMENTS.crownSpokes.from,
+        LOGO_DRAW_SEGMENTS.crownSpokes.to,
       ),
     [master],
   );
-  const rightTrim = useDerivedValue(
+  const shadowTrim = useDerivedValue(
     () =>
       segmentProgress(
         master.value,
-        LOGO_DRAW_SEGMENTS.swirlRight.from,
-        LOGO_DRAW_SEGMENTS.swirlRight.to,
+        LOGO_DRAW_SEGMENTS.shadowSpokes.from,
+        LOGO_DRAW_SEGMENTS.shadowSpokes.to,
       ),
     [master],
   );
-  const checkTrim = useDerivedValue(
-    () => segmentProgress(master.value, LOGO_DRAW_SEGMENTS.check.from, LOGO_DRAW_SEGMENTS.check.to),
+  const hexTrim = useDerivedValue(
+    () =>
+      segmentProgress(master.value, LOGO_DRAW_SEGMENTS.hexagon.from, LOGO_DRAW_SEGMENTS.hexagon.to),
     [master],
   );
-  // The landing spring overshoots past 1; the check group converts that tail
-  // into a small scale rebound around the tick's center.
-  const checkTransform = useDerivedValue(() => {
+  const hubTrim = useDerivedValue(
+    () => segmentProgress(master.value, LOGO_DRAW_SEGMENTS.hub.from, LOGO_DRAW_SEGMENTS.hub.to),
+    [master],
+  );
+  // The landing spring overshoots past 1; the hub converts that tail into a
+  // small scale rebound around the hub's own center.
+  const hubTransform = useDerivedValue(() => {
     const scale = interpolate(
       master.value,
-      [1, 1 + CHECK_OVERSHOOT_RANGE],
-      [1, CHECK_OVERSHOOT_SCALE],
+      [1, 1 + HUB_OVERSHOOT_RANGE],
+      [1, HUB_OVERSHOOT_SCALE],
       Extrapolation.CLAMP,
     );
     return [
-      { translateX: CHECK_PIVOT.x },
-      { translateY: CHECK_PIVOT.y },
-      { scale },
-      { translateX: -CHECK_PIVOT.x },
-      { translateY: -CHECK_PIVOT.y },
+      { translateX: HEX_CENTER.x },
+      { translateY: HEX_CENTER.y },
+      { scale: hubTrim.value * scale },
+      { translateX: -HEX_CENTER.x },
+      { translateY: -HEX_CENTER.y },
     ];
-  }, [master]);
+  }, [master, hubTrim]);
 
   const height = size;
   const width = size * LOGO_ASPECT_RATIO;
-  const fitTransform = [
-    { scale: height / LOGO_VIEWBOX_HEIGHT },
-    { translateX: LOGO_VIEWBOX_INSET },
-    { translateY: LOGO_VIEWBOX_INSET },
-  ];
+  const fitTransform = [{ scale: height / LOGO_VIEWBOX_HEIGHT }];
 
   return (
     <Canvas pointerEvents="none" style={{ height, width }}>
       <Group transform={fitTransform}>
         {finished ? (
           <>
-            <Path color={logoBrandColors.swirl} path={SWIRL_LEFT_FILL} />
-            <Path color={logoBrandColors.swirl} path={SWIRL_RIGHT_FILL} />
-            <Path color={logoBrandColors.check} path={CHECK_FILL} />
+            <Path color={logoBrandColors.hex} path={HEX_FILL} />
+            <Path
+              color={logoBrandColors.crown}
+              path={CROWN_SPOKES}
+              strokeCap="round"
+              strokeJoin="round"
+              strokeWidth={SPOKE_STROKE_WIDTH}
+              style="stroke"
+            />
+            <Path
+              color={logoBrandColors.shadow}
+              path={SHADOW_SPOKES}
+              strokeCap="round"
+              strokeJoin="round"
+              strokeWidth={SPOKE_STROKE_WIDTH}
+              style="stroke"
+            />
+            {CROWN_NODES.map((node) => (
+              <Circle
+                color={logoBrandColors.crown}
+                cx={node.x}
+                cy={node.y}
+                key={`crown-${node.x}-${node.y}`}
+                r={CROWN_NODE_RADIUS}
+              />
+            ))}
+            {SHADOW_NODES.map((node) => (
+              <Group key={`shadow-${node.x}-${node.y}`}>
+                <Circle
+                  color={logoBrandColors.shadow}
+                  cx={node.x}
+                  cy={node.y}
+                  r={SHADOW_NODE_RADIUS}
+                />
+                <Circle
+                  color={logoBrandColors.shadowRing}
+                  cx={node.x}
+                  cy={node.y}
+                  r={SHADOW_NODE_RADIUS}
+                  strokeWidth={SHADOW_NODE_RING_WIDTH}
+                  style="stroke"
+                />
+              </Group>
+            ))}
+            <Circle
+              color={logoBrandColors.hub}
+              cx={HEX_CENTER.x}
+              cy={HEX_CENTER.y}
+              opacity={0.95}
+              r={HUB_RADIUS}
+            />
           </>
         ) : (
           <>
-            <Mask
-              mask={
-                <Path
-                  color="white"
-                  end={leftTrim}
-                  path={SWIRL_LEFT_CENTERLINE}
-                  strokeCap="round"
-                  strokeJoin="round"
-                  strokeWidth={SWIRL_MASK_STROKE_WIDTH}
-                  style="stroke"
+            <Group opacity={hexTrim}>
+              <Path color={logoBrandColors.hex} path={HEX_FILL} />
+            </Group>
+            <Path
+              color={logoBrandColors.crown}
+              end={crownTrim}
+              path={CROWN_SPOKES}
+              strokeCap="round"
+              strokeJoin="round"
+              strokeWidth={SPOKE_STROKE_WIDTH}
+              style="stroke"
+            />
+            <Path
+              color={logoBrandColors.shadow}
+              end={shadowTrim}
+              path={SHADOW_SPOKES}
+              strokeCap="round"
+              strokeJoin="round"
+              strokeWidth={SPOKE_STROKE_WIDTH}
+              style="stroke"
+            />
+            <Group opacity={crownTrim}>
+              {CROWN_NODES.map((node) => (
+                <Circle
+                  color={logoBrandColors.crown}
+                  cx={node.x}
+                  cy={node.y}
+                  key={`crown-${node.x}-${node.y}`}
+                  r={CROWN_NODE_RADIUS}
                 />
-              }
-              mode="alpha"
-            >
-              <Path color={logoBrandColors.swirl} path={SWIRL_LEFT_FILL} />
-            </Mask>
-            <Mask
-              mask={
-                <Path
-                  color="white"
-                  end={rightTrim}
-                  path={SWIRL_RIGHT_CENTERLINE}
-                  strokeCap="round"
-                  strokeJoin="round"
-                  strokeWidth={SWIRL_MASK_STROKE_WIDTH}
-                  style="stroke"
-                />
-              }
-              mode="alpha"
-            >
-              <Path color={logoBrandColors.swirl} path={SWIRL_RIGHT_FILL} />
-            </Mask>
-            <Group transform={checkTransform}>
-              <Mask
-                mask={
-                  <Path
-                    color="white"
-                    end={checkTrim}
-                    path={CHECK_CENTERLINE}
-                    strokeCap="round"
-                    strokeJoin="round"
-                    strokeWidth={CHECK_MASK_STROKE_WIDTH}
+              ))}
+            </Group>
+            <Group opacity={shadowTrim}>
+              {SHADOW_NODES.map((node) => (
+                <Group key={`shadow-${node.x}-${node.y}`}>
+                  <Circle
+                    color={logoBrandColors.shadow}
+                    cx={node.x}
+                    cy={node.y}
+                    r={SHADOW_NODE_RADIUS}
+                  />
+                  <Circle
+                    color={logoBrandColors.shadowRing}
+                    cx={node.x}
+                    cy={node.y}
+                    r={SHADOW_NODE_RADIUS}
+                    strokeWidth={SHADOW_NODE_RING_WIDTH}
                     style="stroke"
                   />
-                }
-                mode="alpha"
-              >
-                <Path color={logoBrandColors.check} path={CHECK_FILL} />
-              </Mask>
+                </Group>
+              ))}
+            </Group>
+            <Group transform={hubTransform}>
+              <Circle
+                color={logoBrandColors.hub}
+                cx={HEX_CENTER.x}
+                cy={HEX_CENTER.y}
+                opacity={0.95}
+                r={HUB_RADIUS}
+              />
             </Group>
           </>
         )}

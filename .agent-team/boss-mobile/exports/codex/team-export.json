@@ -1,0 +1,77 @@
+{
+  "target": "codex",
+  "verification": {
+    "level": "source-verified",
+    "source": "https://learn.chatgpt.com/docs/agent-configuration/subagents",
+    "version": "documentation inspected 2026-09-24",
+    "live": "unverified"
+  },
+  "diagnostics": [
+    "Source-verified serialization only; installed native validation and live execution are unverified.",
+    "Only explicit model IDs are translated. Resolve tier, skill, capability and price policies with agent-team-models before native invocation.",
+    "Standalone agent files are supported. A Codex plugin agents manifest field is not verified; no such field is emitted.",
+    "Role overrides are preserved without native schema certification. Skill IDs refer to separately installed skills; prompt mentions do not install or authorize them."
+  ],
+  "instructions": [
+    "Review staged artifacts before installation. Export grants no execution or registration authority.",
+    "Review and merge .codex/agents and optional .codex/config.toml into the project; config values are native Codex options."
+  ],
+  "files": [
+    {
+      "file": ".codex/agents/boss-mobile-lead.toml",
+      "sha256": "b1958e0cb8e0f6064d65125e8b04d65f08112ac003c801254e2f7160ff0e5cf4"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-product.toml",
+      "sha256": "7a88f8e31459cc9ee4ababeaa2d7f1619177b09c03e294480b433840ce10fe07"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-rebrand.toml",
+      "sha256": "3196f94319c9adab9c18b910c6f7bb3f4ef1b5c64253eb22274d1e56cd7245df"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-upstream.toml",
+      "sha256": "15a55c7286afe58b891be7978e49a5422f5cb155e8dd192dd7227ea973993525"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-rust-ffi.toml",
+      "sha256": "d3a20e7866939fca7b362f1faf4e5de6bd58cb12e2632b5edb49c5f8e27cb446"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-p2p.toml",
+      "sha256": "c64d7bc3ccb6fd4b8152a1b3e4c599dc725f2978427ab877f1e50ea657fa74f0"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-runtime.toml",
+      "sha256": "a7434dc9cedc073004cd3fc262ea0883bab1a633897001668a1430772367b964"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-data.toml",
+      "sha256": "9a126942a1787f3836c2fe04b89d231dfc0ca9315af0ad7901e868cfd0d9f4a5"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-ux.toml",
+      "sha256": "b33d4dfb9fa967e2693e472f391ad97ff33b2771d3091e8361514931837210cf"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-app.toml",
+      "sha256": "136c53caee8605cd1edd636a2d112abff1978f81b25745d37984303f440efbb4"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-release.toml",
+      "sha256": "2b2583615c6156925e24f0d5c8a1f9bd41617ce80a1c7d1f694a3d14fa4cd7be"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-security.toml",
+      "sha256": "77ec3deafe761004014fc56da6fd518d5201d638dbdad8ae084826d6fbbe19d4"
+    },
+    {
+      "file": ".codex/agents/boss-mobile-verifier.toml",
+      "sha256": "bf58fe757e07b1ad5ca255f9380e7a1c3af0536cabfb4c9ee750c7da8f9f29e7"
+    },
+    {
+      "file": "export-receipt.json",
+      "sha256": "fa3d430e2344f301f5a645ba2eebb82be61e103a6db966218afc08de6c04cf5e"
+    }
+  ]
+}

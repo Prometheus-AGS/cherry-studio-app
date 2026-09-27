@@ -1,8 +1,11 @@
 <p align="center">
-  <img src="assets/cherry-studio-logo.png" width="100" height="100" alt="Cherry Studio logo" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/branding/logo-dark.png" />
+    <img src="assets/branding/logo-light.png" width="320" alt="The Boss logo" />
+  </picture>
 </p>
 
-<h1 align="center">Cherry Studio Mobile</h1>
+<h1 align="center">The Boss (mobile)</h1>
 
 <p align="center">
   <strong>Your AI workspace on iOS and Android.</strong><br />
@@ -10,11 +13,12 @@
 </p>
 
 <p align="center">
+  <a href="https://the-boss.know-me.tools">Website</a> ·
   <a href="#features">Features</a> ·
   <a href="docs/guides/development.md">Development</a> ·
   <a href="docs/README.md">Documentation</a> ·
-  <a href="https://github.com/CherryHQ/cherry-studio-app/issues/new/choose">Feedback</a> ·
-  <a href="https://github.com/CherryHQ/cherry-studio">Desktop</a>
+  <a href="https://github.com/Prometheus-AGS/the-boss-mobile/issues">Issues</a> ·
+  <a href="https://github.com/Prometheus-AGS/the-boss">Desktop</a>
 </p>
 
 <p align="center">
@@ -23,15 +27,21 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0-D94F62?style=flat" alt="License: AGPL-3.0" /></a>
 </p>
 
+The Boss mobile (`the-boss-mobile`) is the [Know Me Tools](https://the-boss.know-me.tools) Expo and
+React Native client of [The Boss](https://github.com/Prometheus-AGS/the-boss), maintained by
+[Prometheus-AGS](https://github.com/Prometheus-AGS). It is forked from
+[Cherry Studio Mobile](https://github.com/CherryHQ/cherry-studio-app). This repository owns The Boss
+mobile source, documentation, and build workflow.
+
 ## A Look Inside
 
 <p align="center">
-  <a href=".github/images/readme/chat.png"><img src=".github/images/readme/chat.png" width="250" alt="Cherry Studio conversation on iPhone 17 Pro" /></a>
-  <a href=".github/images/readme/paintings.png"><img src=".github/images/readme/paintings.png" width="250" alt="Watercolor landscape generated in Cherry Studio on iPhone 17 Pro" /></a>
-  <a href=".github/images/readme/plugins.png"><img src=".github/images/readme/plugins.png" width="250" alt="Cherry Studio plugin catalog on iPhone 17 Pro" /></a>
+  <a href=".github/images/readme/chat.png"><img src=".github/images/readme/chat.png" width="250" alt="Conversation on iPhone 17 Pro" /></a>
+  <a href=".github/images/readme/paintings.png"><img src=".github/images/readme/paintings.png" width="250" alt="Generated watercolor landscape on iPhone 17 Pro" /></a>
+  <a href=".github/images/readme/plugins.png"><img src=".github/images/readme/plugins.png" width="250" alt="Plugin catalog on iPhone 17 Pro" /></a>
 </p>
 
-<p align="center"><sub>Conversations · Image creation · Connected tools<br />Real app screenshots captured on iPhone 17 Pro.</sub></p>
+<p align="center"><sub>Conversations · Image creation · Connected tools<br />Screenshots captured on iPhone 17 Pro before the rebrand to The Boss.</sub></p>
 
 ## Features
 
@@ -41,7 +51,7 @@ Connect multiple AI providers, manage your models, and choose the right one for 
 Read streaming responses with Markdown formatting and bring images and text attachments into the
 conversation, subject to the selected model's capabilities.
 
-### 🍒 Agents That Work Your Way
+### 🤖 Agents That Work Your Way
 
 Create agents with their own instructions, default models, and tools. Keep separate conversations
 for different projects, and review tool actions when approval is required.
@@ -63,11 +73,11 @@ Manage attachments and generated files in the file library. Preview documents an
 conversation content as Markdown, HTML, or an image, with available formats depending on the
 selection.
 
-### 📱 Made For Mobile, Connected To Cherry
+### 📱 Made For Mobile, Connected To The Desktop
 
-Use light and dark themes, native navigation, and the system share sheet. Pair with Cherry Studio
-Desktop to import supported provider configurations and models. Conversation history and remote
-agent control are outside the current pairing feature.
+Use light and dark themes, native navigation, and the system share sheet. Pair with a desktop app
+that speaks the Cherry Remote pairing protocol to import supported provider configurations and
+models. Conversation history and remote agent control are outside the current pairing feature.
 
 Model and connected-service availability depends on your configuration. Some providers require an
 account or API key and may charge for usage.
@@ -93,21 +103,22 @@ The app includes custom native modules and requires a development client. See th
 
 ## Contributing
 
-Help shape Cherry Mobile through code, bug reports, product ideas, and documentation.
+Help shape The Boss mobile through code, bug reports, product ideas, and documentation.
 
-- [Report a bug or suggest a feature](https://github.com/CherryHQ/cherry-studio-app/issues/new/choose)
+- [Report a bug or suggest a feature](https://github.com/Prometheus-AGS/the-boss-mobile/issues)
 - Read the [Git workflow](docs/guides/git-workflow.md) and [testing guide](docs/guides/testing-and-ci.md)
   before preparing a pull request.
 - Explore the [project documentation](docs/README.md) for architecture and development conventions.
+- Read the [design system](DESIGN.md) before changing product UI.
 
-## Community
+## Attribution and license
 
-Cherry Mobile is part of [Cherry Studio](https://github.com/CherryHQ/cherry-studio).
+The Boss mobile is based on [Cherry Studio Mobile](https://github.com/CherryHQ/cherry-studio-app) by
+[CherryHQ](https://github.com/CherryHQ), licensed under the GNU Affero General Public License v3.0.
+Upstream contributors, copyright notices, and license obligations remain applicable. See
+[LICENSE](LICENSE) for the GNU Affero General Public License v3.0.
 
-[Official website](https://cherry-ai.com) ·
-[Discord](https://discord.gg/wez8HtpxqQ) ·
-[Telegram](https://t.me/CherryStudioAI)
-
-## License
-
-[GNU Affero General Public License v3.0](LICENSE).
+The Boss name and logo identify this fork. Some upstream names remain as technical contracts kept for
+upstream compatibility: the `@cherrystudio/*` package names, the Cherry Remote (`cherry-remote`)
+pairing protocol names, and the CherryIN and CherryAI service names. Their presence does not redirect
+this project's downloads, documentation, or support to upstream.

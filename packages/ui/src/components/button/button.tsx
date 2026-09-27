@@ -121,7 +121,7 @@ const ButtonLabel = forwardRef<Text, ButtonLabelProps>(function ButtonLabel(prop
     <Text
       {...props}
       className={cn(
-        'min-w-0 shrink text-center font-medium',
+        'min-w-0 shrink text-center font-ui-medium font-medium',
         sizeStyles[size].label,
         variantStyles[variant].label,
       )}

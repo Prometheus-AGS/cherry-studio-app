@@ -1,3 +1,5 @@
+import { PRODUCT_NAME } from '@/shared/branding';
+
 import type { PluginGuideDefinition } from '../../pluginGuide';
 
 // Official CLI 1.2.1 workflows at WecomTeam/wecom-cli, commit 1cd90a5337ce11ffbcf14c5ad2e85e6ee97c8b08.
@@ -7,7 +9,7 @@ export const wecomGuide = {
     {
       requiredTools: [],
       content: `# WeCom
-Cherry calls the current official WeCom CLI gateway directly. Tools are discovered from the
+${PRODUCT_NAME} calls the current official WeCom CLI gateway directly. Tools are discovered from the
 authorizing user's service catalog. Names follow wecom_<service>__<resource>__<method>; use the
 exact available tool name, description and input schema. No shell or local CLI executable is
 available.
@@ -46,7 +48,7 @@ use the appropriate editing operation to supply content. Follow separate sharing
 the user requests sharing changes.
 
 ## Files, pagination and completion
-For file-path inputs, pass the file_entry_id from a Cherry attachment/file tool, or a local export
+For file-path inputs, pass the file_entry_id from a ${PRODUCT_NAME} attachment/file tool, or a local export
 or prior WeCom download path. The client resolves the ID and uploads the file contents when the
 official schema requests a file. Never send a desktop path,
 file:// URI or returned server path as if the remote service could read it. Media IDs and local

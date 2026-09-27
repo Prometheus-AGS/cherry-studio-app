@@ -107,7 +107,7 @@ export class BackgroundActivityEnvironment extends BaseService {
       if (!widgetsDirectory) {
         return undefined;
       }
-      const destination = new File(widgetsDirectory, 'cherry-studio-logo.png');
+      const destination = new File(widgetsDirectory, 'the-boss-logo.png');
       destination.write(CHERRY_ACTIVITY_LOGO_BASE64, { encoding: 'base64' });
       return destination.uri;
     } catch (error) {

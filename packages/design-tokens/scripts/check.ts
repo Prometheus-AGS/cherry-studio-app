@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 import { assertNativeCssCurrent } from './build-native-css';
+import { assertContrast, measureContrast } from './contrast';
 import {
   assertNoCycles,
   assertReferencesResolve,
@@ -41,6 +42,7 @@ export async function checkDesignTokens(): Promise<void> {
   assertEqual('tokens.css imports', extractImports(sources.tokens), ['./tokens/index.css']);
   assertEqual('tokens/index.css imports', extractImports(sources.tokensIndex), [
     './colors/vercel.css',
+    './colors/boss.css',
     './radius.css',
     './typography.css',
   ]);
@@ -87,6 +89,13 @@ export async function checkDesignTokens(): Promise<void> {
     ...nativeCss.matchAll(/^\s*--color-([a-z0-9-]+):\s*var\(--([a-z0-9-]+)\);$/gm),
   ].map((match) => match[1]);
   assertEqual('public semantic colors', semanticMappings, [...expectedPublicColors]);
+
+  // Last, so a structural contract error is reported before contrast. Every
+  // failing pair in both themes is listed in one error.
+  assertContrast([
+    ...measureContrast('light', lightResolved),
+    ...measureContrast('dark', darkResolved),
+  ]);
 }
 
 void checkDesignTokens()

@@ -13,11 +13,10 @@
 @source "../../../node_modules/heroui-native/lib";
 
 @theme static {
-  /* Tailwind 默认的 --font-mono 是一整条 CSS 字体栈，而 RN 的 fontFamily 只接受
-   * 单个已注册的字体名，所以必须覆盖。字体本体由 app.json 的 expo-font 插件在
-   * 构建期嵌入原生工程（改完要 prebuild + 重新编译，Metro reload 不生效）。
-   * CherryUI MarkdownText 通过这个变量读取原生字体名。 */
-  --font-mono: GeistMono-Regular;
+  /* Font roles (`--font-display`, `--font-ui`, `--font-body`, `--font-mono`,
+   * `--font-eyebrow`) come from @cherrystudio/design-tokens (tokens/typography.css).
+   * They replace Tailwind's `--font-mono` stack, because RN's fontFamily takes one
+   * registered font name. CherryUI MarkdownText reads `--font-mono` from JS. */
 
   /* 这一段是字号阶梯的「无障碍档位 0」快照。运行时由 applyFontSizeStep 用
    * createTypographyCSSVariables(step) 覆盖，但覆盖发生在 app bootstrap 里——
@@ -82,6 +81,20 @@
 @utility text-emoji-6xl {
   font-size: var(--ui-text-6xl);
   line-height: var(--ui-emoji-6xl--line-height);
+}
+
+/* Brand Guide v2.2 §03 eyebrow: mono, uppercase, 0.12em tracking, primary.
+ * Desktop sets 11px; mobile keeps its scale (PD-8), so it takes text-xs and
+ * follows the accessibility steps. Primary text passes 4.5:1 on background,
+ * card and popover in both themes. */
+@utility eyebrow {
+  font-family: var(--font-eyebrow);
+  font-weight: 600;
+  font-size: var(--ui-text-xs);
+  line-height: var(--ui-text-xs--line-height);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
 }
 
 @theme inline static {

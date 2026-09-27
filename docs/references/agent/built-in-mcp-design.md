@@ -56,7 +56,7 @@ with `X-Lark-MCP-UAT` for the authorized user. All use the existing
 SDK's Streamable HTTP transport. The Amap key is injected only when sending a request; the SDK
 endpoint and saved server identity contain no key. Routing is fixed in backend code and redirects
 cannot forward credentials elsewhere. GitHub also receives `X-MCP-Tools` for the admitted subset;
-Cherry enforces the allowlist locally for all three services, independently of upstream behavior.
+The Boss enforces the allowlist locally for all three services, independently of upstream behavior.
 Feishu also receives `X-Lark-MCP-Allowed-Tools`, containing only admitted hosted tool names.
 Its curated business operations use the same user grant against fixed `https://open.feishu.cn`
 OpenAPI routes through the app's HTTP service, with a Bearer user token and no redirects.
@@ -75,7 +75,7 @@ OpenAPI routes through the app's HTTP service, with a Bearer user token and no r
 | Amap administrative districts | None in the documented cloud catalog | Removed; no local REST fallback |
 
 This covers GitHub's previous workflows and eight of Amap's nine capability categories. The official
-catalogs own business behavior; Cherry does not translate old calls or duplicate their schemas.
+catalogs own business behavior; The Boss does not translate old calls or duplicate their schemas.
 Newly published GitHub and Amap tools require an explicit code admission decision. A missing or incompatible
 tool is unavailable, not an invitation to fall back to the deleted local implementation.
 
@@ -184,20 +184,20 @@ screen observes, it polls at the server's interval (increased on `slow_down`, bo
 original expiry), completes an approved attempt once, and pushes the state, progress and outcome to
 the screen. Detaching stops scheduling only; the attempt stays in memory for the next visit
 within the same process. The connection screen observes while it is focused and the app is active, and asks
-for one immediate check when the browser closes. No Cherry callback is promised: users return
+for one immediate check when the browser closes. No app callback is promised: users return
 manually after each official confirmation, and browser close is a check, not a success or denial
 guess.
 
 The primary application entry uses the official `PersonalAgent` flow to open the Feishu page.
 That page offers eligible custom applications owned or administered by the signed-in user; it hides
 the existing-application selector when its filtered list is empty or the URL requests creation only.
-Cherry saves the returned application credentials before the separate user grant. The secondary
+The Boss saves the returned application credentials before the separate user grant. The secondary
 entry explicitly offers manual entry of an existing application's ID and secret, validated by the
 method's field rules. Both entries authorize the personal account. The application is kept across cancellation,
 failed user authorization and disconnect, so a later authorization never registers another
 application in Feishu. An explicit, confirmed recovery action forgets the saved application
 without dropping a live grant. The official page may retain CLI wording and require organization
-approval; Cherry sends no invented CLI version or third-party brand alias. Only domestic Feishu
+approval; The Boss sends no invented CLI version or third-party brand alias. Only domestic Feishu
 accounts are supported; cross-brand Lark handoff is rejected.
 
 The requested scopes are generated from the admitted tool manifest plus `offline_access`.
@@ -228,7 +228,7 @@ an automatic persistence retry. Disconnect removes local authorization and disab
 it keeps the application and does not revoke consent at Feishu.
 
 Live iOS/Android login, organization approval, process interruption and actual token renewal still
-need user-authorized acceptance. The public registration mechanism's support for Cherry as a
+need user-authorized acceptance. The public registration mechanism's support for The Boss as a
 third-party mobile client is not established by source inspection alone.
 
 Protocol references: [official registration](https://github.com/larksuite/cli/blob/9aaedb981b036ca94bd8ec9c630adf0ead9b6d1c/internal/auth/app_registration.go),
@@ -289,7 +289,7 @@ Protocol references: [hosted tools](https://open.feishu.cn/document/mcp_open_too
 
 ## WeCom Official API
 
-Cherry implements the current official CLI gateway protocol in native TypeScript. The plugin owns
+The Boss implements the current official CLI gateway protocol in native TypeScript. The plugin owns
 bot authorization, native credential storage, schema discovery, request envelopes, file handling,
 long-task polling and the AI workflow guide. Official services own business definitions and
 execution. No CLI executable or app-hosted MCP server is required.
@@ -398,12 +398,12 @@ can later host an in-process adapter without adding provider switches to storage
 
 ## Scope
 
-Cherry Mobile plans six integrations in its Plugins directory. A user connects an account and uses
+The Boss Mobile plans six integrations in its Plugins directory. A user connects an account and uses
 its tools through ordinary conversation with any Agent. Composer references explicitly request a
 plugin for a message without changing availability. The application owns authorization and tool
 orchestration on the device; official MCP services execute their business
 tools remotely. Expiring GitHub and Feishu user grants renew on demand; other OAuth providers remain
-later slices. No Cherry-operated authorization proxy, command-line program, local HTTP listener,
+later slices. No Know Me Tools-operated authorization proxy, command-line program, local HTTP listener,
 or desktop process is required by this design.
 
 GitHub, Amap and Feishu document tools use official remote MCP services; Canva and Gmail are planned
@@ -421,7 +421,7 @@ a claim that its Connect REST API supports a secretless mobile client.
 | China | `yuque` | Search/read documents; list knowledge books; create/update documents | Local functions and OpenAPI with a user-supplied personal or space token. [Official API client](https://github.com/yuque/yuque-open-cli/blob/main/README.zh-CN.md) |
 | China | `feishu` | Search/read/edit documents and comments; find people; query/write Base records; manage tasks, calendar events and invitations | Official developer MCP plus curated in-app OpenAPI with shared browser user authorization. Live acceptance remains pending. [Official developer MCP](https://open.feishu.cn/document/mcp_open_tools/developers-call-remote-mcp-server) |
 
-Future local integrations may use Cherry-owned names such as `read_document`; remote integrations
+Future local integrations may use application-owned names such as `read_document`; remote integrations
 preserve official names. Full API coverage, Feishu messaging, Canva
 editing transactions, and permanent deletion operations are later capability slices. All six
 platforms remain in the plan regardless of delivery order.

@@ -54,7 +54,7 @@ function SectionHeader({ children, title, ...viewProps }: SectionHeaderProps) {
   return (
     <View className="min-h-10 flex-row items-center gap-3" {...viewProps}>
       <View className="min-w-0 flex-1">
-        {renderTextSlot(title, 'text-base font-semibold text-foreground')}
+        {renderTextSlot(title, 'text-base font-display font-semibold text-foreground')}
       </View>
       {children !== undefined ? (
         <View className="shrink-0 items-center justify-center">{children}</View>

@@ -1,0 +1,17 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Erlaubt The Boss, QR-Codes für die Desktop-Kopplung zu scannen und Fotos für Chatnachrichten und Zeichnungen aufzunehmen.",
+    "NSCalendarsUsageDescription": "Erlaubt The Boss den Zugriff auf Kalender, wenn Sie den Assistenten danach fragen.",
+    "NSCalendarsFullAccessUsageDescription": "Erlaubt The Boss den Zugriff auf Kalender, wenn Sie den Assistenten danach fragen.",
+    "NSCalendarsWriteOnlyAccessUsageDescription": "Erlaubt The Boss, Kalenderereignisse hinzuzufügen, wenn Sie den Assistenten danach fragen.",
+    "NSRemindersUsageDescription": "Erlaubt The Boss den Zugriff auf Erinnerungen, wenn Sie den Assistenten danach fragen.",
+    "NSRemindersFullAccessUsageDescription": "Erlaubt The Boss den Zugriff auf Erinnerungen, wenn Sie den Assistenten danach fragen.",
+    "NSMotionUsageDescription": "The Boss liest oder verfolgt Ihre Bewegungs- und Fitnessaktivität nicht. Diese Berechtigungsbeschreibung wird vom in der App enthaltenen Standortdienst benötigt.",
+    "NSLocationWhenInUseUsageDescription": "Erlaubt The Boss, Ihren Standort zu verwenden, wenn Sie den Assistenten danach fragen.",
+    "NSPhotoLibraryUsageDescription": "Erlaubt The Boss, Fotos für Zeichnungen und Chatnachrichten anzuzeigen und auszuwählen.",
+    "NSPhotoLibraryAddUsageDescription": "Erlaubt The Boss, Fotos zu speichern.",
+    "NSHealthShareUsageDescription": "Erlaubt The Boss, ausgewählte Gesundheits- und Fitnessdaten zu lesen, wenn Sie den Assistenten danach fragen.",
+    "NSHealthUpdateUsageDescription": "The Boss liest ausgewählte Apple-Health-Daten, um Ihre Gesundheits- und Fitnessfragen zu beantworten. Es speichert oder ändert keine Daten in Apple Health.",
+    "NSLocalNetworkUsageDescription": "Erlaubt The Boss, sich mit der The Boss Desktop-App, KI-Anbietern und MCP-Servern in Ihrem lokalen Netzwerk zu verbinden."
+  }
+}

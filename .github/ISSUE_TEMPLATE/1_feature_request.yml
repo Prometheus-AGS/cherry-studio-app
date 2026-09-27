@@ -17,11 +17,11 @@ body:
       options:
         - label: 我明白 issue 是用于报告问题和请求功能的，而不是用于发表与主题无关的评论，我会尽可能提供详细信息以帮助解决问题。
           required: true
-        - label: 我已经查看了置顶问题，并搜索了现有的 [open issues](https://github.com/CherryHQ/cherry-studio-app/issues)、[closed issues](https://github.com/CherryHQ/cherry-studio-app/issues?q=is%3Aissue%20state%3Aclosed) 和 [discussions](https://github.com/CherryHQ/cherry-studio-app/discussions)，没有发现类似的建议。
+        - label: 我已经查看了置顶问题，并搜索了现有的 [open issues](https://github.com/Prometheus-AGS/the-boss-mobile/issues) 和 [closed issues](https://github.com/Prometheus-AGS/the-boss-mobile/issues?q=is%3Aissue%20state%3Aclosed)，没有发现类似的建议。
           required: true
         - label: 我已经提供了简短且描述性的标题，以便开发者在浏览问题列表时能快速理解问题，而不是像"一个建议"或"卡住了"这样的模糊标题。
           required: true
-        - label: 最新版本的 Cherry Studio 不包含我建议的功能。
+        - label: 最新版本的 The Boss 不包含我建议的功能。
           required: true
 
   - type: dropdown
@@ -54,7 +54,7 @@ body:
     id: version
     attributes:
       label: 应用版本
-      description: 您正在运行的 Cherry Studio 版本是什么？
+      description: 您正在运行的 The Boss 版本是什么？
       placeholder: 例如：v0.1.0
     validations:
       required: true

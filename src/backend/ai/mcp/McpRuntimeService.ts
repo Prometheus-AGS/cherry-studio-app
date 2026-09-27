@@ -13,6 +13,7 @@ import {
   type PluginClient,
   type PluginToolCatalog,
 } from '@/backend/services/builtInMcp';
+import { ATTRIBUTION_NAME } from '@/shared/branding';
 import type {
   McpConnectionConfig,
   McpModule,
@@ -192,7 +193,7 @@ function createMcpClient(
   }
   const headers = normalizeMcpHeaders(config.headers);
   return createMCPClient({
-    clientName: 'Cherry Studio',
+    clientName: ATTRIBUTION_NAME,
     initializationOptions: { signal },
     transport: {
       type: 'http',

@@ -1,7 +1,7 @@
 # Data
 
 Mobile-owned data entities, preferences, DTO schemas, pagination shapes, and data errors shared by
-the mobile frontend and backend. This layer is independent of Cherry Desktop and follows one rule —
+the mobile frontend and backend. This layer is independent of upstream Cherry Studio desktop and follows one rule —
 mobile persists what mobile reads. A desktop schema, field, or route with no mobile consumer is a
 deliberate omission, not a gap.
 

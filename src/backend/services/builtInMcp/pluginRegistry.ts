@@ -178,6 +178,19 @@ export function requirePluginAuthMethod(plugin: PluginDefinition, id: string) {
   return method;
 }
 
+/**
+ * A plugin flagged with `catalog.disabledReason` (see `PluginDisabledReason`) has its sign-in
+ * bundled but intentionally turned off; block starting a new interactive attempt for it. Already
+ * committed grants and read-only catalog projection are unaffected.
+ */
+export function assertPluginSignInAvailable(plugin: PluginDefinition): void {
+  if (plugin.catalog.disabledReason)
+    throw new PluginError(
+      'unavailable',
+      'Sign-in for this plugin is unavailable in this app version.',
+    );
+}
+
 export function isBuiltInMcpToolAllowed(pluginId: PluginId, name: string): boolean {
   return getBuiltInMcpToolEffect(pluginId, name) !== undefined;
 }

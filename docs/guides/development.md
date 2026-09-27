@@ -1,6 +1,7 @@
 # Development
 
-Cherry Mobile is Cherry Studio's Expo and React Native client. It uses a custom development client
+The Boss Mobile (`the-boss-mobile`) is The Boss's Expo and React Native client, forked from Cherry
+Studio Mobile. It uses a custom development client
 because it includes native modules; Expo Go cannot run this application.
 
 ## Requirements
@@ -14,8 +15,8 @@ because it includes native modules; Expo Go cannot run this application.
 Clone the repository and install its dependencies:
 
 ```bash
-git clone https://github.com/CherryHQ/cherry-studio-app.git
-cd cherry-studio-app
+git clone https://github.com/Prometheus-AGS/the-boss-mobile.git
+cd the-boss-mobile
 pnpm install
 ```
 

@@ -8,6 +8,7 @@ import {
 import * as z from 'zod';
 
 import { createHttpClient, isHttpError, type HttpRequest } from '@/backend/services/http';
+import { ATTRIBUTION_NAME, REPOSITORY_URL } from '@/shared/branding';
 import { PluginError } from '@/shared/contracts/plugins';
 
 import type { PluginAuthorizationStore } from '../../authorization/pluginAuthorization';
@@ -75,7 +76,10 @@ function redirectUrl() {
     `${scheme}://plugins/notion/callback`,
   );
   if (!result.success)
-    throw new PluginError('unavailable', 'Notion requires a Cherry native application.');
+    throw new PluginError(
+      'unavailable',
+      `Notion requires a ${ATTRIBUTION_NAME} native application.`,
+    );
   return result.data;
 }
 
@@ -109,8 +113,8 @@ async function getApplication(store: PluginAuthorizationStore, signal: AbortSign
       path: new URL(metadata.registration_endpoint).pathname,
       signal,
       body: {
-        client_name: 'Cherry Studio',
-        client_uri: 'https://github.com/CherryHQ/cherry-studio-app',
+        client_name: ATTRIBUTION_NAME,
+        client_uri: REPOSITORY_URL,
         redirect_uris: [redirect],
         grant_types: ['authorization_code', 'refresh_token'],
         response_types: ['code'],

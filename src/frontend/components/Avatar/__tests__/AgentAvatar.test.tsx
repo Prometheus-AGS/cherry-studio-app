@@ -30,12 +30,18 @@ test.each([
   });
   expect(tree.root.findByType('avatar-fallback' as never).props.children).toBe('🤖');
 });
-test('resolved image takes precedence over emoji while local Cherry emoji still renders', () => {
+test('resolved image takes precedence over emoji while the built-in default emoji still renders', () => {
+  act(() => {
+    tree = create(<AgentAvatar name="Developer" avatar="🤖" />);
+  });
+  expect(tree.root.findByType('avatar-fallback' as never).props.children).toBe('🤖');
+  act(() => tree.update(<AgentAvatar name="Developer" emoji="🤖" uri="file:///avatar.png" />));
+  expect(tree.root.findAllByType('avatar-image' as never)).toHaveLength(1);
+  expect(tree.root.findAllByType('avatar-fallback' as never)).toHaveLength(0);
+});
+test('renders the legacy Cherry Studio default emoji instead of falling back to the generic robot', () => {
   act(() => {
     tree = create(<AgentAvatar name="Developer" avatar="🍒" />);
   });
   expect(tree.root.findByType('avatar-fallback' as never).props.children).toBe('🍒');
-  act(() => tree.update(<AgentAvatar name="Developer" emoji="🤖" uri="file:///avatar.png" />));
-  expect(tree.root.findAllByType('avatar-image' as never)).toHaveLength(1);
-  expect(tree.root.findAllByType('avatar-fallback' as never)).toHaveLength(0);
 });

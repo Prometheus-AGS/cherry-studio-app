@@ -98,8 +98,8 @@ denial becomes `denied`. Cancellation, failure, or startup reconciliation conver
 before the assistant message settles. Later model history therefore contains paired calls/results
 and never replays an unanswerable approval. No `agent_approval` table.
 
-**Avatar stores the built-in Cherry emoji or a stable file reference.** The initial Cherry Agent
-and the onboarding fallback store `🍒`, matching Desktop's Cherry Assistant. Existing records are
+**Avatar stores the built-in `🍒` emoji or a stable file reference.** The initial Boss Agent
+and the onboarding fallback store `🍒`, matching upstream Cherry Studio desktop's default assistant. Existing records are
 preserved. Uploaded avatars follow the user-avatar pattern
 ([File Model](../data/file-model.md), `userAvatarStorage.ts`): processed to
 WebP under `{documentDirectory}/agent-avatars/`, referenced as
@@ -180,7 +180,7 @@ external runtime (workspace, delivery, resume tokens) are deliberately absent, w
 | `id` | text | PK, UUID v4 | |
 | `name` | text | NOT NULL | |
 | `instructions` | text | NOT NULL DEFAULT `''` | System instructions |
-| `avatar` | text | NULL | Built-in Cherry emoji or stable file reference; NULL uses the name fallback |
+| `avatar` | text | NULL | Built-in `🍒` emoji or stable file reference; NULL uses the name fallback |
 | `modelId` | text | NULL, FK → `user_model.id` ON DELETE SET NULL | `UniqueModelId` |
 | `toolApprovalMode` | text | NOT NULL DEFAULT `default` | `default` preserves tool policy; `auto` promotes effective `ask` to `auto` and withholds `ask_user_question` |
 | `orderKey` | text | NOT NULL | `orderKeyColumns` fractional index |

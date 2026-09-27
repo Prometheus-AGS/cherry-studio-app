@@ -168,7 +168,7 @@ describe('Section', () => {
 
     expect(header.props.className).toContain('min-h-10 flex-row items-center gap-3');
     expect(header.props.className).not.toContain('px-3');
-    expect(title.props.className).toContain('text-base font-semibold text-foreground');
+    expect(title.props.className).toContain('text-base font-display font-semibold text-foreground');
     expect(tree.root.findByProps({ testID: 'header-action' })).toBeDefined();
   });
 

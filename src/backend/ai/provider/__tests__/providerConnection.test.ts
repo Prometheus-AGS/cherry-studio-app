@@ -1,5 +1,6 @@
 import { ENDPOINT_TYPE } from '@cherrystudio/provider-registry';
 
+import { USER_AGENT_NAME } from '@/shared/branding';
 import { createUniqueModelId, type Model } from '@/shared/data/types/model';
 import { DEFAULT_API_FEATURES, type Provider } from '@/shared/data/types/provider';
 
@@ -16,8 +17,8 @@ describe('resolveProviderConnection', () => {
       endpointType: ENDPOINT_TYPE.GOOGLE_GENERATE_CONTENT,
       headers: {
         Authorization: 'Bearer header-secret',
-        'User-Agent': 'CherryStudioMobile/1.0',
-        'X-App-Name': 'CherryStudioMobile',
+        'User-Agent': `${USER_AGENT_NAME}/1.0`,
+        'X-App-Name': USER_AGENT_NAME,
         'X-Custom': 'custom',
       },
       providerOptionsKey: undefined,

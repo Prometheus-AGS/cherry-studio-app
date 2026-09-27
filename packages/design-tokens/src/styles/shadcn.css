@@ -7,11 +7,14 @@
  * intentionally follow official variables and third-party themes such as
  * TweakCN.
  *
- * ⚠️ 已 fork：本包不再从 Cherry Studio 桌面端镜像任何东西。取值改用 Vercel Brand
- * Guidelines（Geist）色彩体系，token 名字也随之归移动端自有 —— `pnpm design:sync`
- * 现在只同步图标。
+ * Colour and radius values follow The Boss Brand Guide v2.2, ported from the
+ * desktop app's providers (`the-boss` `packages/ui/src/styles/tokens/colors/
+ * providers.css`) with its oklch values unchanged. The palette steps live in
+ * `tokens/colors/boss.css`. Token names stay mobile-owned: this is a value
+ * port, not a sync, and `pnpm design:sync` still syncs icons only. Charts keep
+ * the Vercel (Geist) grey ramp from `tokens/colors/vercel.css`.
  *
- * 角色优先指向 `vercel.css` 的调色板档位，只在需要明确的半档或透明度时从档位派生。
+ * 角色优先指向调色板档位（`boss.css` / `vercel.css`），单一消费者的值才写字面量。
  * 此前中间还隔着一层同名的 `--cs-`
  * provider（`--background: var(--cs-background)` → `--cs-background:
  * var(--cs-background-100)`），那一层每个名字只有一个消费者，等于把「这个角色用
@@ -19,37 +22,45 @@
  * 前缀现已整体退役，调色板与契约同在无前缀命名空间下，靠形状区分：调色板是
  * 带档位号的色阶名（`--gray-100`），契约是角色名（`--background`）。
  *
- * `.dark` 只写真正换档的那几条：深色声明继承浅色，其余角色指向的调色板名本身
- * 就按主题翻转，抄一遍是纯冗余。
+ * `.dark` 只写真正换档的那几条，深色声明继承浅色。`boss.css` 的档位不随主题
+ * 翻转（与桌面端一致），所以 v2.2 角色的换档都显式写在 `.dark` 里；仍指向
+ * `vercel.css` 的角色（charts）靠调色板本身翻转。
  */
 
 :root {
-  /* Core surfaces and content */
-  /* 浅色页面统一使用明确的中性灰；深色仍在下方回到纯黑。 */
-  --background: #f5f5f5;
-  --foreground: var(--gray-1000);
-  --card: var(--background-100);
-  --card-foreground: var(--gray-1000);
-  --popover: var(--background-100);
-  --popover-foreground: var(--gray-1000);
-  /* Follow desktop's green action hierarchy; use mode-aware steps for readable icons and text. */
-  --primary: var(--green-900);
-  --primary-foreground: var(--background-100);
-  --secondary: var(--gray-alpha-100);
-  --secondary-foreground: var(--gray-1000);
-  --muted: var(--gray-alpha-100);
-  --muted-foreground: var(--gray-900);
-  --accent: var(--gray-alpha-100);
-  --accent-foreground: var(--gray-1000);
-  --destructive: var(--red-700);
-  /* White in both themes: red-700 is a solid fill, not a tint. */
+  /* Core surfaces and content. Depth comes from the surface colour: page, then
+   * card, then popover (desktop DESIGN.md §5). In light mode card and popover
+   * are both white on the #F7F7F8 page. */
+  --background: var(--boss-ink-50);
+  --foreground: var(--boss-ink-950);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--boss-ink-950);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--boss-ink-950);
+  /* Ember. DEVIATION (DEVIATIONS.md): light uses brand-600, not desktop's
+   * brand-500, so near-white text on it reaches 5.08:1 (brand-500: 3.80:1).
+   * Dark switches to brand-400 below, as on desktop. */
+  --primary: var(--boss-brand-600);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0 0 0 / 0.05);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: var(--boss-ink-100);
+  --muted-foreground: var(--boss-ink-600);
+  /* Ember-tinted accent (#F2D6CF) with its dark ink (#3B1410). */
+  --accent: oklch(0.8974 0.0328 34.3);
+  --accent-foreground: oklch(0.2521 0.0628 28.2);
+  /* DEVIATION: red-600, not desktop's red-500, so white text reaches 4.77:1
+   * (red-500: 3.72:1). Same step in both themes, as on desktop. */
+  --destructive: var(--boss-red-600);
   --destructive-foreground: oklch(1 0 0);
 
   /* Controls */
-  --border: var(--gray-alpha-200);
-  --input: var(--gray-alpha-200);
-  /* HeroUI focus follows the action color, independently of logo artwork. */
-  --ring: color-mix(in srgb, var(--primary) 40%, transparent);
+  --border: var(--boss-ink-200);
+  --input: var(--boss-ink-200);
+  /* HeroUI focus follows the action colour, independently of logo artwork.
+   * DEVIATION: solid primary in both themes; desktop mixes it to 40% / 45%,
+   * which measures 1.68:1 / 2.20:1 against the page, below WCAG 1.4.11. */
+  --ring: var(--primary);
 
   /* Charts
    * VBG：「Category series are monochrome by default. Reserve chromatic tokens
@@ -63,27 +74,49 @@
   --chart-4: var(--gray-700);
   --chart-5: var(--gray-600);
 
-  /* Sidebar. Kept for contract completeness — the mobile app has no sidebar and
-   * consumes none of these. */
-  --sidebar: var(--background-200);
-  --sidebar-foreground: var(--gray-1000);
-  --sidebar-primary: var(--gray-1000);
-  --sidebar-primary-foreground: var(--background-100);
-  --sidebar-accent: var(--gray-100);
-  --sidebar-accent-foreground: var(--gray-1000);
-  --sidebar-border: var(--gray-alpha-200);
-  --sidebar-ring: var(--gray-800);
+  /* Sidebar. Kept for contract completeness: the mobile app has no sidebar and
+   * consumes none of these. Values follow desktop so the family stays one set. */
+  --sidebar: var(--boss-ink-100);
+  --sidebar-foreground: var(--boss-ink-950);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: var(--boss-ink-200);
+  --sidebar-ring: oklch(0.708 0 0);
 
-  /* Shadcn radius input */
-  /* VBG 的 radius 档，8px。整条 rounded-sm…4xl 都是它的倍数。 */
-  --radius: 0.5rem;
+  /* Shadcn radius input. Brand Guide v2.2 radius-lg, 10px; the whole
+   * rounded-sm…4xl ladder in native.css is derived from it. */
+  --radius: 0.625rem;
 }
 
 .dark {
-  /* 深色页面回到纯黑，卡片与浮层提到 gray-100 以保留可见层级。 */
-  --background: var(--background-100);
-  --card: var(--gray-100);
-  --popover: var(--gray-100);
-  --sidebar: var(--gray-100);
-  --sidebar-accent: var(--gray-200);
+  --background: var(--boss-ink-950);
+  --foreground: var(--boss-ink-150);
+  /* Popover sits ABOVE card: the higher the layer, the lighter the surface. */
+  --card: var(--boss-ink-925);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: var(--boss-ink-900);
+  --popover-foreground: oklch(0.985 0 0);
+  /* Never reuse the light-mode ember here: brand-400 (#FF6A3D) glows on #0B0F14. */
+  --primary: var(--boss-brand-400);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: var(--boss-ink-850);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: var(--boss-ink-900);
+  --muted-foreground: var(--boss-ink-400);
+  /* Ember-tinted accent (#2A1B17). */
+  --accent: oklch(0.24 0.0252 35.5);
+  --accent-foreground: oklch(0.985 0 0);
+
+  --border: var(--boss-ink-800);
+  --input: var(--boss-ink-800);
+
+  --sidebar: var(--boss-ink-925);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-accent: var(--boss-ink-850);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
 }

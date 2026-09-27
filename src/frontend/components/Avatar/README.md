@@ -2,7 +2,7 @@
 
 This module owns the app-level avatar adapters shared across independent pages. CherryUI's
 `Avatar` owns generic shape, clipping, image, fallback, and badge composition; this module resolves
-Cherry product data and presentation rules before composing that primitive.
+The Boss product data and presentation rules before composing that primitive.
 
 ## Public Interface
 
@@ -16,7 +16,7 @@ Cherry product data and presentation rules before composing that primitive.
 - `ProviderBrandAvatar` resolves a provider's built-in logo and generated-initial fallback. It does
   not read uploaded avatars, so provider-avatar persistence remains provider-owned.
 - `ModelAvatar` resolves a model icon from its model and provider records.
-- `AgentAvatar` renders an Agent's image, then explicit desktop emoji or the built-in Cherry emoji, then the robot emoji
+- `AgentAvatar` renders an Agent's image, then explicit desktop emoji or the built-in `🍒` emoji, then the robot emoji
   default (including unnamed drafts). It stays round across these presentations.
 - `AvatarImagePicker` owns the shared camera/library and square-crop interaction while leaving
   persistence to its caller.

@@ -10,6 +10,7 @@ import { v7 as uuidv7 } from 'uuid';
 
 import type { BackgroundReplyTurnInput } from '@/backend/services/backgroundReply/backgroundReplyTypes';
 import { KeepAliveInterruptionError } from '@/backend/services/keepAlive/KeepAliveInterruptionError';
+import { PRODUCT_NAME } from '@/shared/branding';
 import {
   AgentEventSchema,
   AgentProtocolError,
@@ -1156,7 +1157,7 @@ describe('MobileAgentHost', () => {
       options: { maxOutputTokens: 512, reasoningEffort: 'low', temperature: 0.2 },
     });
     expect(requests[0]?.instructions).toContain(
-      'The current Cherry Studio App language is `zh-CN`.',
+      `The current app language in ${PRODUCT_NAME} is \`zh-CN\`.`,
     );
 
     // A second turn feeds the stored transcript back as history.

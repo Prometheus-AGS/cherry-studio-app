@@ -1,5 +1,7 @@
 import * as mcp from '@ai-sdk/mcp';
 
+import { URL_SCHEME } from '@/shared/branding';
+
 import { isBuiltInMcpToolAllowed } from '../../pluginRegistry';
 import { FEISHU_REQUESTED_TOOL_SCOPES } from '../../plugins/feishu/feishuTools';
 import { createBuiltInMcpClient as createClient } from '../createBuiltInMcpClient';
@@ -28,7 +30,10 @@ jest.mock('../../plugins/github/githubOauth', () => ({
   getGithubApplication: () => ({
     clientId: 'cherry_oauth_client',
     clientSecret: 'public-client-secret',
-    redirectUrl: 'cherrystudio-dev://plugins/github/callback',
+    // Referenced via require(), not the top-level import: jest.mock factories run before
+    // module-scope imports are bound (babel-plugin-jest-hoist only allows out-of-scope
+    // references named `mock*` or reached through require()).
+    redirectUrl: `${require('@/shared/branding').URL_SCHEME}-dev://plugins/github/callback`,
   }),
 }));
 jest.mock('expo/fetch', () => ({ fetch: (...args: unknown[]) => mockFetch(...args) }));
@@ -607,7 +612,7 @@ it('injects the latest GitHub user credential for each independent request witho
     application: {
       clientId: 'cherry_oauth_client',
       clientSecret: 'public-client-secret',
-      redirectUrl: 'cherrystudio-dev://plugins/github/callback',
+      redirectUrl: `${URL_SCHEME}-dev://plugins/github/callback`,
     },
     account: { id: '42', login: 'cherry' },
     tokens: { accessToken: 'github-access', refreshToken: 'github-refresh' },

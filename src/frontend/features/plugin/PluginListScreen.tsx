@@ -75,7 +75,11 @@ export function PluginListScreen() {
                     ) : null}
                   </View>
                   <Text className="text-sm text-muted-foreground">
-                    {entry ? t(`plugins.catalog.${id}.summary`) : t('plugins.unavailable')}
+                    {entry
+                      ? entry.disabledReason
+                        ? t(`plugins.disabledReasons.${entry.disabledReason}`)
+                        : t(`plugins.catalog.${id}.summary`)
+                      : t('plugins.unavailable')}
                   </Text>
                 </View>
                 <ChevronRightIcon className="size-5 text-muted-foreground" />

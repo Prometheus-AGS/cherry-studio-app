@@ -1,6 +1,7 @@
 # Backend Data
 
-This directory is the mobile counterpart of Cherry Desktop's `src/main/data` layer. It owns
+This directory is the mobile counterpart of upstream Cherry Studio desktop's `src/main/data`
+layer. It owns
 business-data persistence and the concrete implementations that read or write that data.
 
 ## Structure

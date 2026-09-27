@@ -1,0 +1,17 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Разрешить The Boss сканировать QR-коды для сопряжения с компьютером и делать фотографии для сообщений чата и рисунков.",
+    "NSCalendarsUsageDescription": "Разрешить The Boss доступ к календарям, когда вы просите об этом помощника.",
+    "NSCalendarsFullAccessUsageDescription": "Разрешить The Boss доступ к календарям, когда вы просите об этом помощника.",
+    "NSCalendarsWriteOnlyAccessUsageDescription": "Разрешить The Boss добавлять события в календарь, когда вы просите об этом помощника.",
+    "NSRemindersUsageDescription": "Разрешить The Boss доступ к напоминаниям, когда вы просите об этом помощника.",
+    "NSRemindersFullAccessUsageDescription": "Разрешить The Boss доступ к напоминаниям, когда вы просите об этом помощника.",
+    "NSMotionUsageDescription": "The Boss не считывает и не отслеживает данные о вашей двигательной активности и фитнесе. Это описание разрешения требуется службой геолокации, включённой в приложение.",
+    "NSLocationWhenInUseUsageDescription": "Разрешить The Boss использовать ваше местоположение, когда вы просите об этом помощника.",
+    "NSPhotoLibraryUsageDescription": "Разрешить The Boss предварительно просматривать и выбирать фотографии для рисунков и сообщений чата.",
+    "NSPhotoLibraryAddUsageDescription": "Разрешить The Boss сохранять фотографии.",
+    "NSHealthShareUsageDescription": "Разрешить The Boss считывать выбранные данные о здоровье и фитнесе, когда вы просите об этом помощника.",
+    "NSHealthUpdateUsageDescription": "The Boss считывает выбранные данные Apple «Здоровье», чтобы отвечать на ваши вопросы о здоровье и фитнесе. Приложение не сохраняет и не изменяет данные в Apple «Здоровье».",
+    "NSLocalNetworkUsageDescription": "Разрешить The Boss подключаться к настольному приложению The Boss, поставщикам ИИ и серверам MCP в вашей локальной сети."
+  }
+}

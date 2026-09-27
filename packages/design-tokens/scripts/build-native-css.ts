@@ -7,7 +7,7 @@ import { CHERRY_PRODUCT_COLOR_TOKENS, SHADCN_PUBLIC_COLOR_TOKENS } from './theme
 const outputPath = path.join(stylesDir, 'native.css');
 
 // The whole `rounded-*` ladder is derived from the one authored step,
-// `--radius` (8px, VBG's only body radius). The hairline steps below it are not
+// `--radius` (10px, Brand Guide v2.2 radius-lg, the same base as desktop). The hairline steps below it are not
 // multiples of anything and are authored in tokens/radius.css, whose names now
 // sit directly in Tailwind's `--radius-*` namespace and so need no line here.
 const radiusLines = [
@@ -48,6 +48,18 @@ export async function buildNativeCss(): Promise<string> {
   const publicColors = unique([...SHADCN_PUBLIC_COLOR_TOKENS, ...CHERRY_PRODUCT_COLOR_TOKENS]);
   // Font weights need no adapter line either: `tokens/typography.css` already
   // authors `--font-weight-bold` under its final Tailwind name.
+  // Font roles are read from JS as well as through `font-*` utilities
+  // (MarkdownText passes `--font-mono` to a native renderer, Storybook shows
+  // every role). Bare `@theme` is pruned by className usage, so the roles go in
+  // `@theme static`, which Uniwind always resolves. Weights stay in `@theme`.
+  const isFontRole = (name: string) =>
+    name.startsWith('--font-') && !name.startsWith('--font-weight-');
+  const themeDeclarations = [...staticDeclarations.values()].filter(
+    ({ name }) => !isFontRole(name),
+  );
+  const fontRoleDeclarations = [...staticDeclarations.values()].filter(({ name }) =>
+    isFontRole(name),
+  );
   const adapterLines = [
     ...publicColors.map((name) => `--color-${name}: var(--${name});`),
     ...radiusLines,
@@ -57,12 +69,17 @@ export async function buildNativeCss(): Promise<string> {
  * Generated from the token sources in this package's src/styles.
  * Do not edit directly. Run \`pnpm design:build\` after changing them.
  *
- * Both the token values (Vercel Brand Guidelines) and their names are
- * mobile-owned; nothing here is mirrored from desktop.
+ * Token names are mobile-owned. Core colour and radius values are ported from
+ * The Boss Brand Guide v2.2 (desktop); product-domain values use the Vercel
+ * Brand Guidelines palette. Nothing is synced automatically.
  */
 
 @theme {
-${renderDeclarations(staticDeclarations.values(), '  ')}
+${renderDeclarations(themeDeclarations, '  ')}
+}
+
+@theme static {
+${renderDeclarations(fontRoleDeclarations, '  ')}
 }
 
 @theme inline static {

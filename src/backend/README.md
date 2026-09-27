@@ -1,6 +1,6 @@
 # Backend
 
-`src/backend` contains the private in-process implementation behind Cherry Studio Mobile's Data
+`src/backend` contains the private in-process implementation behind The Boss Mobile's Data
 API, preference client, and workflow `Backend`. Mobile runs frontend and backend code in one Hermes
 runtime; this boundary enforces ownership and dependency direction, not process or security
 isolation.
@@ -15,7 +15,7 @@ isolation.
 
 ## Alignment And Naming
 
-Direct Cherry Desktop counterparts keep their `Service` names, public methods, data contracts, and
+Direct upstream Cherry Studio desktop counterparts keep their `Service` names, public methods, data contracts, and
 behavior. This includes the whole data layer plus `DataApiService`, `AiService`,
 `McpRuntimeService`, and `WebSearchService`.
 

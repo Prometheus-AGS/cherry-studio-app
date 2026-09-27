@@ -52,7 +52,7 @@ a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid
 .export-image{display:flex;flex-direction:column;gap:8px;min-width:0}
 img{display:block;max-width:100%;height:auto;object-fit:contain;border-radius:12px;margin:0}
 .image-unavailable{display:block;padding:12px;border-radius:12px;background:${colors.secondary};color:${colors.muted};font-size:${sm.fontSize}px;line-height:${sm.lineHeight}px}
-pre,code{font-family:"GeistMono-Regular","SFMono-Regular",Consolas,monospace;font-size:${sm.fontSize}px;line-height:${sm.lineHeight}px;tab-size:2}
+pre,code{font-family:"JetBrainsMono-Regular","SFMono-Regular",Consolas,monospace;font-size:${sm.fontSize}px;line-height:${sm.lineHeight}px;tab-size:2}
 code{background:${colors.inlineCode};color:${colors.inlineCodeForeground};border-radius:4px;padding:2px 4px}
 .code-block{display:flex;flex-direction:column;height:192px;min-width:0;overflow:hidden;background:${colors.codeBlock};border-radius:8px}
 .code-heading{display:flex;flex-shrink:0;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:1px solid ${colors.border};font-size:${sm.fontSize}px;line-height:${sm.lineHeight}px;font-weight:500}

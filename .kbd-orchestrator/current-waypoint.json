@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "5",
+  "generatedBy": "kbd-runtime",
+  "projectionContractVersion": 2,
+  "sourceRevision": 389,
+  "derivedRevision": 389,
+  "frontier": {
+    "d917ffd6-05b6-49c6-86ca-cd046eeddfbb": 389
+  },
+  "conflictCount": 0,
+  "projectId": "5b146e99-8c72-42f4-9b78-3a33caa4bf27",
+  "runId": "rebrand-the-boss-mobile-ui-20260926T135303Z",
+  "path": [
+    "rebrand-the-boss-mobile-ui"
+  ],
+  "phaseIds": [
+    "rebrand-the-boss-mobile-ui"
+  ],
+  "activePhaseId": "rebrand-the-boss-mobile-ui",
+  "activePhase": "rebrand-the-boss-mobile-ui",
+  "phase": "rebrand-the-boss-mobile-ui",
+  "parentPhase": null,
+  "childPointer": null,
+  "change": "rebrand-001-branding-module",
+  "currentTask": "5",
+  "status": "ready",
+  "lifecycle": "ready",
+  "stageId": "execute",
+  "stageStatus": "IN_PROGRESS",
+  "completionMetric": "implementation",
+  "implementationCompleted": 0,
+  "implementationTotal": 11,
+  "planRevision": 1,
+  "revision": 389,
+  "exactNextCommand": "/kbd-assess rebrand-the-boss-mobile-ui",
+  "nextChange": "rebrand-001-branding-module",
+  "nextTask": "5",
+  "updatedAt": "2026-09-26T20:33:31.295341Z"
+}

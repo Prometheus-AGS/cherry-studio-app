@@ -5,7 +5,7 @@ features. Terms follow [Domain Language](./domain-language.md).
 
 ## Current Product Boundary
 
-Cherry Mobile retains two independent configurations:
+The Boss Mobile retains two independent configurations:
 
 - **Provider-native web search** is a model/provider request option.
 - **Web Search Provider** is a preference-backed external search/fetch service implemented by

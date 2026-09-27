@@ -1,0 +1,10 @@
+{
+  "version": "2",
+  "plugins": [
+    {
+      "id": "boss-mobile",
+      "displayName": "boss-mobile",
+      "source": "./plugins/boss-mobile"
+    }
+  ]
+}

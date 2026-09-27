@@ -8,6 +8,7 @@ export type Declaration = {
 };
 
 export type ThemeSources = {
+  boss: string;
   contract: string;
   product: string;
   radius: string;
@@ -96,8 +97,9 @@ export async function loadThemeSources(root = stylesDir): Promise<ThemeSources> 
   const tokensRoot = path.join(root, 'tokens');
   const read = (relativePath: string) => readFile(path.join(root, relativePath), 'utf8');
 
-  const [contract, product, radius, shadcn, tokens, tokensIndex, typography, vercel] =
+  const [boss, contract, product, radius, shadcn, tokens, tokensIndex, typography, vercel] =
     await Promise.all([
+      read('tokens/colors/boss.css'),
       read('contract.css'),
       read('product.css'),
       read('tokens/radius.css'),
@@ -109,6 +111,7 @@ export async function loadThemeSources(root = stylesDir): Promise<ThemeSources> 
     ]);
 
   return {
+    boss,
     contract,
     product,
     radius,
@@ -149,8 +152,9 @@ export function buildThemeModel(sources: ThemeSources) {
     ['tokens/typography.css', sources.typography],
   ] as const;
   const themedEntries = [
-    // The palette comes first so the semantic layers below can reference it.
+    // The palettes come first so the semantic layers below can reference them.
     ['tokens/colors/vercel.css', sources.vercel],
+    ['tokens/colors/boss.css', sources.boss],
     ['shadcn.css', sources.shadcn],
     ['product.css', sources.product],
   ] as const;

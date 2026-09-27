@@ -1,12 +1,12 @@
 # Architecture Overview
 
-This is the entry point for Cherry Studio Mobile architecture. Domain language lives in
+This is the entry point for The Boss Mobile architecture. Domain language lives in
 [Domain Language](./domain-language.md), and implementation detail lives in the topic documents
 below.
 
 ## Scope
 
-Cherry Mobile runs in one React Native/Hermes runtime. It has an enforced in-process
+The Boss Mobile runs in one React Native/Hermes runtime. It has an enforced in-process
 frontend/backend seam, not Electron processes, IPC, HTTP, independent deployment, or security
 isolation.
 
@@ -47,10 +47,12 @@ a narrow dependency interface, and bootstrap supplies the concrete implementatio
 
 `app` imports only bootstrap, frontend, and shared modules. Backend does not import React UI, Expo
 Router, TanStack Query, translations, or toast implementations. Shared modules do not import upper
-layers. The layout follows Cherry Desktop vocabulary where responsibilities match without copying
+layers. The layout follows upstream Cherry Studio desktop vocabulary where responsibilities match
+without copying
 its process topology, lifecycle framework, or dependency-injection container.
 
-Direct Cherry Desktop counterparts retain their `Service` names and public methods. Mobile-only
+Direct upstream Cherry Studio desktop counterparts retain their `Service` names and public
+methods. Mobile-only
 workflow and lifecycle code is named by ownership as `Module`, `Runtime`, `Session`, `Client`,
 `Adapter`, or `Manager`; statefulness alone does not imply `Service`.
 
@@ -88,7 +90,7 @@ compatibility adapter or generic frontend selector for persistence services.
 - [UI Components](./ui-components.md): shared controls and feature-local UI.
 - [System Integration Design](./system-integration-design.md): system sharing, composer handoff,
   and native-extension boundaries.
-- [Extending Cherry Mobile](../guides/extending.md): how to extend data, workflows, backend behavior, and UI.
+- [Extending The Boss Mobile](../guides/extending.md): how to extend data, workflows, backend behavior, and UI.
 
 ## Current Baseline
 

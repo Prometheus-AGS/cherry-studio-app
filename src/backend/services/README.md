@@ -1,6 +1,7 @@
 # Backend Capabilities
 
-This directory is the mobile counterpart of Cherry Desktop's `src/main/services`. It owns
+This directory is the mobile counterpart of upstream Cherry Studio desktop's
+`src/main/services`. It owns
 backend-facing product workflows, platform capabilities, and third-party services that do not
 belong to AI or entity persistence.
 

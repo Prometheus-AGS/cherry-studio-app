@@ -8,6 +8,7 @@ import {
 import * as z from 'zod';
 
 import { createHttpClient, isHttpError } from '@/backend/services/http';
+import { URL_SCHEME } from '@/shared/branding';
 import { PluginError } from '@/shared/contracts/plugins';
 
 const secret = z.string().min(1).max(16_384).regex(/^\S+$/);
@@ -19,9 +20,9 @@ export const GithubApplicationSchema = z.object({
     .regex(/^[a-zA-Z0-9_.]+$/),
   clientSecret: secret,
   redirectUrl: z.enum([
-    'cherrystudio://plugins/github/callback',
-    'cherrystudio-dev://plugins/github/callback',
-    'cherrystudio-preview://plugins/github/callback',
+    `${URL_SCHEME}://plugins/github/callback`,
+    `${URL_SCHEME}-dev://plugins/github/callback`,
+    `${URL_SCHEME}-preview://plugins/github/callback`,
   ]),
 });
 export type GithubApplication = z.infer<typeof GithubApplicationSchema>;

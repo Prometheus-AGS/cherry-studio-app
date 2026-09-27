@@ -13,6 +13,8 @@ export const notionPlugin: PluginDefinition = {
   catalog: {
     id: 'notion',
     icon: 'notion',
+    // Operator decision: Notion sign-in is paused until The Boss accounts replace it.
+    disabledReason: 'boss-accounts-coming-soon',
     links: {
       credentials: 'https://www.notion.com/help/notion-mcp',
       website: 'https://www.notion.com',

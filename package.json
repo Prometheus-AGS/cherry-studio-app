@@ -1,5 +1,5 @@
 {
-  "name": "cherry-studio-app",
+  "name": "the-boss-mobile",
   "main": "index.ts",
   "version": "0.1.1",
   "engines": {
@@ -47,6 +47,7 @@
     "docs:check-links": "tsx scripts/check-doc-links.ts",
     "i18n:check": "tsx scripts/i18n.ts check",
     "i18n:sync": "tsx scripts/i18n.ts sync",
+    "brand:check": "tsx scripts/brandCheck.ts",
     "test": "pnpm packages:build && pnpm test:packages && pnpm test:app",
     "test:ai-contract": "jest src/backend/ai/__tests__/behavior --runInBand",
     "test:app": "jest",

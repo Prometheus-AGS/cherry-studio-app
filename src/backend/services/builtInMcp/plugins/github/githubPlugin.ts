@@ -1,5 +1,6 @@
 import * as z from 'zod';
 
+import { PRODUCT_NAME } from '@/shared/branding';
 import { PluginError } from '@/shared/contracts/plugins';
 
 import type { PluginAuthorizationDefinition, PluginDefinition } from '../../pluginDefinition';
@@ -8,6 +9,9 @@ import { GithubAuthorizationRuntime } from './GithubAuthorizationRuntime';
 import { GithubTokenCredentialSchema, GithubUserCredentialSchema } from './githubCredentials';
 import { getGithubApplication } from './githubOauth';
 import { githubGuide } from './guide';
+
+// Pre-fills the fine-grained token form: name, expiry and the permissions the tools use.
+const githubTokenCredentialsUrl = `https://github.com/settings/personal-access-tokens/new?name=${encodeURIComponent(PRODUCT_NAME)}&description=${encodeURIComponent(`${PRODUCT_NAME} plugin`)}&expires_in=366&contents=read&issues=write&pull_requests=write`;
 
 const githubUserMethod: PluginAuthorizationDefinition = {
   id: 'github_user',
@@ -32,10 +36,10 @@ export const githubPlugin: PluginDefinition = {
   catalog: {
     id: 'github',
     icon: 'github',
+    // Operator decision: GitHub sign-in is paused until The Boss accounts replace it.
+    disabledReason: 'boss-accounts-coming-soon',
     links: {
-      // Pre-fills the fine-grained token form: name, expiry and the permissions the tools use.
-      credentials:
-        'https://github.com/settings/personal-access-tokens/new?name=Cherry%20Studio&description=Cherry%20Studio%20plugin&expires_in=366&contents=read&issues=write&pull_requests=write',
+      credentials: githubTokenCredentialsUrl,
       website: 'https://github.com',
       authorizationManagement: 'https://github.com/settings/applications',
       privacy:

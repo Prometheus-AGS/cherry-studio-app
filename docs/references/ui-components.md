@@ -1,6 +1,6 @@
 # UI Components
 
-This reference defines what is true about shared components in Cherry Studio Mobile: who owns each
+This reference defines what is true about shared components in The Boss Mobile: who owns each
 surface, and where a platform difference is legitimate. [UI Development](../guides/ui-development.md)
 defines how to do the work — searching CherryUI first, composing component APIs, and promoting a
 feature component into the package.
@@ -13,7 +13,7 @@ lists use `ActionMenu` or `ContextMenu`, sharing the composer add menu's private
 Their existing iOS native adapters remain supported. Pickers, forms, and system media/share
 interfaces keep their own interaction contracts.
 
-Cherry-rendered menus share their row, bounded panel, and lifecycle owners. Their private
+CherryUI-rendered menus share their row, bounded panel, and lifecycle owners. Their private
 `MenuOverlay` uses a transparent system modal for background accessibility isolation and native
 Back/Escape, while CherryUI owns content, focus, motion, and action dispatch after dismissal.
 The composer's trigger morph uses the private `KeyboardMenuOverlay` variant, backed by
@@ -41,7 +41,7 @@ keep the source uniform is a worse outcome than splitting it.
 
 A difference is **chosen** when shared source could express it correctly and the argument for
 splitting is that one platform's result would look or feel more conventional. Chosen differences are
-not introduced. Cherry Studio has one product identity across iOS and Android; platform design
+not introduced. The Boss has one product identity across iOS and Android; platform design
 conventions are input to the design, not a reason to maintain separate Cupertino and Material
 component families.
 
@@ -99,7 +99,7 @@ switch/
 ├── switch.tsx                 shared behavior, events, and composition
 ├── switch.types.ts            public product contract
 ├── switch-control.types.ts    private adapter props shared by every implementation
-├── switch-control.tsx         Cherry control for Android, Web, and tooling
+├── switch-control.tsx         CherryUI control for Android, Web, and tooling
 ├── switch-control.ios.tsx     iOS provider or system primitive
 └── switch-indicator.tsx       private shared implementation helper
 ```
@@ -202,7 +202,7 @@ behavior or presentation where it differs:
 | Haptics and accessibility | intent, labels, state, and reduced-motion behavior | supported feedback and accessibility APIs |
 
 Top-bar actions reach the native navigation bar through `headerLeft`, `headerRight`, or
-`Stack.Toolbar` with Cherry-owned content.
+`Stack.Toolbar` with app-owned content.
 
 System back gestures are never recreated in a general-purpose horizontal swipe component. Product
 gestures start outside system back-gesture edge zones, and the navigation owner handles the platform
@@ -217,7 +217,7 @@ their native and cross-platform interaction boundaries.
 ## Visual System
 
 Color, typography, spacing, radius, elevation, opacity, and animation semantics come from the same
-Cherry design system on both platforms. [Design Spec](../../DESIGN.md) owns the token pipeline and
+The Boss design system on both platforms. [Design Spec](../../DESIGN.md) owns the token pipeline and
 the rules for consuming tokens. General-purpose icons come from deep `@cherrystudio/app-icons/icons/*`
 imports. Provider and model brands, avatars, logos, charts, and content images remain image assets.
 
@@ -226,7 +226,7 @@ visual language. On iOS, system-rendered controls and navigation inherit the cur
 appearance, including Liquid Glass where supported: the owning platform adapter lets the system
 render that material, and product code does not reproduce it.
 
-Liquid Glass is not a product-wide visual requirement. Cherry-owned content surfaces and ordinary
+Liquid Glass is not a product-wide visual requirement. App-owned content surfaces and ordinary
 product components remain shared. A custom iOS-only glass treatment is optional progressive
 enhancement, while Android and unsupported iOS versions retain the same hierarchy and a complete
 fallback.

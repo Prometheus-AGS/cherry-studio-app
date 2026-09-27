@@ -26,6 +26,8 @@ export function PluginConnectScreen() {
     );
   const entry = catalog.data?.find((item) => item.id === parsed.data);
   if (!entry) return <ContentState.Empty title={t('plugins.unavailable')} />;
+  if (entry.disabledReason)
+    return <ContentState.Empty title={t(`plugins.disabledReasons.${entry.disabledReason}`)} />;
   return <PluginConnect key={entry.id} entry={entry} />;
 }
 

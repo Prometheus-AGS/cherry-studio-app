@@ -1,5 +1,7 @@
 import * as z from 'zod';
 
+import { URL_SCHEME } from '@/shared/branding';
+
 const token = z.string().min(1).max(16_384).regex(/^\S+$/);
 
 /** OAuth endpoints must remain on Notion's MCP host, including restored registrations. */
@@ -24,9 +26,9 @@ export const NotionApplicationSchema = z.object({
   authorizationEndpoint: NotionEndpointSchema,
   tokenEndpoint: NotionEndpointSchema,
   redirectUrl: z.enum([
-    'cherrystudio://plugins/notion/callback',
-    'cherrystudio-dev://plugins/notion/callback',
-    'cherrystudio-preview://plugins/notion/callback',
+    `${URL_SCHEME}://plugins/notion/callback`,
+    `${URL_SCHEME}-dev://plugins/notion/callback`,
+    `${URL_SCHEME}-preview://plugins/notion/callback`,
   ]),
 });
 export type NotionApplication = z.infer<typeof NotionApplicationSchema>;

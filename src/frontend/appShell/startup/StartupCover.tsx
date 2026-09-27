@@ -13,6 +13,8 @@ import Animated, {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
 
+import { PRODUCT_NAME } from '@/shared/branding';
+
 import { getStartupExitDurationMs, STARTUP_ATTRIBUTION_ENTER_DURATION_MS } from './startupState';
 
 const STARTUP_LOGO = require('@/assets/icon.png');
@@ -134,7 +136,7 @@ export function StartupCover({
         ]}
       >
         <Text accessible={false} allowFontScaling={false} style={styles.brandText}>
-          Cherry Studio
+          {PRODUCT_NAME}
         </Text>
       </Animated.View>
     </Animated.View>
@@ -149,7 +151,9 @@ const styles = StyleSheet.create({
     right: 0,
   },
   brandText: {
-    color: '#FF5757',
+    // Fixed logo ember (`--brand` / boss-brand-500). The cover renders before
+    // Uniwind and the saved theme are read, so it cannot resolve the token.
+    color: '#E04E28',
     fontSize: 18,
     fontWeight: '600',
     letterSpacing: 0,

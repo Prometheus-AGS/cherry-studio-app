@@ -4,17 +4,56 @@ Use `pnpm build:local` to create an Android or iOS installation package on your 
 `eas build --local`, defaults to the `development` profile, and forwards EAS build arguments.
 The existing `eas-build-post-install` hook builds the workspace packages during the build.
 
+## EAS Project Linking
+
+`app.json` no longer sets `extra.eas.projectId`, and `eas.json` no longer sets
+`submit.production.ios.ascAppId`. Both previously pointed at upstream Cherry Studio's EAS project
+and App Store Connect app; this fork's operator (Know Me Tools) does not have access to those
+accounts, so keeping the values would not have made local or cloud builds work — `eas build`
+(local or cloud) contacts Expo for project information even for local builds, and a project ID this
+account cannot read fails there rather than succeeding. Run `eas init` once, authenticated as a
+Know Me Tools Expo account, to create a fresh EAS project and write its `projectId` back into
+`app.json`; add `submit.production.ios.ascAppId` once a matching App Store Connect app exists for
+`tools.know-me.the-boss` (see [Cloud Releases](./cloud-releases.md)).
+
 | Build profile | Outbound reporting (Sentry / Observe / Insights) | Sentry source-map and debug-symbol uploads |
 | --- | --- | --- |
 | `development` / `development-simulator` | Disabled | Disabled |
 | `preview` | Disabled | Disabled |
-| `production` / `production-google-play` | Enabled per service registry; Sentry additionally requires a DSN and current user consent | Enabled for Sentry; requires an upload token |
+| `production` / `production-google-play` | Disabled fork-wide (see below) | Skipped — the Sentry Expo plugin is not registered in `app.json` |
 
 The shared [reporting registry](../../src/frontend/appShell/observability/reportingServices.json)
 owns per-service build flags. Sentry uses immutable native metadata and rejects debug binaries.
 The reporting autolinking plugin excludes Observe and Insights from non-production native projects,
 including their automatic startup and background senders. Those builds also omit local Observe
 metrics. Changing native reporting policy requires a new installation package. See [Observability](../../src/frontend/appShell/observability/README.md).
+
+### Sentry And Analytics Are Off For This Fork
+
+Every outbound reporting service (Sentry error/crash reporting, EAS Observe, EAS Insights) is
+disabled in every build profile, including `production`, regardless of the registry's per-service
+flags or user consent. `app.config.ts` sets a single `REPORTING_DISABLED` constant that forces
+`extra.reporting.services.*` to `false` before it reaches the runtime policy
+(`src/frontend/appShell/observability/reportingPolicy.ts`), the native autolinking plugin
+(`scripts/withReportingAutolinking.js`), and the native crash-reporting config plugin
+(`modules/crash-reporting/app.plugin.js`) — all three read that same resolved config rather than
+the registry file directly, so this one switch governs every consumer. The `@sentry/react-native/expo`
+Expo plugin is also removed from `app.json`, so no build (local or cloud) registers Sentry's native
+upload hooks. This is deliberate (PD-4): the previously configured Sentry organization/project
+(`cherryai`/`cherry-studio-app`) belongs to upstream, and Know Me Tools has no reporting accounts of
+its own yet. See [Backend Services Replacement Notes](../backend-services/README.md).
+
+To re-enable, once Know Me Tools owns its own accounts:
+
+1. Set `REPORTING_DISABLED = false` in `app.config.ts`.
+2. Re-add the `@sentry/react-native/expo` plugin entry to `app.json` with the Know Me Tools
+   organization and project.
+3. Provide `EXPO_PUBLIC_SENTRY_DSN` and `SENTRY_AUTH_TOKEN` as described below.
+4. Rebuild the native client — none of this can ship over an OTA update.
+
+Product analytics (`src/backend/services/analytics/AnalyticsService.ts`, app-owned) is a separate,
+consent-driven system not gated by the reporting registry above; it is out of scope for this file
+and tracked separately in [Backend Services Replacement Notes](../backend-services/README.md).
 
 ## Prerequisites
 
@@ -41,18 +80,20 @@ development identity. An unset `PROFILE` defaults to production; unknown values 
 
 | EAS profile | App name | iOS / Android ID suffix | URL scheme |
 | --- | --- | --- | --- |
-| `development` | Cherry Studio Dev | `.dev` | `cherrystudio-dev` |
-| `preview` | Cherry Studio Preview | `.preview` | `cherrystudio-preview` |
-| `production` / `production-google-play` | Cherry Studio | none | `cherrystudio` |
+| `development` | The Boss Dev | `.dev` | `theboss-dev` |
+| `preview` | The Boss Preview | `.preview` | `theboss-preview` |
+| `production` / `production-google-play` | The Boss | none | `theboss` |
 
 `production-google-play` inherits `PROFILE=production`. It changes Android's artifact format to
 AAB without adding an app identity or runtime environment. The `production` profile continues
 to create APKs for GitHub downloads and IPAs for iOS.
 
-The base IDs are `com.cherryai.cherrystudio-app` (iOS) and
-`com.cherryai.cherrystudio_app` (Android). Widget identifiers and iOS App Groups follow the selected
+The base IDs are `tools.know-me.the-boss` (iOS) and
+`tools.know_me.the_boss` (Android). Widget identifiers and iOS App Groups follow the selected
 variant. Each variant has independent app data; existing installations retain their previous identity
-and their data is not automatically migrated to apps using the new IDs.
+and their data is not automatically migrated to apps using the new IDs. These are new application
+identifiers: there is no in-place upgrade path from a Cherry Studio (`com.cherryai.cherrystudio*`)
+installation, and both apps can be installed side by side on one device.
 
 The `dev`, `start`, Storybook, `ios`, and `android` scripts select `PROFILE=development`. The `prebuild`
 script also defaults to development, while preserving an explicitly set `PROFILE` (for example,

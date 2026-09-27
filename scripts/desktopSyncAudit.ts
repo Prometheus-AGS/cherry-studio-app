@@ -448,7 +448,7 @@ async function assertPackageName(
 async function assertRepositoryIdentities(desktopRoot: string, mobileRoot: string): Promise<void> {
   await Promise.all([
     assertCheckout(desktopRoot, 'CherryStudio', 'desktop'),
-    assertCheckout(mobileRoot, 'cherry-studio-app', 'mobile'),
+    assertCheckout(mobileRoot, 'the-boss-mobile', 'mobile'),
     assertPackageName(desktopRoot, 'packages/ui', '@cherrystudio/ui'),
     assertPackageName(mobileRoot, 'packages/ui', '@cherrystudio/ui'),
     assertPackageName(desktopRoot, 'packages/aiCore', '@cherrystudio/ai-core'),

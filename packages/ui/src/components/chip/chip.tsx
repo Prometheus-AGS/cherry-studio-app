@@ -44,7 +44,7 @@ function ChipLabel({ className, ref, ...props }: ChipLabelProps) {
   return (
     <Text
       {...props}
-      className={cn('min-w-0 shrink text-sm font-medium text-foreground', className)}
+      className={cn('min-w-0 shrink text-sm font-ui-medium font-medium text-foreground', className)}
       ref={ref}
     />
   );

@@ -1,4 +1,4 @@
-# Cherry Agent Runtime
+# The Boss Agent Runtime
 
 > Status: as-built. Mobile Agent execution is device-local only.
 
@@ -18,7 +18,7 @@ Application capability adapter → device / MCP / AI SDK / managed files
 ```
 
 The Runtime knows prepared prompts, models, history, tools, input, and normalized execution events.
-It does not know Cherry Agent or Session entities, application commands or snapshots, SQLite,
+It does not know application Agent or Session entities, application commands or snapshots, SQLite,
 Data API, React, Expo, navigation, or UI state.
 
 The Host is the only adapter between the [Agent Protocol](./agent-protocol.md) and the Runtime. It
@@ -244,7 +244,7 @@ type RuntimeDocumentAttachmentPart = {
 ```
 
 Runtime implementations receive model/provider dependencies from application composition. They do
-not query Cherry provider or model tables.
+not query the app's provider or model tables.
 
 `trace` is an optional process-local instrumentation handle from
 `backend/ai/observability`. It provides explicit child spans, bounded metadata attributes, and
@@ -352,7 +352,7 @@ type RuntimeContextCheckpoint = {
 }
 ```
 
-The Host converts persisted Cherry messages into normalized history grouped by their durable Turn.
+The Host converts persisted application messages into normalized history grouped by their durable Turn.
 Rows without a Turn id retain a `null` group id and cannot be checkpoint anchors. Runtime-native
 messages never become the application source of truth. User attachment parts may become Runtime
 file parts; assistant artifact parts remain application-visible managed references and are not

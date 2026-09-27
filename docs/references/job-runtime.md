@@ -157,7 +157,7 @@ and may be retried explicitly.
 
 Do not add a generic destination column, progress surface, platform adapter, schedule vocabulary, or
 new execution class until a current product consumer needs it. See
-[Extending Cherry Mobile](../guides/extending.md#add-a-job-handler) for the handler procedure.
+[Extending The Boss Mobile](../guides/extending.md#add-a-job-handler) for the handler procedure.
 
 ## Related
 

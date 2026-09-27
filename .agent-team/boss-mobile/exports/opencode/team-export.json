@@ -1,0 +1,77 @@
+{
+  "target": "opencode",
+  "verification": {
+    "level": "source-verified",
+    "source": "https://opencode.ai/docs/agents/",
+    "version": "deployed singular agent schema inspected 2026-09-24",
+    "live": "unverified"
+  },
+  "diagnostics": [
+    "Source-verified serialization only; installed native validation and live execution are unverified.",
+    "Only explicit model IDs are translated. Resolve tier, skill, capability and price policies with agent-team-models before native invocation.",
+    "OpenCode JS/TS or npm plugins are separate from agent definitions; no agent marketplace manifest is invented.",
+    "Role overrides are preserved without native schema certification. Skill IDs refer to separately installed skills; prompt mentions do not install or authorize them."
+  ],
+  "instructions": [
+    "Review staged artifacts before installation. Export grants no execution or registration authority.",
+    "Review .opencode/agents/*.md and optional opencode.json. Native configuration uses singular agent and permission keys."
+  ],
+  "files": [
+    {
+      "file": ".opencode/agents/boss-mobile-lead.md",
+      "sha256": "a984e551ffe32167d06e97435779b112fe2932784b8703010e3866898e321714"
+    },
+    {
+      "file": ".opencode/agents/boss-mobile-product.md",
+      "sha256": "955982668ec4e851287a630d40e701d7b52a417f941b01a12e18620c40f5fbf2"
+    },
+    {
+      "file": ".opencode/agents/boss-mobile-rebrand.md",
+      "sha256": "c8e1b114db3bb5b4b44a7c23465298db6e4fe7aa875498513c18bffc6061b128"
+    },
+    {
+      "file": ".opencode/agents/boss-mobile-upstream.md",
+      "sha256": "2f194abbc5565210b54215ce2f482e50ac782294db3dc8c8ac1fec90638dda20"
+    },
+    {
+      "file": ".opencode/agents/boss-mobile-rust-ffi.md",
+      "sha256": "9b0dce3a5c736fc38e45d3ab80b8d97b27cf4bdda8edf72d07475833e940b14e"
+    },
+    {
+      "file": ".opencode/agents/boss-mobile-p2p.md",
+      "sha256": "b16ed02225d33336e9cc8f9fce3d0cff184e23ebcf2a7349fc058e107d1eaf02"
+    },
+    {
+      "file": ".opencode/agents/boss-mobile-runtime.md",
+      "sha256": "941517bc22a891edb55be70b7d4fdf7f222ee7a327faab1f9284c6f81dca927d"
+    },
+    {
+      "file": ".opencode/agents/boss-mobile-data.md",
+      "sha256": "4cab7481cf68a9af70ac61c524e9aed71cf4e099245720cf798ac7a33e619274"
+    },
+    {
+      "file": ".opencode/agents/boss-mobile-ux.md",
+      "sha256": "f20dc7555e4867e91c720f76dee08ef3a6c6f949edc962223ab95b56b2bc4a76"
+    },
+    {
+      "file": ".opencode/agents/boss-mobile-app.md",
+      "sha256": "751a76aec421b92411f04eb601386f372cdc35b89b24347ce9c1d189a0f7ab5b"
+    },
+    {
+      "file": ".opencode/agents/boss-mobile-release.md",
+      "sha256": "563992f2fa7ac39d8283ce71580a2086df66ad403ada47bf9171bc6a8b806166"
+    },
+    {
+      "file": ".opencode/agents/boss-mobile-security.md",
+      "sha256": "cd26c98f7b96fc129a092310fa8c0bf4d5f9ec16b90f0c0312b2c26e3bd50079"
+    },
+    {
+      "file": ".opencode/agents/boss-mobile-verifier.md",
+      "sha256": "e0cf6cabdf3259a246426b6dfd3dc5f60ea3a45aef4276d934b9bff1dbccc290"
+    },
+    {
+      "file": "export-receipt.json",
+      "sha256": "9dbd6ef7a3a1a7cdb6617943631b4aac07956c9811c98f96863b2742d0bd6eb8"
+    }
+  ]
+}

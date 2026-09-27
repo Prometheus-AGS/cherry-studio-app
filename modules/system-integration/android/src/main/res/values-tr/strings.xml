@@ -1,0 +1,8 @@
+<resources>
+  <string name="cherry_share_title">The Boss\'a paylaş</string>
+  <string name="cherry_share_continue">The Boss\'ta devam et</string>
+  <string name="cherry_share_close">Kapat</string>
+  <string name="cherry_share_confirm">The Boss bunu yeni bir sohbetin giriş alanına yerleştirir, düzenlemeye ve göndermeye hazır.</string>
+  <string name="cherry_share_preparing">Paylaşılan içerik hazırlanıyor…</string>
+  <string name="cherry_share_failed">Bu paylaşım okunamadı. En fazla 10 dosya (her biri 25 MB, toplam 50 MB) paylaşıp tekrar deneyin.</string>
+</resources>

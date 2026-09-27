@@ -2,7 +2,7 @@
 
 > Status: as-built.
 
-How Cherry Mobile stores user- and generation-owned files. This model is mobile-native and
+How The Boss Mobile stores user- and generation-owned files. This model is mobile-native and
 deliberately diverges from Cherry Desktop's `FileEntry`: desktop's external-path entries, content
 hashing, cleanup policies, and entry-level trash have no mobile consumer, so none of them exist
 here. Terms follow [Domain Language](../domain-language.md).
@@ -15,7 +15,7 @@ here. Terms follow [Domain Language](../domain-language.md).
    draft and may be rewritten in place by the same turn's `edit_file`; the moment the turn ends,
    or for any entry the turn did not produce, bytes never change and an "edit" creates a new
    version entry. Nothing else in the app rewrites a managed blob.
-3. **Cherry owns every blob.** Picker, camera, and provider URIs are transient import sources whose
+3. **The Boss Mobile owns every blob.** Picker, camera, and provider URIs are transient import sources whose
    bytes are copied into `Data/Files`. No entry references a path outside the sandbox.
 4. **Import happens when the file enters the app.** Painting imports at generation time; the Agent
    Composer imports when an attachment enters its managed draft. Import is also the only place an
@@ -58,7 +58,7 @@ here. Terms follow [Domain Language](../domain-language.md).
   (library rename) will be the second.
 - `provenance` is stable source identity: `imported` for a file brought in from a picker, camera,
   paste, or painting input; `generated` for ordinary files written or produced for the user by
-  Cherry; `document-export` for new files produced by document export; `unknown` when the origin
+  The Boss Mobile; `document-export` for new files produced by document export; `unknown` when the origin
   cannot be proven. Reattaching or sharing an existing file does not change its origin. It is
   written exactly once, by whoever creates the bytes, and never derived from an owner at read
   time — owners are deleted, and the library still has to answer.
@@ -266,7 +266,7 @@ distinguishes an extraction cap from the pageable line window's `truncated` flag
 carried in the filename rather than a lineage column; folding a version chain in the library is a
 future library concern and needs no schema change to start.
 
-**Readable names.** Every file Cherry produces is named for what it is, never for its id: an
+**Readable names.** Every file The Boss Mobile produces is named for what it is, never for its id: an
 imported file keeps the name it arrived with (a camera photo, which has none, falls back to
 `Image`), a version carries its number, `write_file` uses the name the model chose, and a generated
 image is named after its prompt through `readableFilename` (`sunset over the bay.png`, with a
@@ -289,7 +289,7 @@ inspection and read tools can also consume it by id. See
 [Agent Tools And Controlled Resources](../agent/agent-tools-and-resources.md#tool-results-and-artifacts).
 
 Saving or sharing a managed artifact to the system copies its bytes to a user-selected destination.
-The managed entry remains canonical, and Cherry never persists the exported path as file authority.
+The managed entry remains canonical, and The Boss Mobile never persists the exported path as file authority.
 
 **Provider upload cache.** A separate table keyed by content hash, added when the AI SDK's Files
 Upload API stabilizes.

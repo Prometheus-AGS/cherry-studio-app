@@ -24,7 +24,7 @@ This module owns Expo Router header adapters used by the app screens.
   plus all standard top-action visuals and interaction states.
 - `components/HeaderActionGroup` is the platform gateway for adjacent top actions. Callers declare
   placement, tone, and actions without choosing a platform: iOS delegates the group surface to the
-  native toolbar, while Android draws the Cherry fallback surface.
+  native toolbar, while Android draws the app's own fallback surface.
 - `MainHeaderView` keeps a thin platform adapter because Android draws an ultra-thin blurred overlay
   above the scrolling chat scene, while iOS uses the native transparent toolbar. Android 12 and
   newer sample the chat surface through Expo Blur; older releases fall back to the material tint.
@@ -33,7 +33,7 @@ This module owns Expo Router header adapters used by the app screens.
   `useMainHeaderActions`, so platform files only own how the surface is mounted.
 - `headerScreenOptions` owns native top-header invariants. Top headers are separator-free on both
   platforms, and self-drawn headers do not add bottom borders or elevation.
-- Top-bar controls share one Cherry action size and grouping contract. iOS lets the native toolbar
+- Top-bar controls share one action size and grouping contract. iOS lets the native toolbar
   draw its shared glass background where supported and adds token-colored translucent surfaces on
   older systems. Android supplies the matching fallback surface: one action forms a circle when it
   is an icon, while a label action and adjacent actions form a capsule. The visible surface stays

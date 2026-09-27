@@ -1,19 +1,19 @@
 # Domain Language
 
-This reference defines the shared product and architecture language for Cherry Studio Mobile. The
-mobile app keeps Cherry's chat and provider model compatible with Desktop while using mobile-native
+This reference defines the shared product and architecture language for The Boss Mobile. The
+mobile app keeps its chat and provider model compatible with Desktop while using mobile-native
 data, navigation, rendering, and resource ownership patterns.
 
 ## Language
 
 ### Agent Conversation
 
-**Cherry Mobile**:
-The mobile Cherry Studio client built on Expo and React Native.
+**The Boss Mobile**:
+The mobile The Boss client built on Expo and React Native, forked from Cherry Studio Mobile.
 _Avoid_: mobile clone
 
 **Agent**:
-A reusable Cherry configuration that defines its name, prompt, selected model, and inference
+A reusable application configuration that defines its name, prompt, selected model, and inference
 settings.
 _Avoid_: Assistant entity, bot, character
 
@@ -71,7 +71,8 @@ _Avoid_: Data Service Graph, HTTP API layer, repository bag
 
 **Data API**:
 The typed resource interface made of endpoint schemas, `ApiClient`, frontend query/mutation hooks,
-in-process dispatch, and backend handlers. It shares Cherry Desktop's vocabulary but has no IPC or
+in-process dispatch, and backend handlers. It shares upstream Cherry Studio desktop's vocabulary but has no IPC
+or
 HTTP transport on mobile.
 _Avoid_: module selector, service bag, remote API
 
@@ -151,7 +152,7 @@ The message rendering boundary for Markdown-capable assistant Message Parts, reg
 _Avoid_: whole-message Markdown parser, network transport
 
 **Interaction Button**:
-A Cherry-owned pressable control or feature-local wrapper used for product buttons, icon buttons, and header actions.
+An app-owned pressable control or feature-local wrapper used for product buttons, icon buttons, and header actions.
 _Avoid_: React Native Button as a product UI primitive
 
 **Navigation Drawer**:
@@ -163,5 +164,5 @@ The screen-edge region reserved for operating-system gestures such as Android ed
 _Avoid_: app-owned edge
 
 **Product Horizontal Gesture**:
-A Cherry-owned horizontal gesture for product UI such as drawers, swipe actions, carousels, or scrubbers.
+An app-owned horizontal gesture for product UI such as drawers, swipe actions, carousels, or scrubbers.
 _Avoid_: system back gesture

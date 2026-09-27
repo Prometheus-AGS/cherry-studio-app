@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary        = 'Native PDF text extraction module for iOS'
   s.description    = 'Expo module providing PDF text extraction using iOS PDFKit framework'
   s.author         = 'Cherry Studio'
-  s.homepage       = 'https://github.com/kangfenmao/cherry-studio'
+  s.homepage       = 'https://github.com/Prometheus-AGS/the-boss-mobile'
   s.platforms      = { :ios => '17.0' }
   s.source         = { git: '' }
   s.static_framework = true
