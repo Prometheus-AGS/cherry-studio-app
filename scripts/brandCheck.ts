@@ -85,11 +85,15 @@ const RESOURCE_PATTERN = /cherry/giu;
 /**
  * Product-name uses inside source literals: the capitalised word `Cherry` (case-sensitive, so
  * `CherryIN`, `cherry.db` and `cherry-remote` stay identifiers), the phrase `Cherry Studio` in any
- * case, and the upstream site.
+ * case and its hyphenated (`cherry-studio`) and unspaced (`cherrystudio`) spellings, and the
+ * upstream sites (`cherry-ai.com`, `cherryai.com`, which also matches as a substring of
+ * `cherryai.com.cn`). The unspaced form excludes only the `@cherrystudio/` npm scope form (a
+ * handle such as `@CherryStudio` still matches) instead of the allowlist, since that scope is used in import specifiers throughout
+ * the tree (PD-5).
  */
 const SOURCE_PATTERNS = [
   /(?<![\p{L}\p{N}_])Cherry(?![\p{L}\p{N}_])/gu,
-  /cherry\s+studio|cherry-ai\.com/giu,
+  /cherry\s+studio|cherry-ai\.com|cherryai\.com|cherry-studio|cherrystudio(?!\/)|(?<!@)cherrystudio/giu,
 ];
 const IDENTIFIER_CHARACTER = /[\p{L}\p{N}_]/u;
 const WILDCARD_TAIL = /^[\p{L}\p{N}_.\-/]*/u;

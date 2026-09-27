@@ -111,4 +111,51 @@ describe('brand check', () => {
       validateAllowlist({ identifiers: [{ identifier: 'Cherry', reason: 'everywhere' }] }),
     ).toThrow('must be scoped');
   });
+
+  test('flags the hyphenated and unspaced product name and the bare upstream domain in source literals', () => {
+    const root = createTree({
+      'src/backend/one.ts': "export const A = 'cherry-studio';\n",
+      'src/backend/two.ts': "export const B = 'CherryStudioUI';\n",
+      'src/backend/three.ts': "export const C = 'See cherryai.com for details';\n",
+    });
+
+    expect(checkBrand(root, noExceptions).findings).toEqual([
+      expect.objectContaining({ file: 'src/backend/one.ts', text: 'cherry-studio' }),
+      expect.objectContaining({ file: 'src/backend/three.ts' }),
+      expect.objectContaining({ file: 'src/backend/two.ts', text: 'CherryStudioUI' }),
+    ]);
+  });
+
+  test('excludes the @cherrystudio npm scope by design, and exempts a scoped technical-contract identifier', () => {
+    const root = createTree({
+      'packages/foo/index.ts':
+        "import { x } from '@cherrystudio/ui';\nexport const PAIR = 'cherry-studio-pair';\n",
+    });
+
+    expect(checkBrand(root, noExceptions).findings).toEqual([
+      expect.objectContaining({ file: 'packages/foo/index.ts', text: 'cherry-studio-pair' }),
+    ]);
+
+    const allowlist = validateAllowlist({
+      identifiers: [
+        {
+          identifier: 'cherry-studio-pair',
+          paths: ['packages/foo/index.ts'],
+          reason: 'Wire-protocol discriminant test double.',
+        },
+      ],
+    });
+
+    expect(checkBrand(root, allowlist).findings).toEqual([]);
+  });
+
+  test('flags an @-prefixed product handle that is not the npm scope', () => {
+    const root = createTree({
+      'src/backend/handle.ts': "export const HANDLE = 'Follow @CherryStudio';\n",
+    });
+
+    expect(checkBrand(root, noExceptions).findings).toEqual([
+      expect.objectContaining({ file: 'src/backend/handle.ts' }),
+    ]);
+  });
 });
